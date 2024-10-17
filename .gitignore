@@ -1,0 +1,11 @@
+# venv
+bhante/
+
+# chroma vector db
+chroma/
+
+# bhante lectures raw data, pdfs txts etc. to transform
+data/
+
+.env
+.ipynb_checkpoints
