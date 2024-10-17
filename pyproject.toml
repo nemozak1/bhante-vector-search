@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "bhante-vector-search"
+version = "0.1.0"
+description = "A tool to search Urgyen (Bhante) Sangharakshita's complete works"
+authors = ["nemo <nemozak1@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+
+[tool.poetry.dependencies]
+python = "^3.10"
+chromadb = "^0.5.15"
+langchain-chroma = "^0.1.4"
+langchain-openai = "^0.2.2"
+pydantic = "^2.9.2"
+fastapi = "^0.115.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

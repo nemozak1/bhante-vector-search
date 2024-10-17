@@ -5,7 +5,8 @@ bhante/
 chroma/
 
 # bhante lectures raw data, pdfs txts etc. to transform
-data/
+src/server/database/chroma/*
+data/*
 
 .env
 .ipynb_checkpoints
