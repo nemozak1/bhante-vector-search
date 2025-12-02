@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhante Sangharakshita Vector Search</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        input[type="text"] {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        button {
+            padding: 12px 30px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #2980b9;
+        }
+        
+        button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+        
+        .results {
+            margin-top: 20px;
+        }
+        
+        .result-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .result-content {
+            margin-bottom: 12px;
+            line-height: 1.8;
+        }
+        
+        .result-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 14px;
+            color: #7f8c8d;
+            padding-top: 12px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .meta-label {
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .work-title {
+            color: #e74c3c;
+            font-style: italic;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        
+        .error {
+            background: #fee;
+            color: #c33;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+        
+        .settings {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+        
+        .settings label {
+            margin-right: 10px;
+            font-weight: 600;
+        }
+        
+        .settings input[type="number"] {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Bhante Sangharakshita Vector Search</h1>
+        <p class="subtitle">Semantic search through Buddhist texts</p>
+        
+        <div class="settings">
+            <label for="numResults">Number of results:</label>
+            <input type="number" id="numResults" min="1" max="20" value="5">
+        </div>
+        
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Enter your question or search query..."
+                onkeypress="handleKeyPress(event)"
+            >
+            <button onclick="performSearch()" id="searchButton">Search</button>
+        </div>
+        
+        <div id="error" class="error" style="display: none;"></div>
+        <div id="results" class="results"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+        
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        }
+        
+        async function performSearch() {
+            const query = document.getElementById('searchInput').value.trim();
+            const k = document.getElementById('numResults').value;
+            const resultsDiv = document.getElementById('results');
+            const errorDiv = document.getElementById('error');
+            const searchButton = document.getElementById('searchButton');
+            
+            if (!query) {
+                showError('Please enter a search query');
+                return;
+            }
+            
+            // Clear previous results and errors
+            errorDiv.style.display = 'none';
+            resultsDiv.innerHTML = '<div class="loading">Searching...</div>';
+            searchButton.disabled = true;
+            
+            try {
+                const response = await fetch(`${API_URL}/api/search?query=${encodeURIComponent(query)}&k=${k}`);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                displayResults(data);
+                
+            } catch (error) {
+                showError(`Error: ${error.message}. Make sure the API server is running on port 8000.`);
+                resultsDiv.innerHTML = '';
+            } finally {
+                searchButton.disabled = false;
+            }
+        }
+        
+        function displayResults(data) {
+            const resultsDiv = document.getElementById('results');
+            
+            if (data.results.length === 0) {
+                resultsDiv.innerHTML = '<div class="no-results">No results found. Try a different query.</div>';
+                return;
+            }
+            
+            const resultsHTML = data.results.map((result, index) => `
+                <div class="result-item">
+                    <div class="result-content">${escapeHtml(result.content)}</div>
+                    <div class="result-meta">
+                        ${result.work ? `<div class="meta-item"><span class="meta-label">Work:</span> <span class="work-title">${escapeHtml(result.work)}</span></div>` : ''}
+                        ${result.page ? `<div class="meta-item"><span class="meta-label">Page:</span> ${result.page_label || result.page}</div>` : ''}
+                        ${result.chapter ? `<div class="meta-item"><span class="meta-label">Chapter:</span> ${escapeHtml(result.chapter)}</div>` : ''}
+                        ${result.score ? `<div class="meta-item"><span class="meta-label">Relevance:</span> ${result.score.toFixed(3)}</div>` : ''}
+                    </div>
+                </div>
+            `).join('');
+            
+            resultsDiv.innerHTML = resultsHTML;
+        }
+        
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+        
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // Check if API is available on load
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch(`${API_URL}/health`);
+                if (response.ok) {
+                    console.log('✓ API server is running');
+                }
+            } catch (error) {
+                showError('Warning: Cannot connect to API server. Make sure it is running on port 8000.');
+            }
+        });
+    </script>
+</body>
+</html>
