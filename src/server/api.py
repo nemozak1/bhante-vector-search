@@ -338,7 +338,37 @@ async def list_seminars():
 
 @app.get("/api/seminars/{code}", response_model=SeminarTranscriptResponse)
 async def get_seminar_transcript(code: str):
-    """Get the full transcript of a seminar for the viewer."""
+    """Get the full transcript of a seminar for the viewer.
+
+    Prefers cleaned (reviewed) version if available, otherwise parses raw on-the-fly.
+    """
+    import json as json_module
+
+    # Prefer cleaned version if it exists
+    cleaned_path = PROJECT_ROOT / "data" / "seminars" / "cleaned" / f"{code}.json"
+    if cleaned_path.exists():
+        try:
+            with open(cleaned_path, "r", encoding="utf-8") as f:
+                data = json_module.load(f)
+            turns = [
+                SpeakerTurnResponse(
+                    speaker=t.get("speaker"),
+                    paragraphs=t["paragraphs"],
+                    turn_index=i,
+                )
+                for i, t in enumerate(data["turns"])
+            ]
+            return SeminarTranscriptResponse(
+                code=data["code"],
+                title=data["title"],
+                date=data.get("date"),
+                location=data.get("location"),
+                turns=turns,
+            )
+        except Exception as e:
+            logger.warning(f"Error reading cleaned file for {code}, falling back to raw: {e}")
+
+    # Fall back to parsing raw on-the-fly
     from src.seminar_processor import SeminarProcessor
 
     raw_path = PROJECT_ROOT / "data" / "seminars" / "raw" / f"{code}.json"

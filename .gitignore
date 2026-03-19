@@ -11,8 +11,12 @@ data/*
 .env
 .ipynb_checkpoints
 
-# Seminar data
-data/seminars/
+# Seminar cleaned transcripts and review status ARE tracked
+!data/seminars/
+data/seminars/*
+!data/seminars/cleaned/
+!data/seminars/cleaned/**
+!data/seminars/review_status.json
 
 # SvelteKit
 src/client/node_modules/

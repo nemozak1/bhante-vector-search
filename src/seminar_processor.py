@@ -15,7 +15,7 @@ from bs4 import BeautifulSoup
 
 
 # Known abbreviations for Sangharakshita
-SANGHARAKSHITA_ALIASES = {"S", "Bhante", "Sangharakshita"}
+SANGHARAKSHITA_ALIASES = {"S", "S.", "Bhante", "Sangharakshita", "SANGHARAKSHITA"}
 
 # Boilerplate intro text that appears in many transcripts
 BOILERPLATE_STARTS = [
@@ -34,6 +34,9 @@ FOOTER_PATTERNS = [
 SPEAKER_TURN_RE = re.compile(
     r'^([A-Za-z_][A-Za-z\s_.\'-]*?)\s*[;:]\s+'
 )
+
+# Maximum length for a speaker name — longer matches are likely false positives
+MAX_SPEAKER_NAME_LENGTH = 40
 
 # Header-like labels to exclude from speaker detection
 HEADER_LABELS = {
@@ -221,23 +224,25 @@ class SeminarProcessor:
         """Parse HTML into speaker turns.
 
         Speaker turns are detected by "Name;" or "Name:" at the start of
-        paragraph text. The name/text separator can be either ; or :.
+        paragraph/line text. Uses _extract_lines() so both <p>-based and
+        <br>-based transcript formats are handled uniformly.
         """
+        lines = self._extract_lines(soup)
         turns = []  # list of (speaker, text) tuples
         current_speaker = None
         current_text = []
 
-        for p in soup.find_all("p"):
-            text = p.get_text().strip()
-            if not text:
+        for line in lines:
+            if not line.strip():
                 continue
 
             # Try to detect a speaker change
-            match = SPEAKER_TURN_RE.match(text)
+            match = SPEAKER_TURN_RE.match(line)
             if match:
                 name = match.group(1).strip()
-                # Skip header-like labels (HELD AT, THOSE PRESENT, etc.)
-                if name.upper() not in HEADER_LABELS:
+                # Skip header-like labels and names that are too long
+                if (name.upper() not in HEADER_LABELS
+                        and len(name) <= MAX_SPEAKER_NAME_LENGTH):
                     # Save previous turn
                     if current_text:
                         turns.append((current_speaker, " ".join(current_text)))
@@ -245,13 +250,13 @@ class SeminarProcessor:
 
                     current_speaker = self._normalize_speaker(name)
                     # Text after the "Name; " or "Name: " prefix
-                    remaining = text[match.end():].strip()
+                    remaining = line[match.end():].strip()
                     if remaining:
                         current_text.append(remaining)
                     continue
 
-            # Regular paragraph — append to current turn
-            current_text.append(text)
+            # Regular line — append to current turn
+            current_text.append(line)
 
         # Don't forget the last turn
         if current_text:
@@ -283,7 +288,8 @@ class SeminarProcessor:
             match = SPEAKER_TURN_RE.match(line)
             if match:
                 name = match.group(1).strip()
-                if name.upper() not in HEADER_LABELS:
+                if (name.upper() not in HEADER_LABELS
+                        and len(name) <= MAX_SPEAKER_NAME_LENGTH):
                     if current_paragraphs:
                         turns.append((current_speaker, current_paragraphs))
                         current_paragraphs = []
