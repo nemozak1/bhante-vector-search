@@ -9,7 +9,8 @@ Usage:
     python review_seminars.py --scan              # analyze all, write review_status.json
     python review_seminars.py --summary           # print summary table
     python review_seminars.py --generate SEM048   # generate one cleaned file
-    python review_seminars.py --generate-all      # generate all cleaned files
+    python review_seminars.py --generate-all      # generate all unreviewed cleaned files
+    python review_seminars.py --generate-all --force  # regenerate ALL (overwrites reviewed)
 """
 
 import argparse
@@ -88,19 +89,30 @@ def detect_format_type(raw_json_path: Path) -> str:
 
 
 def scan_seminar(raw_json_path: Path) -> ScanResult:
-    """Analyze a single seminar for quality issues."""
+    """Analyze a single seminar for quality issues.
+
+    If a cleaned file exists, scans that (reflecting manual edits).
+    Otherwise, parses from the raw file.
+    """
+    code = raw_json_path.stem
+
     with open(raw_json_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
+        raw_data = json.load(f)
 
-    code = data.get("catNum", raw_json_path.stem)
-    title = data.get("title", "Unknown")
-
+    title = raw_data.get("title", "Unknown")
     format_type = detect_format_type(raw_json_path)
 
-    processor = SeminarProcessor()
-    result = processor.process_for_display(raw_json_path)
+    # Prefer cleaned file if it exists
+    cleaned_path = CLEANED_DIR / f"{code}.json"
+    if cleaned_path.exists():
+        turns, date, location = _load_cleaned_for_scan(cleaned_path)
+    else:
+        processor = SeminarProcessor()
+        result = processor.process_for_display(raw_json_path)
+        turns = [(t.speaker, t.paragraphs) for t in result["turns"]]
+        date = result.get("date")
+        location = result.get("location")
 
-    turns = result["turns"]
     issues = []
 
     # Count speakers and detect suspects
@@ -108,9 +120,8 @@ def scan_seminar(raw_json_path: Path) -> ScanResult:
     total_paragraphs = 0
     unattributed_paragraphs = 0
 
-    for turn in turns:
-        speaker = turn.speaker
-        n_paras = len(turn.paragraphs)
+    for speaker, paragraphs in turns:
+        n_paras = len(paragraphs)
         total_paragraphs += n_paras
 
         if speaker is None:
@@ -130,9 +141,9 @@ def scan_seminar(raw_json_path: Path) -> ScanResult:
             issues.append(f"all_caps_speaker:{speaker}")
 
     # Metadata gaps
-    if not result.get("date"):
+    if not date:
         issues.append("missing_date")
-    if not result.get("location"):
+    if not location:
         issues.append("missing_location")
 
     unattributed_pct = (
@@ -151,9 +162,21 @@ def scan_seminar(raw_json_path: Path) -> ScanResult:
         total_paragraphs=total_paragraphs,
         unattributed_pct=unattributed_pct,
         issues=issues,
-        has_date=result.get("date") is not None,
-        has_location=result.get("location") is not None,
+        has_date=date is not None,
+        has_location=location is not None,
     )
+
+
+def _load_cleaned_for_scan(cleaned_path: Path):
+    """Load a cleaned JSON file and return (turns, date, location) for scanning."""
+    with open(cleaned_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    turns = [
+        (t.get("speaker"), t.get("paragraphs", []))
+        for t in data.get("turns", [])
+    ]
+    return turns, data.get("date"), data.get("location")
 
 
 def cmd_scan():
@@ -294,13 +317,31 @@ def cmd_generate(codes: List[str]):
             print(f"  Skipped {code}")
 
 
-def cmd_generate_all():
-    """Generate cleaned files for all seminars."""
+def cmd_generate_all(force: bool = False):
+    """Generate cleaned files for all seminars.
+
+    Skips seminars with status 'reviewed' unless --force is given,
+    so that manual edits to reviewed files are preserved.
+    """
     codes = get_raw_seminar_codes()
-    print(f"Generating cleaned files for {len(codes)} seminars...")
+
+    # Load existing status to check which are reviewed
+    skip_codes = set()
+    if not force and STATUS_FILE.exists():
+        with open(STATUS_FILE, "r") as f:
+            existing_status = json.load(f)
+        skip_codes = {
+            code for code, info in existing_status.items()
+            if info.get("status") == "reviewed"
+        }
+
+    skipped = 0
     success = 0
     errors = 0
     for code in codes:
+        if code in skip_codes:
+            skipped += 1
+            continue
         try:
             path = generate_cleaned(code)
             if path:
@@ -308,7 +349,9 @@ def cmd_generate_all():
         except Exception as e:
             print(f"  ERROR generating {code}: {e}")
             errors += 1
-    print(f"Done. {success} generated, {errors} errors.")
+    print(f"Done. {success} generated, {skipped} skipped (reviewed), {errors} errors.")
+    if skipped:
+        print(f"  Use --force to regenerate reviewed files too.")
 
 
 def main():
@@ -324,6 +367,8 @@ def main():
                        help="Generate cleaned JSON for specific seminar(s)")
     group.add_argument("--generate-all", action="store_true",
                        help="Generate cleaned JSON for all seminars")
+    parser.add_argument("--force", action="store_true",
+                        help="With --generate-all: regenerate even reviewed files")
 
     args = parser.parse_args()
 
@@ -334,7 +379,7 @@ def main():
     elif args.generate:
         cmd_generate(args.generate)
     elif args.generate_all:
-        cmd_generate_all()
+        cmd_generate_all(force=args.force)
 
 
 if __name__ == "__main__":

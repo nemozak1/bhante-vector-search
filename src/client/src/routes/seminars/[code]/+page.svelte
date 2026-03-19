@@ -6,9 +6,25 @@
 	let transcript: SeminarTranscript | null = $state(null);
 	let loading = $state(true);
 	let error = $state('');
+	let paginate = $state(true);
+	let currentPage = $state(1);
+	const perPage = 50;
 
 	let code = $derived(page.params.code);
 	let highlight = $derived(page.url.searchParams.get('highlight') || '');
+
+	let totalTurns = $derived(transcript?.turns.length ?? 0);
+	let totalPages = $derived(Math.max(1, Math.ceil(totalTurns / perPage)));
+	let visibleTurns = $derived(
+		!transcript ? [] :
+		paginate ? transcript.turns.slice((currentPage - 1) * perPage, currentPage * perPage) :
+		transcript.turns
+	);
+
+	function goToPage(p: number) {
+		currentPage = p;
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
 
 	onMount(async () => {
 		try {
@@ -19,8 +35,9 @@
 			loading = false;
 		}
 
-		// Scroll to highlighted section after render
+		// If arriving with a highlight, disable pagination so we can find the turn
 		if (highlight) {
+			paginate = false;
 			await tick();
 			scrollToHighlight();
 		}
@@ -81,8 +98,18 @@
 			{/if}
 		</header>
 
+		<div class="view-options">
+			<label class="paginate-toggle">
+				<input type="checkbox" bind:checked={paginate} />
+				<span>Paginate</span>
+			</label>
+			{#if paginate && totalPages > 1}
+				<span class="page-info">Page {currentPage} of {totalPages}</span>
+			{/if}
+		</div>
+
 		<div class="transcript">
-			{#each transcript.turns as turn}
+			{#each visibleTurns as turn}
 				<div
 					class="turn"
 					class:turn-sangharakshita={turn.speaker === 'Sangharakshita'}
@@ -99,6 +126,18 @@
 				</div>
 			{/each}
 		</div>
+
+		{#if paginate && totalPages > 1}
+			<nav class="pagination">
+				<button class="page-btn" disabled={currentPage <= 1} onclick={() => goToPage(currentPage - 1)}>
+					&larr; Prev
+				</button>
+				<span class="page-info">Page {currentPage} of {totalPages}</span>
+				<button class="page-btn" disabled={currentPage >= totalPages} onclick={() => goToPage(currentPage + 1)}>
+					Next &rarr;
+				</button>
+			</nav>
+		{/if}
 	</div>
 {/if}
 
@@ -202,6 +241,65 @@
 
 	.turn-body p:last-child {
 		margin-bottom: 0;
+	}
+
+	.view-options {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		margin-bottom: 1.5rem;
+		font-family: 'Source Sans 3', sans-serif;
+		font-size: 0.82rem;
+		color: var(--text-muted);
+	}
+
+	.paginate-toggle {
+		display: flex;
+		align-items: center;
+		gap: 0.35rem;
+		cursor: pointer;
+	}
+
+	.paginate-toggle input {
+		accent-color: var(--accent);
+	}
+
+	.pagination {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		margin-top: 2rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--border-light);
+	}
+
+	.page-btn {
+		font-family: 'Source Sans 3', sans-serif;
+		font-size: 0.82rem;
+		background: none;
+		border: 1px solid var(--border);
+		border-radius: 4px;
+		padding: 0.35rem 0.85rem;
+		color: var(--text-muted);
+		cursor: pointer;
+		transition: color 0.2s, border-color 0.2s;
+	}
+
+	.page-btn:hover:not(:disabled) {
+		color: var(--accent);
+		border-color: var(--accent);
+	}
+
+	.page-btn:disabled {
+		opacity: 0.4;
+		cursor: default;
+	}
+
+	.page-info {
+		font-family: 'Source Sans 3', sans-serif;
+		font-size: 0.82rem;
+		color: var(--text-muted);
 	}
 
 	/* Highlight animation for scroll-to-target */

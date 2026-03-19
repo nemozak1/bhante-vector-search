@@ -7,31 +7,23 @@
     "total_paragraphs": 90,
     "unattributed_pct": 100.0,
     "issues": [
-      "missing_date",
       "high_unattributed:100.0%"
     ],
-    "has_date": false,
+    "has_date": true,
     "has_location": true
   },
   "SEM001": {
     "status": "reviewed",
     "title": "First Order Convention 1974",
     "format_type": "mixed",
-    "turn_count": 1798,
-    "total_paragraphs": 2028,
+    "turn_count": 1795,
+    "total_paragraphs": 2025,
     "unattributed_pct": 0.4,
     "issues": [
-      "suspect_speaker:have had to act(1)",
-      "suspect_speaker:as well(1)",
-      "suspect_speaker:I didn't find it too bad(1)",
-      "suspect_speaker:this(1)",
-      "suspect_speaker:Sudatta(1)",
-      "suspect_speaker:Ananada(1)",
-      "missing_date",
-      "missing_location"
+      "suspect_speaker:Sudatta(1)"
     ],
-    "has_date": false,
-    "has_location": false
+    "has_date": true,
+    "has_location": true
   },
   "SEM002": {
     "status": "reviewed",
@@ -41,14 +33,11 @@
     "total_paragraphs": 340,
     "unattributed_pct": 0.9,
     "issues": [
-      "suspect_speaker:Voice(1)",
       "suspect_speaker:Chintamani(1)",
-      "suspect_speaker:V(1)",
-      "missing_date",
-      "missing_location"
+      "suspect_speaker:V(1)"
     ],
-    "has_date": false,
-    "has_location": false
+    "has_date": true,
+    "has_location": true
   },
   "SEM003": {
     "status": "reviewed",
@@ -58,31 +47,24 @@
     "total_paragraphs": 640,
     "unattributed_pct": 1.2,
     "issues": [
-      "suspect_speaker:Padmaraja(1)",
-      "missing_location"
+      "suspect_speaker:Padmaraja(1)"
     ],
     "has_date": true,
-    "has_location": false
+    "has_location": true
   },
   "SEM004": {
     "status": "reviewed",
     "title": "Second Order Convention 1975",
     "format_type": "p-based",
-    "turn_count": 4912,
-    "total_paragraphs": 5439,
+    "turn_count": 4910,
+    "total_paragraphs": 5437,
     "unattributed_pct": 0.1,
     "issues": [
-      "suspect_speaker:Lokamitra__________(1)",
-      "suspect_speaker:ourselves(1)",
       "suspect_speaker:Sulocana(1)",
       "suspect_speaker:Jitari(1)",
-      "suspect_speaker:the camp(1)",
-      "suspect_speaker:Subhuti__________(1)",
-      "suspect_speaker:be quite careful then. __________(1)",
-      "missing_date",
       "missing_location"
     ],
-    "has_date": false,
+    "has_date": true,
     "has_location": false
   },
   "SEM005": {
