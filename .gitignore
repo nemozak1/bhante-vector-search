@@ -10,3 +10,11 @@ data/*
 
 .env
 .ipynb_checkpoints
+
+# Seminar data
+data/seminars/
+
+# SvelteKit
+src/client/node_modules/
+src/client/.svelte-kit/
+src/client/build/

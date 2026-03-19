@@ -17,6 +17,7 @@ fastapi = "^0.115.2"
 dotenv = "^0.9.9"
 ebooklib = "^0.20"
 beautifulsoup4 = "^4.14.2"
+httpx = ">=0.25,<0.28"
 
 
 [build-system]
