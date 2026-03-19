@@ -93,6 +93,35 @@ export async function listSeminars(): Promise<SeminarListResponse> {
 	return fetchJSON(`${BASE_URL}/api/seminars`);
 }
 
+export interface ReviewStatusItem {
+	status: string;
+	title: string;
+	format_type: string;
+	turn_count: number;
+	total_paragraphs: number;
+	unattributed_pct: number;
+	issues: string[];
+	has_date: boolean;
+	has_location: boolean;
+}
+
+export async function getReviewStatus(): Promise<Record<string, ReviewStatusItem>> {
+	return fetchJSON(`${BASE_URL}/api/review/status`);
+}
+
+export interface ReviewDiff {
+	code: string;
+	title: string;
+	raw_turn_count: number;
+	cleaned_turn_count: number;
+	diff_lines: string[];
+	has_changes: boolean;
+}
+
+export async function getReviewDiff(code: string): Promise<ReviewDiff> {
+	return fetchJSON(`${BASE_URL}/api/review/${encodeURIComponent(code)}/diff`);
+}
+
 export async function checkHealth(): Promise<boolean> {
 	try {
 		const res = await fetch(`${BASE_URL}/health`);

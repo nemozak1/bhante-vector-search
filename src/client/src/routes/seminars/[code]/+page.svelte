@@ -3,6 +3,8 @@
 	import { tick, onMount } from 'svelte';
 	import { getSeminarTranscript, type SeminarTranscript } from '$lib/api';
 
+	const BASE_URL = import.meta.env.DEV ? '' : 'http://localhost:8000';
+
 	let transcript: SeminarTranscript | null = $state(null);
 	let loading = $state(true);
 	let error = $state('');
@@ -96,6 +98,11 @@
 					{#if transcript.location}{transcript.location}{/if}
 				</p>
 			{/if}
+			<div class="export-bar">
+				<a href="{BASE_URL}/api/seminars/{code}/pdf" class="export-btn" download>PDF</a>
+				<a href="{BASE_URL}/api/seminars/{code}/epub" class="export-btn" download>EPUB</a>
+				<a href="{BASE_URL}/api/seminars/{code}/print" class="export-btn" target="_blank" rel="noopener">Print</a>
+			</div>
 		</header>
 
 		<div class="view-options">
@@ -201,6 +208,31 @@
 		font-family: 'Source Sans 3', sans-serif;
 		font-size: 0.88rem;
 		color: var(--text-muted);
+	}
+
+	.export-bar {
+		display: flex;
+		gap: 0.5rem;
+		margin-top: 0.85rem;
+	}
+
+	.export-btn {
+		font-family: 'Source Sans 3', sans-serif;
+		font-size: 0.72rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		text-decoration: none;
+		color: var(--text-muted);
+		border: 1px solid var(--border);
+		border-radius: 4px;
+		padding: 0.25rem 0.65rem;
+		transition: color 0.2s, border-color 0.2s;
+	}
+
+	.export-btn:hover {
+		color: var(--accent);
+		border-color: var(--accent);
 	}
 
 	.transcript {

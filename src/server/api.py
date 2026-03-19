@@ -307,33 +307,138 @@ async def search_seminars_get(
 
 @app.get("/api/seminars")
 async def list_seminars():
-    """List distinct seminars in the seminar collection."""
-    if seminar_store is None:
-        raise HTTPException(status_code=503, detail="Seminar vector store not initialized")
+    """List all available seminars from cleaned/raw files on disk."""
+    import json as json_module
 
-    try:
-        collection = seminar_store._collection
-        all_metadata = collection.get(include=["metadatas"])
-        metadatas = all_metadata.get("metadatas", [])
+    seminars = {}
 
-        seminars = {}
-        for meta in metadatas:
-            code = meta.get("seminar_code")
-            if code and code not in seminars:
+    # Prefer cleaned versions
+    cleaned_dir = PROJECT_ROOT / "data" / "seminars" / "cleaned"
+    if cleaned_dir.exists():
+        for path in cleaned_dir.glob("*.json"):
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    data = json_module.load(f)
+                code = data.get("code", path.stem)
                 seminars[code] = {
                     "code": code,
-                    "title": meta.get("seminar_title", ""),
-                    "date": meta.get("date"),
-                    "location": meta.get("location"),
+                    "title": data.get("title", ""),
+                    "date": data.get("date"),
+                    "location": data.get("location"),
                 }
+            except Exception:
+                continue
 
-        return {
-            "seminars": sorted(seminars.values(), key=lambda s: s["code"]),
-            "total": len(seminars),
-        }
+    # Fill in any raw-only seminars not already covered by cleaned
+    raw_dir = PROJECT_ROOT / "data" / "seminars" / "raw"
+    if raw_dir.exists():
+        for path in raw_dir.glob("*.json"):
+            code = path.stem
+            if code in seminars:
+                continue
+            try:
+                with open(path, "r", encoding="utf-8") as f:
+                    data = json_module.load(f)
+                seminars[code] = {
+                    "code": code,
+                    "title": data.get("title", ""),
+                    "date": data.get("date"),
+                    "location": data.get("location"),
+                }
+            except Exception:
+                continue
 
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error listing seminars: {str(e)}")
+    return {
+        "seminars": sorted(seminars.values(), key=lambda s: s["code"]),
+        "total": len(seminars),
+    }
+
+
+@app.get("/api/review/status")
+async def get_review_status():
+    """Return seminar review status for the review dashboard."""
+    import json as json_module
+
+    status_path = PROJECT_ROOT / "data" / "seminars" / "review_status.json"
+    if not status_path.exists():
+        raise HTTPException(status_code=404, detail="Review status file not found")
+    with open(status_path, "r", encoding="utf-8") as f:
+        return json_module.load(f)
+
+
+@app.get("/api/review/{code}/diff")
+async def get_review_diff(code: str):
+    """Return a unified text diff between raw parse and cleaned file."""
+    import json as json_module
+    import difflib
+    from src.seminar_processor import SeminarProcessor
+
+    cleaned_path = PROJECT_ROOT / "data" / "seminars" / "cleaned" / f"{code}.json"
+    raw_path = PROJECT_ROOT / "data" / "seminars" / "raw" / f"{code}.json"
+
+    if not cleaned_path.exists():
+        raise HTTPException(status_code=404, detail=f"No cleaned file for {code}")
+    if not raw_path.exists():
+        raise HTTPException(status_code=404, detail=f"No raw file for {code}")
+
+    # Load cleaned version
+    with open(cleaned_path, "r", encoding="utf-8") as f:
+        cleaned = json_module.load(f)
+
+    # Parse raw fresh
+    processor = SeminarProcessor()
+    raw_result = processor.process_for_display(raw_path)
+
+    def turns_to_text(turns, date=None, location=None):
+        """Convert turns to a readable text format for diffing."""
+        lines = []
+        if date:
+            lines.append(f"Date: {date}")
+        if location:
+            lines.append(f"Location: {location}")
+        if lines:
+            lines.append("")
+        for t in turns:
+            speaker = t.get("speaker") if isinstance(t, dict) else t.speaker
+            paragraphs = t.get("paragraphs", []) if isinstance(t, dict) else t.paragraphs
+            name = speaker or "(unattributed)"
+            lines.append(f"[{name}]")
+            for p in paragraphs:
+                # Truncate very long paragraphs for readability
+                if len(p) > 200:
+                    lines.append(f"  {p[:200]}...")
+                else:
+                    lines.append(f"  {p}")
+            lines.append("")
+        return lines
+
+    raw_lines = turns_to_text(
+        raw_result["turns"],
+        date=raw_result.get("date"),
+        location=raw_result.get("location"),
+    )
+    cleaned_lines = turns_to_text(
+        cleaned.get("turns", []),
+        date=cleaned.get("date"),
+        location=cleaned.get("location"),
+    )
+
+    diff_lines = list(difflib.unified_diff(
+        raw_lines,
+        cleaned_lines,
+        fromfile=f"{code} (raw parse)",
+        tofile=f"{code} (cleaned)",
+        lineterm="",
+    ))
+
+    return {
+        "code": code,
+        "title": cleaned.get("title", ""),
+        "raw_turn_count": len(raw_result["turns"]),
+        "cleaned_turn_count": len(cleaned.get("turns", [])),
+        "diff_lines": diff_lines,
+        "has_changes": len(diff_lines) > 0,
+    }
 
 
 @app.get("/api/seminars/{code}", response_model=SeminarTranscriptResponse)
@@ -399,6 +504,196 @@ async def get_seminar_transcript(code: str):
     except Exception as e:
         logger.exception(f"Error processing seminar {code}")
         raise HTTPException(status_code=500, detail=f"Error processing seminar: {str(e)}")
+
+
+# ── Seminar export ───────────────────────────────────────────────────
+
+
+def _load_seminar_data(code: str) -> dict:
+    """Load seminar data from cleaned or raw files. Returns dict with code, title, date, location, turns."""
+    import json as json_module
+
+    cleaned_path = PROJECT_ROOT / "data" / "seminars" / "cleaned" / f"{code}.json"
+    if cleaned_path.exists():
+        with open(cleaned_path, "r", encoding="utf-8") as f:
+            return json_module.load(f)
+
+    raw_path = PROJECT_ROOT / "data" / "seminars" / "raw" / f"{code}.json"
+    if raw_path.exists():
+        from src.seminar_processor import SeminarProcessor
+        processor = SeminarProcessor()
+        result = processor.process_for_display(raw_path)
+        return {
+            "code": result["code"],
+            "title": result["title"],
+            "date": result["date"],
+            "location": result["location"],
+            "turns": [
+                {"speaker": t.speaker, "paragraphs": t.paragraphs}
+                for t in result["turns"]
+            ],
+        }
+
+    raise HTTPException(status_code=404, detail=f"Seminar {code} not found")
+
+
+def _seminar_to_html(data: dict, for_print: bool = False) -> str:
+    """Render seminar data to standalone HTML."""
+    title = data.get("title", "")
+    date = data.get("date", "")
+    location = data.get("location", "")
+
+    subtitle_parts = []
+    if date:
+        subtitle_parts.append(date)
+    if location:
+        subtitle_parts.append(location)
+    subtitle = " — ".join(subtitle_parts)
+
+    turns_html = []
+    for turn in data.get("turns", []):
+        speaker = turn.get("speaker", "")
+        paragraphs = turn.get("paragraphs", [])
+        paras = "".join(f"<p>{p}</p>" for p in paragraphs)
+        speaker_class = " sangharakshita" if speaker == "Sangharakshita" else ""
+        speaker_el = f'<div class="speaker">{speaker}</div>' if speaker else ""
+        turns_html.append(f'<div class="turn{speaker_class}">{speaker_el}<div class="body">{paras}</div></div>')
+
+    print_style = ""
+    if for_print:
+        print_style = """
+        @media print {
+            body { font-size: 11pt; }
+            .turn { page-break-inside: avoid; }
+        }
+        """
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{title}</title>
+<style>
+  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
+  body {{ font-family: 'Georgia', 'Times New Roman', serif; color: #2c2418; line-height: 1.8; max-width: 700px; margin: 0 auto; padding: 2rem 1.5rem; }}
+  h1 {{ font-size: 1.6rem; font-weight: 500; margin-bottom: 0.4rem; }}
+  .subtitle {{ font-family: sans-serif; font-size: 0.88rem; color: #8c7e6a; margin-bottom: 2rem; }}
+  .turn {{ margin-bottom: 1.4rem; padding-left: 1rem; border-left: 2px solid transparent; }}
+  .turn.sangharakshita {{ border-left-color: #5a7247; }}
+  .speaker {{ font-family: sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #5a7247; margin-bottom: 0.25rem; }}
+  .body {{ font-size: 1.1rem; }}
+  .body p {{ margin-bottom: 0.5em; }}
+  .body p:last-child {{ margin-bottom: 0; }}
+  .source {{ margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e8e3da; font-family: sans-serif; font-size: 0.75rem; color: #8c7e6a; }}
+  {print_style}
+</style>
+</head>
+<body>
+  <h1>{title}</h1>
+  {"<p class='subtitle'>" + subtitle + "</p>" if subtitle else ""}
+  {"".join(turns_html)}
+  <div class="source">Source: Free Buddhist Audio — freebuddhistaudio.com</div>
+</body>
+</html>"""
+
+
+@app.get("/api/seminars/{code}/pdf")
+async def export_seminar_pdf(code: str):
+    """Export a seminar transcript as PDF."""
+    from fastapi.responses import Response
+    from xhtml2pdf import pisa
+    import io
+
+    data = _load_seminar_data(code)
+    html = _seminar_to_html(data)
+    buf = io.BytesIO()
+    pisa_status = pisa.CreatePDF(html, dest=buf)
+    if pisa_status.err:
+        raise HTTPException(status_code=500, detail="PDF generation failed")
+    buf.seek(0)
+
+    filename = f"{code} - {data.get('title', code)}.pdf"
+    return Response(
+        content=buf.read(),
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@app.get("/api/seminars/{code}/epub")
+async def export_seminar_epub(code: str):
+    """Export a seminar transcript as EPUB."""
+    from fastapi.responses import Response
+    from ebooklib import epub
+    import io
+
+    data = _load_seminar_data(code)
+    title = data.get("title", code)
+    date = data.get("date", "")
+    location = data.get("location", "")
+
+    book = epub.EpubBook()
+    book.set_identifier(f"sangharakshita-seminar-{code}")
+    book.set_title(title)
+    book.set_language("en")
+    book.add_author("Sangharakshita")
+
+    # Build chapter HTML
+    subtitle_parts = []
+    if date:
+        subtitle_parts.append(date)
+    if location:
+        subtitle_parts.append(location)
+
+    body_parts = [f"<h1>{title}</h1>"]
+    if subtitle_parts:
+        body_parts.append(f"<p><em>{' — '.join(subtitle_parts)}</em></p>")
+    body_parts.append("<hr/>")
+
+    for turn in data.get("turns", []):
+        speaker = turn.get("speaker", "")
+        if speaker:
+            body_parts.append(f'<p><strong>{speaker}</strong></p>')
+        for p in turn.get("paragraphs", []):
+            body_parts.append(f"<p>{p}</p>")
+
+    chapter = epub.EpubHtml(title=title, file_name="transcript.xhtml", lang="en")
+    chapter.content = "\n".join(body_parts)
+
+    style = epub.EpubItem(
+        uid="style",
+        file_name="style/default.css",
+        media_type="text/css",
+        content=b"body { font-family: serif; line-height: 1.8; } strong { font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; }",
+    )
+    book.add_item(style)
+    chapter.add_item(style)
+    book.add_item(chapter)
+    book.spine = ["nav", chapter]
+    book.add_item(epub.EpubNcx())
+    book.add_item(epub.EpubNav())
+    book.toc = [chapter]
+
+    buf = io.BytesIO()
+    epub.write_epub(buf, book, {})
+    buf.seek(0)
+
+    filename = f"{code} - {title}.epub"
+    return Response(
+        content=buf.read(),
+        media_type="application/epub+zip",
+        headers={"Content-Disposition": f'attachment; filename="{filename}"'},
+    )
+
+
+@app.get("/api/seminars/{code}/print")
+async def print_seminar(code: str):
+    """Return a print-friendly HTML page for a seminar."""
+    from fastapi.responses import HTMLResponse
+
+    data = _load_seminar_data(code)
+    html = _seminar_to_html(data, for_print=True)
+    return HTMLResponse(content=html)
 
 
 # ── Unified search ───────────────────────────────────────────────────

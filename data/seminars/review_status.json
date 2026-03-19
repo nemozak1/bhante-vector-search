@@ -68,7 +68,7 @@
     "has_location": false
   },
   "SEM005": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Dhyana For Beginners - First Mitra Retreat 1976",
     "format_type": "mixed",
     "turn_count": 178,
@@ -84,7 +84,7 @@
     "has_location": false
   },
   "SEM006": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Second Mitra Retreat - Questions and Answers 1976",
     "format_type": "p-based",
     "turn_count": 259,
@@ -100,7 +100,7 @@
     "has_location": true
   },
   "SEM007": {
-    "status": "unreviewed",
+    "status": "broken",
     "title": "Unity and Diversity - Third Order Convention 1976",
     "format_type": "p-based",
     "turn_count": 616,

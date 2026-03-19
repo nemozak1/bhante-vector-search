@@ -7,6 +7,7 @@
 	const tabs = [
 		{ href: '/search', label: 'Search' },
 		{ href: '/seminars', label: 'Seminars' },
+		{ href: '/review', label: 'Review' },
 	];
 
 	function isActive(href: string): boolean {
