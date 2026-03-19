@@ -60,6 +60,24 @@ export async function searchAll(query: string, k: number = 5): Promise<SearchRes
 	return fetchJSON(`${BASE_URL}/api/search/all?query=${encodeURIComponent(query)}&k=${k}`);
 }
 
+export interface SpeakerTurn {
+	speaker: string | null;
+	paragraphs: string[];
+	turn_index: number;
+}
+
+export interface SeminarTranscript {
+	code: string;
+	title: string;
+	date: string | null;
+	location: string | null;
+	turns: SpeakerTurn[];
+}
+
+export async function getSeminarTranscript(code: string): Promise<SeminarTranscript> {
+	return fetchJSON(`${BASE_URL}/api/seminars/${encodeURIComponent(code)}`);
+}
+
 export async function checkHealth(): Promise<boolean> {
 	try {
 		const res = await fetch(`${BASE_URL}/health`);

@@ -5,7 +5,11 @@ export default defineConfig({
 	plugins: [sveltekit()],
 	server: {
 		proxy: {
-			'/api': 'http://localhost:8000',
+			'/api': {
+				target: 'http://localhost:8000',
+				changeOrigin: true,
+				timeout: 60000,
+			},
 			'/health': 'http://localhost:8000'
 		}
 	}

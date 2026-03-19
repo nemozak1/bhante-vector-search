@@ -101,7 +101,7 @@ fi
 echo ""
 step "3/4" "Starting API server"
 
-poetry run python src/server/api.py &> /tmp/bhante-api.log &
+poetry run python src/server/api.py 2>&1 | tee /tmp/bhante-api.log &
 API_PID=$!
 
 # Wait for API to be ready

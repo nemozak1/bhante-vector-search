@@ -43,6 +43,14 @@ HEADER_LABELS = {
 
 
 @dataclass
+class SpeakerTurn:
+    """A single speaker turn for display (not chunked)."""
+    speaker: Optional[str]
+    paragraphs: List[str]
+    turn_index: int
+
+
+@dataclass
 class SeminarChunk:
     """Represents a chunk of seminar transcript text."""
     text: str
@@ -111,6 +119,48 @@ class SeminarProcessor:
             chunk._location = location
 
         return chunks
+
+    def process_for_display(self, raw_json_path: Path):
+        """
+        Process a transcript for full-text display (not chunked).
+
+        Returns:
+            dict with keys: code, title, date, location, turns (list of SpeakerTurn)
+        """
+        with open(raw_json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+
+        code = data.get("catNum", raw_json_path.stem)
+        title = data.get("title", "Unknown Seminar")
+        content_html = data.get("content", "")
+
+        if not content_html.strip():
+            return {"code": code, "title": title, "date": None,
+                    "location": None, "turns": []}
+
+        soup = BeautifulSoup(content_html, "html.parser")
+        date, location = self._extract_header_metadata(soup)
+        self._strip_boilerplate(soup)
+        self._strip_footer(soup)
+
+        # Parse into raw speaker turns, preserving paragraph boundaries
+        raw_turns = self._parse_speaker_turns_for_display(soup)
+
+        turns = []
+        for i, (speaker, paragraphs) in enumerate(raw_turns):
+            turns.append(SpeakerTurn(
+                speaker=self._normalize_speaker(speaker) if speaker else None,
+                paragraphs=paragraphs,
+                turn_index=i,
+            ))
+
+        return {
+            "code": code,
+            "title": title,
+            "date": date,
+            "location": location,
+            "turns": turns,
+        }
 
     def _extract_header_metadata(self, soup: BeautifulSoup):
         """Extract date and location from transcript header."""
@@ -208,6 +258,63 @@ class SeminarProcessor:
             turns.append((current_speaker, " ".join(current_text)))
 
         return turns
+
+    def _parse_speaker_turns_for_display(self, soup: BeautifulSoup):
+        """Parse HTML into speaker turns, preserving paragraph boundaries.
+
+        Handles two common transcript formats:
+        1. Separate <p> per paragraph, speaker at start: "Name; text"
+        2. Single <p> with <br> line breaks, speaker in <b>Name:</b> inline
+
+        Returns list of (speaker, [paragraph1, paragraph2, ...]) tuples.
+        """
+        # First, extract text lines by splitting on <br> within paragraphs
+        lines = self._extract_lines(soup)
+
+        turns = []
+        current_speaker = None
+        current_paragraphs = []
+
+        for line in lines:
+            if not line.strip():
+                continue
+
+            # Check for speaker turn pattern
+            match = SPEAKER_TURN_RE.match(line)
+            if match:
+                name = match.group(1).strip()
+                if name.upper() not in HEADER_LABELS:
+                    if current_paragraphs:
+                        turns.append((current_speaker, current_paragraphs))
+                        current_paragraphs = []
+
+                    current_speaker = name
+                    remaining = line[match.end():].strip()
+                    if remaining:
+                        current_paragraphs.append(remaining)
+                    continue
+
+            current_paragraphs.append(line)
+
+        if current_paragraphs:
+            turns.append((current_speaker, current_paragraphs))
+
+        return turns
+
+    def _extract_lines(self, soup: BeautifulSoup) -> List[str]:
+        """Extract text lines from HTML, splitting on both <p> and <br> tags."""
+        lines = []
+        for p in soup.find_all("p"):
+            # Replace <br> tags with a sentinel so we can split
+            for br in p.find_all("br"):
+                br.replace_with("\n")
+            text = p.get_text()
+            # Split on newlines (from <br> replacements)
+            for segment in text.split("\n"):
+                segment = segment.strip()
+                if segment:
+                    lines.append(segment)
+        return lines
 
     def _normalize_speaker(self, name: str) -> str:
         """Normalize speaker names."""

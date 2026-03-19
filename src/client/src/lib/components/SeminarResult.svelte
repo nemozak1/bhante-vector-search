@@ -3,42 +3,44 @@
 
 	let { result }: { result: SeminarResult } = $props();
 
-	let sourceUrl = $derived(result.seminar_code
-		? `https://www.freebuddhistaudio.com/texts/read?num=${result.seminar_code}`
+	let viewerUrl = $derived(result.seminar_code
+		? `/seminars/${result.seminar_code}?highlight=${encodeURIComponent(result.content.substring(0, 80))}`
 		: null);
 </script>
 
-<article class="result-card seminar-card">
-	{#if result.speaker}
-		<div class="speaker-name">{result.speaker}</div>
-	{/if}
-	<p class="result-content">{result.content}</p>
-	<footer class="result-meta">
-		{#if result.seminar_title}
-			<span class="meta-tag title">
-				{#if sourceUrl}
-					<a href={sourceUrl} target="_blank" rel="noopener">{result.seminar_title}</a>
-				{:else}
-					{result.seminar_title}
-				{/if}
-			</span>
+<a href={viewerUrl} class="result-link">
+	<article class="result-card seminar-card">
+		{#if result.speaker}
+			<div class="speaker-name">{result.speaker}</div>
 		{/if}
-		{#if result.section_heading}
-			<span class="meta-tag">{result.section_heading}</span>
-		{/if}
-		{#if result.date}
-			<span class="meta-tag">{result.date}</span>
-		{/if}
-		{#if result.location}
-			<span class="meta-tag">{result.location}</span>
-		{/if}
-		{#if result.score != null}
-			<span class="meta-tag score">{result.score.toFixed(3)}</span>
-		{/if}
-	</footer>
-</article>
+		<p class="result-content">{result.content}</p>
+		<footer class="result-meta">
+			{#if result.seminar_title}
+				<span class="meta-tag title">{result.seminar_title}</span>
+			{/if}
+			{#if result.section_heading}
+				<span class="meta-tag">{result.section_heading}</span>
+			{/if}
+			{#if result.date}
+				<span class="meta-tag">{result.date}</span>
+			{/if}
+			{#if result.location}
+				<span class="meta-tag">{result.location}</span>
+			{/if}
+			{#if result.score != null}
+				<span class="meta-tag score">{result.score.toFixed(3)}</span>
+			{/if}
+		</footer>
+	</article>
+</a>
 
 <style>
+	.result-link {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+	}
+
 	.result-card {
 		background: var(--surface);
 		border-radius: 6px;
@@ -46,6 +48,7 @@
 		border-left: 3px solid var(--seminar-accent);
 		margin-bottom: 1rem;
 		transition: box-shadow 0.2s;
+		cursor: pointer;
 	}
 
 	.result-card:hover {
@@ -88,17 +91,6 @@
 	.meta-tag.title {
 		font-weight: 500;
 		color: var(--seminar-accent);
-	}
-
-	.meta-tag.title a {
-		color: inherit;
-		text-decoration: none;
-		border-bottom: 1px solid transparent;
-		transition: border-color 0.2s;
-	}
-
-	.meta-tag.title a:hover {
-		border-bottom-color: var(--seminar-accent);
 	}
 
 	.meta-tag.score {

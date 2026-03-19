@@ -14,11 +14,20 @@ from typing import List, Optional, Dict, Any
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
 from pathlib import Path
+import logging
 import os
+import sys
 from dotenv import load_dotenv
 
+# Ensure project root is on sys.path so we can import src.*
+PROJECT_ROOT = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
 # Load environment variables
-load_dotenv()
+load_dotenv(PROJECT_ROOT / ".env")
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -66,6 +75,22 @@ class SearchResponse(BaseModel):
     query: str
     results: List[SearchResult]
     total_results: int
+
+
+class SpeakerTurnResponse(BaseModel):
+    """A single speaker turn for the transcript viewer."""
+    speaker: Optional[str] = None
+    paragraphs: List[str]
+    turn_index: int
+
+
+class SeminarTranscriptResponse(BaseModel):
+    """Full seminar transcript for the viewer."""
+    code: str
+    title: str
+    date: Optional[str] = None
+    location: Optional[str] = None
+    turns: List[SpeakerTurnResponse]
 
 
 class SeminarSearchResult(BaseModel):
@@ -120,7 +145,7 @@ async def startup_event():
     """Initialize vector stores on startup."""
     global epub_store, seminar_store
 
-    persist_directory = "./chroma"
+    persist_directory = str(PROJECT_ROOT / "chroma")
 
     # Initialize epub store
     try:
@@ -311,6 +336,41 @@ async def list_seminars():
         raise HTTPException(status_code=500, detail=f"Error listing seminars: {str(e)}")
 
 
+@app.get("/api/seminars/{code}", response_model=SeminarTranscriptResponse)
+async def get_seminar_transcript(code: str):
+    """Get the full transcript of a seminar for the viewer."""
+    from src.seminar_processor import SeminarProcessor
+
+    raw_path = PROJECT_ROOT / "data" / "seminars" / "raw" / f"{code}.json"
+    if not raw_path.exists():
+        raise HTTPException(status_code=404, detail=f"Seminar {code} not found")
+
+    try:
+        processor = SeminarProcessor()
+        result = processor.process_for_display(raw_path)
+
+        turns = [
+            SpeakerTurnResponse(
+                speaker=t.speaker,
+                paragraphs=t.paragraphs,
+                turn_index=t.turn_index,
+            )
+            for t in result["turns"]
+        ]
+
+        return SeminarTranscriptResponse(
+            code=result["code"],
+            title=result["title"],
+            date=result["date"],
+            location=result["location"],
+            turns=turns,
+        )
+
+    except Exception as e:
+        logger.exception(f"Error processing seminar {code}")
+        raise HTTPException(status_code=500, detail=f"Error processing seminar: {str(e)}")
+
+
 # ── Unified search ───────────────────────────────────────────────────
 
 @app.post("/api/search/all", response_model=UnifiedSearchResponse)
@@ -392,4 +452,4 @@ if client_build.exists():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
