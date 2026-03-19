@@ -29,11 +29,16 @@ FOOTER_PATTERNS = [
                r"Printed and Distributed|Transcribed|Edited) by\b", re.IGNORECASE),
 ]
 
-# Speaker turn pattern: "Name;" or "Name:" at start of paragraph text
+# Speaker turn pattern: "Name;" or "Name:" at start of paragraph text,
+# optionally preceded by a page/section marker like "[5]"
 # Matches names like "S", "Sangharakshita", "Roger Jones", "Sona", "__________"
 SPEAKER_TURN_RE = re.compile(
-    r'^([A-Za-z_][A-Za-z\s_.\'-]*?)\s*[;:]\s+'
+    r'^(?:\[\d+\]\s+)?([A-Za-z_][A-Za-z\s_.\'-]*?)\s*[;:]\s+'
 )
+
+# Standalone page/section marker at start of line, e.g. "[5] Some text"
+# Used to strip these markers from paragraph text when they don't contain a speaker
+PAGE_MARKER_RE = re.compile(r'^\[(\d+)\]\s*')
 
 # Maximum length for a speaker name — longer matches are likely false positives
 MAX_SPEAKER_NAME_LENGTH = 40
@@ -42,6 +47,7 @@ MAX_SPEAKER_NAME_LENGTH = 40
 HEADER_LABELS = {
     "HELD AT", "IN", "THOSE PRESENT", "PRESENT", "DATE", "PLACE",
     "LOCATION", "VENUE", "DAY", "SESSION", "TAPE", "SIDE",
+    "NB", "N.B", "PLEASE NOTE", "NOTE",
 }
 
 
@@ -255,7 +261,12 @@ class SeminarProcessor:
                         current_text.append(remaining)
                     continue
 
-            # Regular line — append to current turn
+            # Regular line — strip [N] page markers before appending
+            marker = PAGE_MARKER_RE.match(line)
+            if marker:
+                line = line[marker.end():].strip()
+                if not line:
+                    continue
             current_text.append(line)
 
         # Don't forget the last turn
@@ -300,6 +311,12 @@ class SeminarProcessor:
                         current_paragraphs.append(remaining)
                     continue
 
+            # Strip [N] page markers from non-speaker lines
+            marker = PAGE_MARKER_RE.match(line)
+            if marker:
+                line = line[marker.end():].strip()
+                if not line:
+                    continue
             current_paragraphs.append(line)
 
         if current_paragraphs:

@@ -3,12 +3,14 @@
 	import BookResult from '$lib/components/BookResult.svelte';
 	import ResultList from '$lib/components/ResultList.svelte';
 	import { searchBooks, type BookResult as BookResultType } from '$lib/api';
+	import { bookSearchState } from '$lib/searchState';
 
-	let results: BookResultType[] = $state([]);
-	let query = $state('');
+	let cached = bookSearchState.get();
+	let results: BookResultType[] = $state(cached.results);
+	let query = $state(cached.query);
 	let loading = $state(false);
 	let error = $state('');
-	let searched = $state(false);
+	let searched = $state(cached.searched);
 
 	async function handleSearch(q: string, k: number) {
 		loading = true;
@@ -18,6 +20,7 @@
 			const data = await searchBooks(q, k);
 			results = data.results;
 			searched = true;
+			bookSearchState.set({ query: q, k, results: data.results, searched: true });
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Search failed';
 			results = [];
@@ -27,7 +30,7 @@
 	}
 </script>
 
-<SearchBar onSearch={handleSearch} {loading} placeholder="Search published books..." />
+<SearchBar onSearch={handleSearch} {loading} placeholder="Search published books..." initialQuery={cached.query} initialK={cached.k} />
 
 {#if error}
 	<div class="error-msg">{error}</div>

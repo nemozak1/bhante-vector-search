@@ -45,7 +45,7 @@
       "speaker": "Thus have I heard",
       "paragraphs": [
         "Once, when the Master was dwelling near Savatthi in Anathapindika's Park at Jeta Grove, a devi of surpassing beauty, lighting up the whole of Jeta Grove, approached him as night waned; and drawing near, she saluted him and stood at one side. Thus standing, she spoke this verse to the Master:",
-        "[3] Devi About man's suffering We question Gotama; We ask the Master now The source of suffering. [1/91]",
+        "Devi About man's suffering We question Gotama; We ask the Master now The source of suffering. [1/91]",
         "The Master Plain is the weal in life, Plain is the suffering: Prospers who Dharma loves, Suffers who Dharma hates. [2/92]",
         "Devi 'Tis truly so we know Firstly of suffering:",
         "Sir, tell us secondly The source of suffering. [3/93]",
@@ -58,7 +58,7 @@
         "When man is proud of birth And purse and family, And yet ashamed of kin: A source of suffering that. [14/104]",
         "When man or woman dotes, On drink and dice alike, And all his savings wastes: A source of suffering that. [16/106]",
         "Who not content with his, Is seen with others' wives, Is seen with harlots too: A source of suffering that. [18/108]",
-        "[4] When man, passed youth, doth wed A maid with rounded breasts, Nor sleeps for jealousy:",
+        "When man, passed youth, doth wed A maid with rounded breasts, Nor sleeps for jealousy:",
         "A source of suffering that. [20/110]",
         "When woman or when man A spendthrift or a sot, Is placed in sovran power: A source of suffering that. [22/112]",
         "When born of noble clan, A man is poor and craves For much and longs to rule: A source of suffering that. [24/114]",
@@ -83,7 +83,7 @@
         "Fifth failure's he who brahmins guides astray, or anchorites, or other wayfarers. [10/100]",
         "'Sixth comes the wealthy man, with pelf and gear, who keeps his dainties strictly to himself.[12/102]",
         "He seventh comes whom birth or wealth or clan inflates, till he looks down on kith and kin.[14/104]",
-        "[5] The eighth's the rake who squanders all he gets, fast as it comes, on women, drink, and dice. [16/106]",
+        "The eighth's the rake who squanders all he gets, fast as it comes, on women, drink, and dice. [16/106]",
         "Ninth comes the lecher who, not satisfied with his own wives, is seen about with whores, or caught in dalliance with others' wives. [18/108]",
         "Tenth comes the dotard who, in failing age, a maiden takes to wife, with ripe round breasts, so fair he cannot sleep for jealousy. [20/110]",
         "Eleventh failure's he who puts in charge a drunken, spendthrift rake, of either sex. [22/112]",
@@ -103,7 +103,7 @@
         "(8) He who being sufficiently affluent does not support his father and mother who are old and infirm this is a cause of one's downfall. [98]",
         "(10) He who deceives by falsehood a priest, monk or any other spiritual preceptor this is a cause of one's downfall.[100]",
         "(12) Having ample wealth, assets and property, enjoying them alone this is a cause of one's downfall. [102]",
-        "[6] (14) If a man is conceited through being born in a high social class or by his position in society and looks down on his own kith and kin this is a cause of one's downfall. [104]",
+        "(14) If a man is conceited through being born in a high social class or by his position in society and looks down on his own kith and kin this is a cause of one's downfall. [104]",
         "(16) To be a playboy, a drunkard, a gambler, and to squander all one earns this is a cause of one's downfall.[106]",
         "(18) Not to be contented with one's wife but to be seen with a mistress or the wives of others",
         "this is a cause of one's downfall. [108]",
@@ -170,8 +170,13 @@
     {
       "speaker": "Kulananda",
       "paragraphs": [
-        "So it's not necessarily embodied?",
-        "[8] S: Not necessarily. The term does not directly imply anything embodied. It's a divinity, a devata. It is grammatically feminine, that might have misled the translator. But there are lots of words that are grammatically feminine, but are actually masculine, and vice versa. So it is a divinity. One could, perhaps regard it as a sort of angelic being, an androgynous being, which wasn't either male or female in the ordinary human sense. (Pause)",
+        "So it's not necessarily embodied?"
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Not necessarily. The term does not directly imply anything embodied. It's a divinity, a devata. It is grammatically feminine, that might have misled the translator. But there are lots of words that are grammatically feminine, but are actually masculine, and vice versa. So it is a divinity. One could, perhaps regard it as a sort of angelic being, an androgynous being, which wasn't either male or female in the ordinary human sense. (Pause)",
         "Anyway, the first question comes, according to Hare's translation: 'About man's suffering we question Gotama: We ask the master now the source of suffering'. Now, does the text say anything about suffering? No, actually it doesn't. It says: Parabhavantam purisam mayam pucchama Gotamam, which means, the literal translation is: 'I question Gotama ...' - no, not even that. 'We question Gotama about man's parabhava, man's decline, deterioration.' Yes, suffering is implied, but it's only implied. So, 'We question Gotama about man's' here the word is purisa, which is actually 'man' as distinct from 'woman'. Usually, when it is 'man' in the more general sense the word manussa is used. But here it is definitely purisa, which has overtones of male, the masculine, as distinct from female. So, 'We question Gotama about the decline, the downfall, the deterioration, of man'. There is a suggestion of 'man' rather than 'woman'; you might have noticed already that some of the verses are very much more relevant to man rather than to woman. Some of them at least.",
         "So then, 'We have come to ask the Bhagavan' usually translated as the Lord, the one which is",
         "endowed with all positive qualities kim parabhavato mukham: 'what is the source of downfall?' 'What is the source of deterioration?' So this is the first question.",
@@ -266,8 +271,7 @@
     {
       "speaker": "Sumitra",
       "paragraphs": [
-        "Do you think it's possible to hate the Dharma without knowing anything of it?",
-        "[12]"
+        "Do you think it's possible to hate the Dharma without knowing anything of it?"
       ]
     },
     {
@@ -443,8 +447,13 @@
       "speaker": "Sangharakshita",
       "paragraphs": [
         "Well, I did once know someone who worked in Kew Gardens. (Laughter) He became a bhikkhu in fact. He was always talking about Kew Gardens.",
-        "What could inspire one in a working situation? It does perhaps raise the question as to what we mean by inspiration? Are there levels of inspiration? There can perhaps be pseudo-inspiration.",
-        "[16] Kulananda: There is enthusiasm, which is often mistaken for it. You can become very enthusiastic about building up a business and about the people you're working with."
+        "What could inspire one in a working situation? It does perhaps raise the question as to what we mean by inspiration? Are there levels of inspiration? There can perhaps be pseudo-inspiration."
+      ]
+    },
+    {
+      "speaker": "Kulananda",
+      "paragraphs": [
+        "There is enthusiasm, which is often mistaken for it. You can become very enthusiastic about building up a business and about the people you're working with."
       ]
     },
     {
@@ -547,8 +556,13 @@
     {
       "speaker": "Chris Harper",
       "paragraphs": [
-        "I was thinking that you can get inspired just by throwing yourself into work, perhaps if you don't want to do it; just by putting yourself wholeheartedly into that. And then the good thing that comes out of that I call inspiration. But perhaps you'd call it something else then.",
-        "[18] S: You feel sort of energized?"
+        "I was thinking that you can get inspired just by throwing yourself into work, perhaps if you don't want to do it; just by putting yourself wholeheartedly into that. And then the good thing that comes out of that I call inspiration. But perhaps you'd call it something else then."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "You feel sort of energized?"
       ]
     },
     {
@@ -682,7 +696,7 @@
         "[note:",
         "(1) Muhyiuddin Muhammad Ibn al'Arabi (1165 - 1240), Spanish-born author of Fusus alhikam: The Bezels of Wisdom",
         "(2) Either Diya addin Abu Najib as Suhrawardi (1097 - 1168), author of Adab almuridin: The Manners of the Adepts, or his nephew Shihab addin AbuHafs 'Umar as Suhrawardi (1145 - 1234), author of 'Awarif alma'arif. Considered joint founders of the Suhrawardiyya school.]",
-        "[23] actually discover the Dharma which you love in more concrete form in those who are actually practising it. Do you see what I mean? You're not satisfied with just thinking about it or having it as an abstract idea, not satisfied with just reading about it. You want to come into contact with people who are actually themselves involved with it and, as I said, embody or at least reflect it to some extent. And you become emotionally involved with them in a highly positive way. And that leads to the development of spiritual friendship, kalyana mitrata. So that also suggests [that] if you're having difficulty developing kalyana mitrata it could be because you don't love the Dharma enough."
+        "actually discover the Dharma which you love in more concrete form in those who are actually practising it. Do you see what I mean? You're not satisfied with just thinking about it or having it as an abstract idea, not satisfied with just reading about it. You want to come into contact with people who are actually themselves involved with it and, as I said, embody or at least reflect it to some extent. And you become emotionally involved with them in a highly positive way. And that leads to the development of spiritual friendship, kalyana mitrata. So that also suggests [that] if you're having difficulty developing kalyana mitrata it could be because you don't love the Dharma enough."
       ]
     },
     {
@@ -754,8 +768,13 @@
     {
       "speaker": "Sumitra",
       "paragraphs": [
-        "I'd like to come back for just a moment to the process of kalyana mitrata: that by associating with the good, with those involved with the Dharma, you evolve; by associating with the unskilful, you degenerate. I can think in my own case and I think this is probably true of a lot of people that I've actually passed through stages where I've been in contact with people who you could say were on a downward path. So I've passed through that; but I've been in very close contact with them. So what was it that prevented me and other people being sort of caught up in that current? And in fact swimming against it to the point at which you meet the Dharma.",
-        "[26] S: Well, some traditional Buddhists would say it's something carried over from previous lives. Well, that may be so; it may be not. But the fact remains: that there is something in you with which you are as it were naturally endowed, which is leading you or guiding you in a certain direction. And on account of which you do not succumb to certain situations which perhaps other people do succumb to. One can feel that within oneself sometimes in some situations: a definite element, a definite force, a definite tendency, leading you in a certain direction though at the time perhaps you can't recognize the direction, or even recognize it as a direction. It's only when you encounter what you were, so to speak, looking for, that you realize: Yes, this is what I was looking for; I was actually looking for this without realizing it."
+        "I'd like to come back for just a moment to the process of kalyana mitrata: that by associating with the good, with those involved with the Dharma, you evolve; by associating with the unskilful, you degenerate. I can think in my own case and I think this is probably true of a lot of people that I've actually passed through stages where I've been in contact with people who you could say were on a downward path. So I've passed through that; but I've been in very close contact with them. So what was it that prevented me and other people being sort of caught up in that current? And in fact swimming against it to the point at which you meet the Dharma."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Well, some traditional Buddhists would say it's something carried over from previous lives. Well, that may be so; it may be not. But the fact remains: that there is something in you with which you are as it were naturally endowed, which is leading you or guiding you in a certain direction. And on account of which you do not succumb to certain situations which perhaps other people do succumb to. One can feel that within oneself sometimes in some situations: a definite element, a definite force, a definite tendency, leading you in a certain direction though at the time perhaps you can't recognize the direction, or even recognize it as a direction. It's only when you encounter what you were, so to speak, looking for, that you realize: Yes, this is what I was looking for; I was actually looking for this without realizing it."
       ]
     },
     {
@@ -1012,8 +1031,13 @@
     {
       "speaker": "Kulananda",
       "paragraphs": [
-        "You see what people want to do through what they [actually] do.",
-        "[30] S: Yes! I have said that I do believe that in the long run people always do what they really want to do. But they may rationalize it. I was talking to Sukhavati community about the fact that people always use the right sort of language, the right sort of terminology, to describe not to say dress-up what they're actually doing.",
+        "You see what people want to do through what they [actually] do."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Yes! I have said that I do believe that in the long run people always do what they really want to do. But they may rationalize it. I was talking to Sukhavati community about the fact that people always use the right sort of language, the right sort of terminology, to describe not to say dress-up what they're actually doing.",
         "I caught out quite a few people this way. (Laughter) They know that within the FWBO 'self-development' is what it's all about. So if you can present what you want to do as 'good for your development' then you can get away with it. So people do actually do this sometimes. They say: 'I'm going to do such-and-such' even though they know that normally they wouldn't be approved of for doing it 'because I really think it's good for my development.' Like being lazy: 'I think it's necessary for my development!' Or: 'I need to be a bit distracted; I think that'll be good for my development!' (Laughter) You can probably think of further examples.",
         "But it's justified to the group because they see it as a group, not as a spiritual community as 'good for my development'. Then they feel they can get away with it. They may not consciously do this; they may not deliberately do it; but this is in fact what happens. (Pause) In that way there's nothing that can't be described or justified as 'good for one's development'. So in the end, the ideal of personal development becomes a word, nothing more. You're just doing what you want to do. So again it becomes more important than ever just to be in contact with real spiritual friends who can sometimes see you and your needs more objectively and more truly than you can see them yourself, and who can counteract any such rationalizations on your part. (Long Pause)",
         "Is there any further point about kalyana mitrata? Because if there isn't, I think we'll call it a day. I would have thought there was more to say, but maybe it's all been said. You've got Mitratas on it and so on."
@@ -1031,7 +1055,7 @@
       "paragraphs": [
         "It does seem that at the beginning at least for kalyana mitrata to develop between two people it is necessary that there should be not only the common Dharmic interest or element quite prominent, quite to the fore, in both cases, but also a personal liking.",
         "I think when you've known someone for some time over a period of years you can develop a genuine liking for them on the basis of your purely Dharma friendship, even though you may not feel much of a sort of natural attraction to them.",
-        "[31] This takes a lot of time. But I think if you want to develop a relationship of kalyana mitrata with someone a little more quickly than that, I think it isn't enough to have the common Dharmic interest. There has to be some mutual liking also in the ordinary sense as well. It's as though it's difficult for your relationship to thrive on the comparatively bleak diet just of the Dharma. (Kulananda: Right.) There's got to be something in common: mutual liking in a more human sort of sense. It's just a question of following a middle way. If you're relating too narrowly on the basis of the Dharma perhaps you won't develop kalyana mitrata at all. But if you're relating to someone who's without any element of the Dharma, then also you won't develop kalyana mitrata. It's as though to begin with at least both things have to be there: the common interest in the Dharma, common devotion to the Dharma, but also a certain amount of natural, mutual liking. Do you see what I mean?"
+        "This takes a lot of time. But I think if you want to develop a relationship of kalyana mitrata with someone a little more quickly than that, I think it isn't enough to have the common Dharmic interest. There has to be some mutual liking also in the ordinary sense as well. It's as though it's difficult for your relationship to thrive on the comparatively bleak diet just of the Dharma. (Kulananda: Right.) There's got to be something in common: mutual liking in a more human sort of sense. It's just a question of following a middle way. If you're relating too narrowly on the basis of the Dharma perhaps you won't develop kalyana mitrata at all. But if you're relating to someone who's without any element of the Dharma, then also you won't develop kalyana mitrata. It's as though to begin with at least both things have to be there: the common interest in the Dharma, common devotion to the Dharma, but also a certain amount of natural, mutual liking. Do you see what I mean?"
       ]
     },
     {
@@ -1063,7 +1087,7 @@
       "paragraphs": [
         "Well, friendship can develop reasonably quickly, but I think spiritual friendship takes even longer. And at least you have to have regular contact. If the personnel of a community or a Centre is changing all the time there's no opportunity of developing friendships. You need to stick around with one another for a few years for anything worthwhile to develop. It's not like falling in love and having one whole gamut of the experience within a week or so. No, it doesn't work like that in the case of friendship. You've got to see someone regularly, maybe",
         "live with them, work with them, study with them, meditate with them, and so on. And work on the relationship. Give it a bit of time, thought, trouble. Nurture it. Or at least make sure that opportunities for its development are provided.",
-        "[32] You can't go about developing it in too sort of self-conscious or artificial a fashion; some people fail because they actually do that. They sort of grab you and say: 'Well, come on; we've got to have some kalyana mitrata' and might put you right off. (Laughter) It's a bit more subtle than that. That's a sort of spiritual rape attempted rape, because you can't really have rape on this level."
+        "You can't go about developing it in too sort of self-conscious or artificial a fashion; some people fail because they actually do that. They sort of grab you and say: 'Well, come on; we've got to have some kalyana mitrata' and might put you right off. (Laughter) It's a bit more subtle than that. That's a sort of spiritual rape attempted rape, because you can't really have rape on this level."
       ]
     },
     {
@@ -1107,8 +1131,13 @@
     {
       "speaker": "Kulananda",
       "paragraphs": [
-        "I'll work on that next year! (Laughter)",
-        "[33] S: But I have sometimes been surprised by people's lack of I won't say patience, but a sort of, even, sympathy with other people. Sometimes people are very hard on other people, very harsh, even unsympathetic; don't feel for them very much. I notice this even within the Friends unfortunately."
+        "I'll work on that next year! (Laughter)"
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "But I have sometimes been surprised by people's lack of I won't say patience, but a sort of, even, sympathy with other people. Sometimes people are very hard on other people, very harsh, even unsympathetic; don't feel for them very much. I notice this even within the Friends unfortunately."
       ]
     },
     {
@@ -1258,7 +1287,7 @@
       "speaker": "Sangharakshita",
       "paragraphs": [
         "Pali is euphonious, one could say, inasmuch as consonants and vowels are pretty much evenly balanced, whereas in English there tends to be a preponderance of consonants. In Italian there are proportionately more vowels to consonants than in English. That's why Italian sounds more euphonious than English does. If you've got clusters of consonants which are difficult to mouth at least for the foreigner it does make the language a little harsh and a little stiff. Pali is probably more euphonious than Sanskrit. Sanskrit has lots of compound consonants, which you don't get so many of in Pali.",
-        "[36] For instance, in Pali you have bhikkhu, whereas in Sanskrit bhiksu; instead of khu, it's ksu. Instead of dhamma, it's dharma. You've got an extra consonant each time.",
+        "For instance, in Pali you have bhikkhu, whereas in Sanskrit bhiksu; instead of khu, it's ksu. Instead of dhamma, it's dharma. You've got an extra consonant each time.",
         "All right, let's go into this verse then. But first of all one notices something: in the first two verses the alternatives are spelled out, aren't they? In the first verse you've got growth as opposed to decline. And then you've got evil men and association with evil men as opposed to good men and non-association with good men. So in each verse the alternatives are indicated, both for the upward path and the downward path. But from verse three we're only concerned with the downward path, only with decline only with the negative spiral, as we might call it.",
         "So, Niddasili sabhasala anutthata ca yo naro 'being one who is addicted to sleep, addicted to company, unaroused,' and then also 'lazy' kodhapaano 'known for irascibility' tam parabhavato mukham 'this is a cause of one's decline.' Let's see what the other translations say."
       ]
@@ -1440,7 +1469,7 @@
       "paragraphs": [
         "Because the normal state of affairs is that when you wake up in the morning, when you open your eyes, you're fully conscious. You feel rested, you feel glad that it's a new day and you look forward to doing whatever you have to do during the day. And you quite happily get up to start doing it. That's normal.",
         "So if one doesn't have that sort of experience every morning, that is what one should aim for. If one doesn't have that experience, I think one needs to examine one's situation, examine oneself, very closely, because you should, when you wake up in the morning, be very happy that it's a new day, that there are new things to do. I don't necessarily mean different things to do, but the day is new; it's not just another old day so everything you do is new. Even though you've done it before, you haven't done it that day - so in that sense it's new.",
-        "[39] I don't know, but I rather suspect that when we were in Tuscany there was a greater tendency for people to wake up in that sort of way each morning. Yes? Don't disillusion me!"
+        "I don't know, but I rather suspect that when we were in Tuscany there was a greater tendency for people to wake up in that sort of way each morning. Yes? Don't disillusion me!"
       ]
     },
     {
@@ -1656,8 +1685,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Here I'm speaking of the group as distinct from the Sangha; but there is an objective, non-neurotic, dependence or, better, reliance on the group, which is perhaps unavoidable. Do you see what I mean? That you don't for instance grow your own food; you're dependent, you rely on the group, other members of the group to grow it for you. But that doesn't amount necessarily to neurotic dependence on the group. This is an aspect of the division of labour, without which society, certainly civilized society, is not possible.",
-        "[43] Sumitra: The tendency in a group, as I see it, is that you have usually a shared set of opinions and ideals, and that you can argue - is true of the spiritual community as well. So, where you have somebody who is looking from the outside at the spiritual community, in what sense can you say that the spiritual community is different from his own situation, apart from the ideology which you're subscribing to?"
+        "Here I'm speaking of the group as distinct from the Sangha; but there is an objective, non-neurotic, dependence or, better, reliance on the group, which is perhaps unavoidable. Do you see what I mean? That you don't for instance grow your own food; you're dependent, you rely on the group, other members of the group to grow it for you. But that doesn't amount necessarily to neurotic dependence on the group. This is an aspect of the division of labour, without which society, certainly civilized society, is not possible."
+      ]
+    },
+    {
+      "speaker": "Sumitra",
+      "paragraphs": [
+        "The tendency in a group, as I see it, is that you have usually a shared set of opinions and ideals, and that you can argue - is true of the spiritual community as well. So, where you have somebody who is looking from the outside at the spiritual community, in what sense can you say that the spiritual community is different from his own situation, apart from the ideology which you're subscribing to?"
       ]
     },
     {
@@ -1700,8 +1734,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "No, I don't mean that, because even when it's a genuine group activity you're not relating to others as Individuals.",
-        "[44] S: It's the froth of the group, not even the genuine, honest, down-to-earth group. It's not even that."
+        "No, I don't mean that, because even when it's a genuine group activity you're not relating to others as Individuals."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "It's the froth of the group, not even the genuine, honest, down-to-earth group. It's not even that."
       ]
     },
     {
@@ -1769,8 +1808,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "No. I'm being a bit paradoxical there, of course. The group is contrasted with the Individual, so the group in relation to the Individual is always wrong, because the group is always the group in relation to the Individual. (Laughs) Do you see what I mean? In terms of the Individual, the group is always wrong, must be wrong, because it's the group and not the Individual. Of course, don't take it too literally.",
-        "[45] Chris Harper: Is it wrong simply in the sense that it must always be a compromise?"
+        "No. I'm being a bit paradoxical there, of course. The group is contrasted with the Individual, so the group in relation to the Individual is always wrong, because the group is always the group in relation to the Individual. (Laughs) Do you see what I mean? In terms of the Individual, the group is always wrong, must be wrong, because it's the group and not the Individual. Of course, don't take it too literally."
+      ]
+    },
+    {
+      "speaker": "Chris Harper",
+      "paragraphs": [
+        "Is it wrong simply in the sense that it must always be a compromise?"
       ]
     },
     {
@@ -2178,8 +2222,13 @@
     {
       "speaker": "Sumitra",
       "paragraphs": [
-        "There's a cessation of real caring. You stop ... You're not interested enough in activity to undertake it. Things cease to have an interest. You cease to have a care for what you're doing.",
-        "[53] S: Your attitude is: Why bother? 'Why should I bother?'"
+        "There's a cessation of real caring. You stop ... You're not interested enough in activity to undertake it. Things cease to have an interest. You cease to have a care for what you're doing."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Your attitude is: Why bother? 'Why should I bother?'"
       ]
     },
     {
@@ -2270,8 +2319,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Apathetic, yes. Yes. Maybe apathetic is the term here rather than lazy. Your energies are frustrated so many times that they just won't respond any more, they just refuse to be aroused, because they know, or think that they know, that they're going to be disappointed. So they're not going to bother. That is a sort of apathy rather than laziness.",
-        "[54] Kulananda: It goes hand-in-hand with cynicism."
+        "Apathetic, yes. Yes. Maybe apathetic is the term here rather than lazy. Your energies are frustrated so many times that they just won't respond any more, they just refuse to be aroused, because they know, or think that they know, that they're going to be disappointed. So they're not going to bother. That is a sort of apathy rather than laziness."
+      ]
+    },
+    {
+      "speaker": "Kulananda",
+      "paragraphs": [
+        "It goes hand-in-hand with cynicism."
       ]
     },
     {
@@ -2466,8 +2520,13 @@
     {
       "speaker": "Sumitra",
       "paragraphs": [
-        "Yes. But in a sense that is a return to the more 'formal' form.",
-        "[59] S: Yes. One has to use the formal. One has to use the formal as a means of getting communication going. You don't just remain on that level of polite formal conversation. That is what tends to happen of course in some social circles. But one shouldn't allow that to happen. One should quite consciously just use those polite social gambits to establish something more genuine."
+        "Yes. But in a sense that is a return to the more 'formal' form."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Yes. One has to use the formal. One has to use the formal as a means of getting communication going. You don't just remain on that level of polite formal conversation. That is what tends to happen of course in some social circles. But one shouldn't allow that to happen. One should quite consciously just use those polite social gambits to establish something more genuine."
       ]
     },
     {
@@ -2493,7 +2552,7 @@
       "paragraphs": [
         "They seem to be associated. 'Being one who is addicted to sleep; addicted to company; un-aroused in energy; lazy and known for irascibility' or what was the alternative translation? 'of angry intelligence' or 'hypercritical' or 'destructively critical intelligence' 'this is a cause of one's decline'. If we interpret it as 'of destructively critical intelligence' how does that link up with these other qualities? It's as if to say you can't do anything yourself. You're addicted to sleep; you're addicted to company; your energy is unaroused; you're lazy. But what you can do is to criticize other people. Sometimes one finds that, doesn't one? You might even think that is your contribution. (Pause)",
         "Anyway, have you got that verse? Have you written that one down? 'Being one who is addicted to sleep, addicted to company, unaroused in energy, lazy, and of destructively critical intelligence.' Or you can say: 'and known for irascibility'. Grammatically, both are possible. I think the first is probably the more accurate. ' This is a cause of one's decline.' (Pause) All right. Let's just take one more verse. It's a pretty straightforward, simple, down-to-earth, basic topic. In fact, it relates to mother and father. And it goes like this in my new translation:",
-        "[60] 'He who though sufficiently well-off, Does not support either mother or father, (Though they are) decayed and no longer young, This is a cause of downfall; This is a cause of decline.'",
+        "'He who though sufficiently well-off, Does not support either mother or father, (Though they are) decayed and no longer young, This is a cause of downfall; This is a cause of decline.'",
         "That's pretty literal. There aren't any really difficult or ambiguous words there. You'll notice [that] in Pali as in Sanskrit 'mother' comes before 'father'. That could be just a sort of accident of language, or it could have a meaning. That mother in a way takes precedence.",
         "When I was translating this, a little item of Vinaya occurred to me. The bhikkhu, as you know, usually depends upon alms. Traditionally, the bhikkhu goes from house to house, or from door to door, collecting almsfood, and he subsists on that. That was the old system. Certainly it was the system in the Buddha's day. So there was a Vinaya rule that you could not support lay people with the almsfood that you had obtained. This was given by devoted lay-people specifically to support you to support people leading a higher spiritual life. And if you used the contents of your begging-bowl to support people who are not living that higher spiritual life, you would in effect be misappropriating what you had been given. You're given, as it were, a donation for a particular purpose. You're supposed to use it for that purpose."
       ]
@@ -2534,8 +2593,13 @@
     {
       "speaker": "Kulananda",
       "paragraphs": [
-        "That's quite interesting. I've recently come to think of the fact that at some point I might actually have to support my parents economically; and I think quite a few of us might at some point have to think in those terms.",
-        "[62] S: Or at least help the parents; because they wouldn't starve, presumably, under the Welfare State."
+        "That's quite interesting. I've recently come to think of the fact that at some point I might actually have to support my parents economically; and I think quite a few of us might at some point have to think in those terms."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Or at least help the parents; because they wouldn't starve, presumably, under the Welfare State."
       ]
     },
     {
@@ -2610,8 +2674,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Well, if mother hasn't brought you up properly, later on in life you will just have to bring mother up properly! (Laughter)",
-        "[64] Sumitra: Actually, that's quite interesting, 'cause at the moment I'm about halfway through The Feminine Mystique [by Betty Friedan]. Well, I find it fascinating just in terms of an analysis of conditioning processes, and it really puts across very clearly the lack of real meaning for women in their married situation, and it seems that that is a Western problem rather than ..."
+        "Well, if mother hasn't brought you up properly, later on in life you will just have to bring mother up properly! (Laughter)"
+      ]
+    },
+    {
+      "speaker": "Sumitra",
+      "paragraphs": [
+        "Actually, that's quite interesting, 'cause at the moment I'm about halfway through The Feminine Mystique [by Betty Friedan]. Well, I find it fascinating just in terms of an analysis of conditioning processes, and it really puts across very clearly the lack of real meaning for women in their married situation, and it seems that that is a Western problem rather than ..."
       ]
     },
     {
@@ -3174,8 +3243,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "But it could only die out in the sense that it had reached as a whole a level of development such that re-embodiment or rebirth on the kamaloka plane was no longer appropriate, was no longer helpful.",
-        "[74] Sumitra: But I was also under the impression that ..."
+        "But it could only die out in the sense that it had reached as a whole a level of development such that re-embodiment or rebirth on the kamaloka plane was no longer appropriate, was no longer helpful."
+      ]
+    },
+    {
+      "speaker": "Sumitra",
+      "paragraphs": [
+        "But I was also under the impression that ..."
       ]
     },
     {
@@ -3201,8 +3275,13 @@
     {
       "speaker": "Kulananda",
       "paragraphs": [
-        "A lot of people here expect that having children is not really going to change their lives.",
-        "[75] S: So often it just happens accidentally. The mere fact that a woman is thinking whether to have an abortion or not well, what sort of mental state is she in with regard to the possibility of children? A woman who is really well-fitted to be a mother couldn't even think of an abortion. Because what does it suggest? What sort of mental attitude? There's one little sentence in Teresa's article which I quite liked, which I thought was in a way quite penetrating. She said that it was quite a thought that for the modern person, the modern woman, every time you had sexual intercourse it might end in your taking life that is to say if the woman decided to have an abortion. So she rightly considered that a sobering thought. But it seems I think it's regrettable that that possibility is there."
+        "A lot of people here expect that having children is not really going to change their lives."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "So often it just happens accidentally. The mere fact that a woman is thinking whether to have an abortion or not well, what sort of mental state is she in with regard to the possibility of children? A woman who is really well-fitted to be a mother couldn't even think of an abortion. Because what does it suggest? What sort of mental attitude? There's one little sentence in Teresa's article which I quite liked, which I thought was in a way quite penetrating. She said that it was quite a thought that for the modern person, the modern woman, every time you had sexual intercourse it might end in your taking life that is to say if the woman decided to have an abortion. So she rightly considered that a sobering thought. But it seems I think it's regrettable that that possibility is there."
       ]
     },
     {
@@ -3251,8 +3330,13 @@
       "speaker": "Sangharakshita",
       "paragraphs": [
         "Some women in the women's liberation movement have almost - well, have - got into the",
-        "state of mind of thinking that it's not fair that women should have to have babies - 'Why should we be saddled?' because they're so alienated from their own nature, biologically speaking.",
-        "[76] Dharmananda: And therefore she asserts that she has a 'right to choose'."
+        "state of mind of thinking that it's not fair that women should have to have babies - 'Why should we be saddled?' because they're so alienated from their own nature, biologically speaking."
+      ]
+    },
+    {
+      "speaker": "Dharmananda",
+      "paragraphs": [
+        "And therefore she asserts that she has a 'right to choose'."
       ]
     },
     {
@@ -3335,7 +3419,7 @@
       "speaker": "Sangharakshita",
       "paragraphs": [
         "Well, that's the schema according to what they call the four a ramas; and in theory that applies to both men and women. In practice it applies to the extent that it does apply more to men than to women. But it's true: there's quite a lot of women maybe more in India than in this country [who] end up or [who] spend the latter part of their lives involved in purely religious activities. They do quite a bit of meditation.",
-        "[78] This does differ from community to community and caste to caste. It's probably more common among the higher castes. Well, it means the woman has to be supported, for one thing; there have to be people to support her. Among the very poor, among the lower castes, a woman may still be working for her living when she's very old, right up to the time of her death."
+        "This does differ from community to community and caste to caste. It's probably more common among the higher castes. Well, it means the woman has to be supported, for one thing; there have to be people to support her. Among the very poor, among the lower castes, a woman may still be working for her living when she's very old, right up to the time of her death."
       ]
     },
     {
@@ -3397,7 +3481,7 @@
       "paragraphs": [
         "Sunday: Camden Lock market!",
         "End of Cassette Four, Side Two",
-        "[79] Cassette Five, Side One",
+        "Cassette Five, Side One",
         "SESSION THREE",
         "Cassette Five, Side One (Start of session missing due to recording fault)"
       ]
@@ -3674,7 +3758,7 @@
         "I wouldn't say it was a question of tolerance. I think that word isn't quite appropriate here. Don't forget that, yes, the Buddha gained Enlightenment, he was teaching, he was gathering disciples, but the religious society of his day wasn't as sharply differentiated as our religious society is even now. It wasn't sharply differentiated into mutually exclusive sects and churches. That seems to be a Western, not to say Semitic well, Christian concept. Do you see what I mean?",
         "It's not that he was being tolerant of some other sect no, because the notion of 'sect' in the Western sense just didn't exist then. There's no question of tolerance; there was nothing to be tolerant about, in his view and in the view of the early Buddhists. It was just a question of whether, in such-and-such a person, regardless of what he calls himself, whether he calls himself a sramana or brahmana or a bhikkhu, is there truth and righteousness? That was the more",
         "important question.",
-        "[86] And in a way there was a common tradition that they could all appeal to. We mustn't forget that even terms like 'buddha' were originally in general use. Even the word 'buddha' didn't have a specialized use as it had afterwards. Bhikkhu wasn't such a specialized term; brahman was not a specialized term either. (Pause)"
+        "And in a way there was a common tradition that they could all appeal to. We mustn't forget that even terms like 'buddha' were originally in general use. Even the word 'buddha' didn't have a specialized use as it had afterwards. Bhikkhu wasn't such a specialized term; brahman was not a specialized term either. (Pause)"
       ]
     },
     {
@@ -3728,8 +3812,13 @@
     {
       "speaker": "Mike Howes",
       "paragraphs": [
-        "Would you now go around India, is it appropriate for Buddhists when they're going round India to be very respectful and truthful to Hindu wise men, as it were?",
-        "[87] S: Well, there are Hindu wise men and there are Hindu wise men. There are some who are genuine no doubt, and certainly with them you should be open and honest. But there are",
+        "Would you now go around India, is it appropriate for Buddhists when they're going round India to be very respectful and truthful to Hindu wise men, as it were?"
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Well, there are Hindu wise men and there are Hindu wise men. There are some who are genuine no doubt, and certainly with them you should be open and honest. But there are",
         "others who are rather different. It's the same among the Buddhist teachers: there are some who are not really teachers but just big ecclesiastics occupying a prominent position in this or that Buddhist sect.",
         "But one can say the important point is that abstention from musavada is a general ethical principle: be truthful, speak the truth to others, be honest in your communication but be particularly careful when you're dealing with people whatever they may be like, whatever they may be called who are spiritually more advanced than yourself. It's even more important in the case of such people that you should be truthful and honest and open. Because if you're not, it's a source of decline for you inasmuch as you're blocking off a source of spiritual inspiration, spiritual nourishment.",
         "Anyway, that's probably clear enough really, isn't it? It's a bit more straightforward than some of the verses we've been dealing with. All right, let's go on to the next one."
@@ -3742,7 +3831,7 @@
         "No-one's completely accurate. 'One who is wealthy' - yes, 'wealthy' will do here - 'who is possessed of gold and possessed of' - it could be 'comforts', it could be 'amenities', even 'luxuries' 'and who enjoys delicacies alone.' This word saduni is 'sweet things'. So, one who enjoys 'delicacies', 'dainties', alone that is to say one who's wealthy, he's possessed with gold, he's got a lot of property perhaps, all sorts of comforts and amenities, and he enjoys his delicacies, especially dainty things, alone, he doesn't share them with others: 'this is a source of decline'.",
         "So what sort of person does this indicate? What sort of state of mind does this indicate? Here you're wealthy, you're possessed of gold - it may be gold bars, bullion - you've got lots of property, possessions. But when you sit down to eat, both literally and metaphorically, you have all sorts of nice things, special things, 'dainties', maybe expensive things, and you eat all by yourself.",
         "Of course in the context of Indian tradition this is considered especially bad, especially selfish, especially unspiritual; not only just unspiritual [but] unethical. One must admit that in the case of the Hindus, not to speak of Buddhist nowadays in India, this is still very much observed. I've mentioned in my memoirs that there are orthodox brahmans in South India who will not eat by themselves. I have experienced this myself. When food is ready and about to be served, if there's no one in the house - that is to say no guests - they will just look out of the door and see if there is anyone passing by that they can call in and offer some food to, so they should not eat alone. Because orthodox Hindu",
-        "[88] tradition - and here one might say the best Hindu tradition - is that one of the reasons why you are a householder, why you marry, why you have a family, why you earn money, is so that you can entertain other people. You do not set up a family and acquire wealth just for yourself; you do it, at least partly, so that you can entertain other people.",
+        "tradition - and here one might say the best Hindu tradition - is that one of the reasons why you are a householder, why you marry, why you have a family, why you earn money, is so that you can entertain other people. You do not set up a family and acquire wealth just for yourself; you do it, at least partly, so that you can entertain other people.",
         "So to eat alone is a very bad thing to do. A man who eats alone is selfish; not only selfish, he's a thoroughly despicable character, he's not even human, or [he's] barely human. That is the view. That is the attitude. So this makes it worse: he's wealthy, he's got gold, he's got property, all sorts of delicacies are at his command; but he eats them, he enjoys them, alone. What could be worse than this?",
         "Maybe you go to see someone, maybe you're hungry, or at least a bit peckish, and there he is seated with his bottle of wine and maybe a big cake, and he just goes on drinking and eating. He doesn't offer you any. What sort of man is that? Do you see what I mean? What could you tell about someone from that? That he didn't offer to share with you whatever he had? What sort of attitude does this represent? What sort of man is this? How would you describe him? (Laughter)"
       ]
@@ -4126,8 +4215,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Yes, and prepared by the system and the tradition to which they belong; by their parents and other relations. We enter upon these things grossly unprepared.",
-        "[98] Chris Harper: That's interesting, because I know some people who see their spiritual development in terms of bringing up a family. They actually see that as the way in which they'd like to grow."
+        "Yes, and prepared by the system and the tradition to which they belong; by their parents and other relations. We enter upon these things grossly unprepared."
+      ]
+    },
+    {
+      "speaker": "Chris Harper",
+      "paragraphs": [
+        "That's interesting, because I know some people who see their spiritual development in terms of bringing up a family. They actually see that as the way in which they'd like to grow."
       ]
     },
     {
@@ -4171,7 +4265,7 @@
       "paragraphs": [
         "I think a lot would depend upon the social system of which you are a part. For instance, I see that our Indian Order Members manage to do quite a lot in some cases more than some of our unattached Order Members here manage to do! But that's because the social system supports that. They belong perhaps to an extended family. When they're away, maybe for weeks on end, working for the Movement, their wife and children are not left alone, they're left with a whole lot of other people. And the wife is taught or trained by tradition to accept implicitly whatever the husband does, to support him in what he does; not to compete with him, not to undermine him; to back him up in whatever he wants to do. That's the training that they get. That's the Indian ideal, the ideal of the wife.",
         "I think it's something we can't imagine here. Well, maybe, yes, no doubt there are some loyal wives in England, in Western society, who do fully back up what their husbands do. But in India it's much more general; it's a sort of universal ideal. They just quietly give their husbands their full support in what he's trying to do. Not that they're always trying to dish out advice as to how he should do it no but just to make it easier, to help create the sort of background from which he can operate, create a sort of soothing and pleasant influence, a soothing and pleasant atmosphere, in which he can rest if he needs to rest; not to bother him when he's thinking about things; to remain in the background until one is needed.",
-        "[99] This requires a degree of self-effacement of the sort that some women would consider a vice rather than a virtue. You know what the Jill Tweedies and the Jilly Coopers of the world would think of it! The Buddhist view, or the Indian view, the Hindu view also is very different. I would say it works better and conduces more to the happiness and well-being of those concerned.",
+        "This requires a degree of self-effacement of the sort that some women would consider a vice rather than a virtue. You know what the Jill Tweedies and the Jilly Coopers of the world would think of it! The Buddhist view, or the Indian view, the Hindu view also is very different. I would say it works better and conduces more to the happiness and well-being of those concerned.",
         "So if even in England someone did say in all sincerity that they wanted to start a family with the idea of just providing whatever children came along with a positive environment in which to grow up, I can't say that I'd necessarily be against that. I couldn't say that it wasn't a valid ideal if the persons concerned genuinely wanted to follow that.",
         "On the other hand one could also say, well, there are children to be adopted, there are children without parents; perhaps you might feel called upon to adopt a child. Unfortunately, I think, in law you're not allowed to adopt children if you're not a married couple. I think, as far as I know, single people are not permitted to adopt children. I'm sure a community would not be permitted to adopt a child though that would probably be the best place for a boy to grow up, the best place of all. They don't object to keeping him in an orphanage, but they probably wouldn't allow him to be adopted by a community that would look after him as their own. Well, maybe one can't altogether blame them, because communities like our's are pretty rare and in any case they're recent phenomena."
       ]
@@ -4260,8 +4354,13 @@
       "speaker": "Sangharakshita",
       "paragraphs": [
         "It doesn't say. Laddha is whatever you gain. It seems to be material rather than spiritual, but you could read it as meaning spiritual gains too. Certainly your material gains will be wasted if you abandon yourself to women, drink and gambling; wine, women and dice instead of 'wine, women and song'. It's just so obvious that it requires very little comment. Is there any comment that can be made?",
-        "It's 'abandoning' that seems to be the key word. It's not necessarily a certain amount of experience of, but it's abandoning yourself to, throwing yourself away on, them, allowing them to ruin, to waste, your life, to become addicted to them so that they are the main things in your life.",
-        "[101] Chris Harper: The word implies quite a lot of unmindfulness, doesn't it? A lack of awareness."
+        "It's 'abandoning' that seems to be the key word. It's not necessarily a certain amount of experience of, but it's abandoning yourself to, throwing yourself away on, them, allowing them to ruin, to waste, your life, to become addicted to them so that they are the main things in your life."
+      ]
+    },
+    {
+      "speaker": "Chris Harper",
+      "paragraphs": [
+        "The word implies quite a lot of unmindfulness, doesn't it? A lack of awareness."
       ]
     },
     {
@@ -4477,8 +4576,13 @@
     {
       "speaker": "Chris Harper",
       "paragraphs": [
-        "I was going to say that presumably you can't take it so literally in a step-by-step manner because in order to suffer downfall you don't have to go through each of these different states successively.",
-        "[104] S: Yes, well, in the sense that it's multidimensional you could go through quite a number of them at the same time."
+        "I was going to say that presumably you can't take it so literally in a step-by-step manner because in order to suffer downfall you don't have to go through each of these different states successively."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Yes, well, in the sense that it's multidimensional you could go through quite a number of them at the same time."
       ]
     },
     {
@@ -4550,8 +4654,13 @@
     {
       "speaker": "Mike Howes",
       "paragraphs": [
-        "Have you not said in some context which I can't remember something like: 'If you're going to overeat, then overeat properly!'? (Laughter)",
-        "[105] S: No, I never said that! I wonder who did say it. I hope it hasn't been attributed to me!"
+        "Have you not said in some context which I can't remember something like: 'If you're going to overeat, then overeat properly!'? (Laughter)"
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "No, I never said that! I wonder who did say it. I hope it hasn't been attributed to me!"
       ]
     },
     {
@@ -4595,8 +4704,13 @@
     {
       "speaker": "Kulananda",
       "paragraphs": [
-        "That's the source of contentment: your own experience.",
-        "[106] S: So I think abandoning yourself to women and so on represents a desperate attempt to experience yourself when you do not experience yourself by a means which will not in fact enable you to experience yourself any more; so you try something more extreme, more pseudo-stimulating, but you still aren't able to experience yourself. I think this is what this verse is really getting at."
+        "That's the source of contentment: your own experience."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "So I think abandoning yourself to women and so on represents a desperate attempt to experience yourself when you do not experience yourself by a means which will not in fact enable you to experience yourself any more; so you try something more extreme, more pseudo-stimulating, but you still aren't able to experience yourself. I think this is what this verse is really getting at."
       ]
     },
     {
@@ -4694,8 +4808,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Oh yes. I'm sure in some cases.",
-        "[108] Kulananda: Dharmavira said that's why he stopped mountain climbing."
+        "Oh yes. I'm sure in some cases."
+      ]
+    },
+    {
+      "speaker": "Kulananda",
+      "paragraphs": [
+        "Dharmavira said that's why he stopped mountain climbing."
       ]
     },
     {
@@ -4773,8 +4892,13 @@
     {
       "speaker": "Chris Harper",
       "paragraphs": [
-        "Well, the way I was looking at it was from the point of view of his consciousness being that much sharper and his level of appreciation being that much higher.",
-        "[109] S: No, I don't think in the original story, the Zen story, it's a question of appreciation but of greed that even in that sort of crucial situation your greed is operating so powerfully that you can ignore the situation in which you actually are and indulge your greed. And sometimes people do that."
+        "Well, the way I was looking at it was from the point of view of his consciousness being that much sharper and his level of appreciation being that much higher."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "No, I don't think in the original story, the Zen story, it's a question of appreciation but of greed that even in that sort of crucial situation your greed is operating so powerfully that you can ignore the situation in which you actually are and indulge your greed. And sometimes people do that."
       ]
     },
     {
@@ -4818,7 +4942,7 @@
         "End of Cassette Six, Side One",
         "Cassette Six, Side Two",
         "No recording seminar resumes on Cassette Seven, Side One",
-        "[111] Cassette Seven, Side One",
+        "Cassette Seven, Side One",
         "SESSION FOUR"
       ]
     },
@@ -4993,8 +5117,13 @@
     {
       "speaker": "Prajnananda",
       "paragraphs": [
-        "Well, even if people aren't legally married, they have that sort of relationship, which is usually recognized in their social circle.",
-        "[115] Kulananda: Well, there are a lot of borderline cases ..."
+        "Well, even if people aren't legally married, they have that sort of relationship, which is usually recognized in their social circle."
+      ]
+    },
+    {
+      "speaker": "Kulananda",
+      "paragraphs": [
+        "Well, there are a lot of borderline cases ..."
       ]
     },
     {
@@ -5077,8 +5206,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Oh yes. This is all the more so within the Order, because - I don't want to over-generalize - when relationships, that is sexual-cum-emotional relationships, break-up they very often, or quite often at least, break-up in a somewhat messy fashion, with negative feelings left. So supposing two people within the Order, say an Upasaka and Upasika, have a relationship and it breaks up, there is the likelihood of a residue of negative feelings on both sides. And if they are both members of the Order that cannot but affect the Order to some extent. So therefore one has to be very careful. I know that at least one Order Member has taken the view that there should be no sexual relationships within the Order for that reason. (Pause) Well, it's a point of view; one Order Member has stated that.",
-        "[117] Mike Howes: That's between Order Members, rather than celibacy?"
+        "Oh yes. This is all the more so within the Order, because - I don't want to over-generalize - when relationships, that is sexual-cum-emotional relationships, break-up they very often, or quite often at least, break-up in a somewhat messy fashion, with negative feelings left. So supposing two people within the Order, say an Upasaka and Upasika, have a relationship and it breaks up, there is the likelihood of a residue of negative feelings on both sides. And if they are both members of the Order that cannot but affect the Order to some extent. So therefore one has to be very careful. I know that at least one Order Member has taken the view that there should be no sexual relationships within the Order for that reason. (Pause) Well, it's a point of view; one Order Member has stated that."
+      ]
+    },
+    {
+      "speaker": "Mike Howes",
+      "paragraphs": [
+        "That's between Order Members, rather than celibacy?"
       ]
     },
     {
@@ -5178,8 +5312,13 @@
     {
       "speaker": "Chris Harper",
       "paragraphs": [
-        "According to the movies I've seen anyway! (Laughter]",
-        "[119] S: Anyway, it does all seem rather self-evident, doesn't it? So maybe there is no need to insist on the point. But there is this other question: of not being seen among - as I called them - 'courtesans'? One could translate it 'prostitutes', but prostitution in the rather squalid commercial sense seems not to have been known in India in the Buddha's day. A courtesan was a sort of lady who was setup in her house, a house of her own sometimes by arrangement with the local council, as in the case of Ambapali and who received gentlemen and accepted presents from them and didn't marry anybody. So that seems to have been rather different. Perhaps there was the more vulgar sort of prostitution but it seems on the whole not to have been like that.",
+        "According to the movies I've seen anyway! (Laughter]"
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Anyway, it does all seem rather self-evident, doesn't it? So maybe there is no need to insist on the point. But there is this other question: of not being seen among - as I called them - 'courtesans'? One could translate it 'prostitutes', but prostitution in the rather squalid commercial sense seems not to have been known in India in the Buddha's day. A courtesan was a sort of lady who was setup in her house, a house of her own sometimes by arrangement with the local council, as in the case of Ambapali and who received gentlemen and accepted presents from them and didn't marry anybody. So that seems to have been rather different. Perhaps there was the more vulgar sort of prostitution but it seems on the whole not to have been like that.",
         "So, anyway, why is it a source of downfall to be not content with one's own wife and not just to go with the wives of others but to frequent courtesans? Why should that be a source of decline and downfall? Again, is it due to the element of discontent?"
       ]
     },
@@ -5211,8 +5350,13 @@
     {
       "speaker": "Kulananda",
       "paragraphs": [
-        "Didn't the Greeks, the Athenians, have an altogether more comprehensive set of relationships?",
-        "[120] S: Well, the Greeks considered sex to pertain to marriage and romance to pertain to your relationships with your friends of the same sex. They sort of divided sex from romantic love in that sort of way."
+        "Didn't the Greeks, the Athenians, have an altogether more comprehensive set of relationships?"
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Well, the Greeks considered sex to pertain to marriage and romance to pertain to your relationships with your friends of the same sex. They sort of divided sex from romantic love in that sort of way."
       ]
     },
     {
@@ -5431,8 +5575,13 @@
     {
       "speaker": "Chris Harper",
       "paragraphs": [
-        "That's it. She's exploiting other people's passions, and making a living from that. And that, to me, seems to be an unskilful element.",
-        "[125] S: But supposing someone argues: Well, a young man is a young man; his sexual appetites are quite healthy; and if he just indulges those he's not doing any harm. If the prostitute is there for that particular purpose, it means he's not going with married women. So what would you say to that?"
+        "That's it. She's exploiting other people's passions, and making a living from that. And that, to me, seems to be an unskilful element."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "But supposing someone argues: Well, a young man is a young man; his sexual appetites are quite healthy; and if he just indulges those he's not doing any harm. If the prostitute is there for that particular purpose, it means he's not going with married women. So what would you say to that?"
       ]
     },
     {
@@ -5624,8 +5773,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Yes. I think if one is to attach any sort of meaning to the phrase that he is 'seen with courtesans' - or 'prostitutes' - 'and with the wives of others', it is to be understood that he's just become shameless. He's perhaps become so habituated to that sort of behaviour he no longer realizes what he's doing and forgets or doesn't realize that other people are observing. But certainly not that if it isn't seen it doesn't matter.",
-        "[131] Chris Harper: So do you think it should be translated in this way? - to keep the word 'seen' in there?"
+        "Yes. I think if one is to attach any sort of meaning to the phrase that he is 'seen with courtesans' - or 'prostitutes' - 'and with the wives of others', it is to be understood that he's just become shameless. He's perhaps become so habituated to that sort of behaviour he no longer realizes what he's doing and forgets or doesn't realize that other people are observing. But certainly not that if it isn't seen it doesn't matter."
+      ]
+    },
+    {
+      "speaker": "Chris Harper",
+      "paragraphs": [
+        "So do you think it should be translated in this way? - to keep the word 'seen' in there?"
       ]
     },
     {
@@ -5700,8 +5854,13 @@
     {
       "speaker": "Mike Howes",
       "paragraphs": [
-        "I think it's probably so; I think I've seen it happen. At least, it's partly so ...",
-        "[132] S: But what it also perhaps suggests is that if as an old man you're still preoccupied with young women sexually perhaps it means that you haven't passed through a natural process of maturation. Could it mean that? Or is that too idealistic? Let's assume, say, you've been married, you've got an old wife and you've grown old together; well, the assumption seems to be that you should have detached yourself as you get older from these sorts of mental states, should perhaps be thinking more about spiritual things. But if that hasn't happened, well, perhaps you will start casting your eyes on young women."
+        "I think it's probably so; I think I've seen it happen. At least, it's partly so ..."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "But what it also perhaps suggests is that if as an old man you're still preoccupied with young women sexually perhaps it means that you haven't passed through a natural process of maturation. Could it mean that? Or is that too idealistic? Let's assume, say, you've been married, you've got an old wife and you've grown old together; well, the assumption seems to be that you should have detached yourself as you get older from these sorts of mental states, should perhaps be thinking more about spiritual things. But if that hasn't happened, well, perhaps you will start casting your eyes on young women."
       ]
     },
     {
@@ -5828,8 +5987,13 @@
     {
       "speaker": "Kulananda",
       "paragraphs": [
-        "In my experience there are two forms of jealousy connected with women. There is the form you have described but there's also a more territorial form - which is in a sense much easier to deal with.",
-        "[135] S: Ah yes: 'This woman belongs to me; you keep off!'"
+        "In my experience there are two forms of jealousy connected with women. There is the form you have described but there's also a more territorial form - which is in a sense much easier to deal with."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "Ah yes: 'This woman belongs to me; you keep off!'"
       ]
     },
     {
@@ -5886,8 +6050,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "I think most people, to the extent that they have been emotionally involved with members of the opposite sex at all, have sometime or other experienced the pangs of jealousy. In those sorts of circumstances you don't feel just a little bit jealous, you feel very, very jealous.",
-        "[136] Mike Howes: There is no such thing as being a little bit jealous, is there?"
+        "I think most people, to the extent that they have been emotionally involved with members of the opposite sex at all, have sometime or other experienced the pangs of jealousy. In those sorts of circumstances you don't feel just a little bit jealous, you feel very, very jealous."
+      ]
+    },
+    {
+      "speaker": "Mike Howes",
+      "paragraphs": [
+        "There is no such thing as being a little bit jealous, is there?"
       ]
     },
     {
@@ -6018,8 +6187,13 @@
     {
       "speaker": "Mike Howes",
       "paragraphs": [
-        "This personal responsibility is interesting, because it's very easy to be persuaded, or swayed by lobbying, even apparently quite positive lobbying, and this is almost stopping people making their own decisions.",
-        "[139] S: It's your duty to make your own decisions. It's also your duty to make an informed decision. You must acquaint yourself with the subject properly first. Otherwise, in exercising responsibility, exercising your particular portion of power - your vote, for instance - is just frivolous if you haven't really studied the situation first before arriving at your decision."
+        "This personal responsibility is interesting, because it's very easy to be persuaded, or swayed by lobbying, even apparently quite positive lobbying, and this is almost stopping people making their own decisions."
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "It's your duty to make your own decisions. It's also your duty to make an informed decision. You must acquaint yourself with the subject properly first. Otherwise, in exercising responsibility, exercising your particular portion of power - your vote, for instance - is just frivolous if you haven't really studied the situation first before arriving at your decision."
       ]
     },
     {
@@ -6121,8 +6295,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Yes. So it is connected with the previous verse where other people raised to a position of power someone who is not able to exercise that power. Here he wishes to gain that power, even though he doesn't really have the means to gain it.",
-        "[142] Sumitra: But that doesn't necessarily imply that he wouldn't be able to exercise it if he had it. He could be quite capable."
+        "Yes. So it is connected with the previous verse where other people raised to a position of power someone who is not able to exercise that power. Here he wishes to gain that power, even though he doesn't really have the means to gain it."
+      ]
+    },
+    {
+      "speaker": "Sumitra",
+      "paragraphs": [
+        "But that doesn't necessarily imply that he wouldn't be able to exercise it if he had it. He could be quite capable."
       ]
     },
     {
@@ -6314,8 +6493,13 @@
       "paragraphs": [
         "Well, no; it's 'wise' in a more general sense.",
         "End of Cassette Eight, Side One",
-        "Cassette Eight, Side Two",
-        "[146] S: 'The wise man who is perfectly endowed with sight or vision, he understands these sources of downfall, and in this way he attains to the world of happiness.' The word is sivan. It's not the usual word for 'happiness'. The usual word for happiness is sukham. It's the same word you get for the Hindu deity: Siva, the beneficent one, the happy one. This is the beneficent state of happiness.",
+        "Cassette Eight, Side Two"
+      ]
+    },
+    {
+      "speaker": "Sangharakshita",
+      "paragraphs": [
+        "'The wise man who is perfectly endowed with sight or vision, he understands these sources of downfall, and in this way he attains to the world of happiness.' The word is sivan. It's not the usual word for 'happiness'. The usual word for happiness is sukham. It's the same word you get for the Hindu deity: Siva, the beneficent one, the happy one. This is the beneficent state of happiness.",
         "So if one understands, if one sees, these sources of downfall and if one avoids them, well, such a wise person eventually attains to a happy world. In a way it's very vague. It's left general because the context is perhaps lay rather than monastic. So it doesn't speak specifically in terms of nirvana though sivan is a synonym for nirvana. So it could be taken in that sense too: that one who understands these sources of downfall and therefore, by implication, who avoids them, attains to the happiness of nirvana. So there's a reminder of the positive aspect right at the end.",
         "Let me look up this word samavekkhiya. (Pause) It means 'having considered'; 'Having",
         "considered these sources of downfall'. So that, by implication, represents all the mangalas, the mangalas represent the opposite series, a process of ascent rather than a process of decline.",
@@ -6370,8 +6554,13 @@
     {
       "speaker": "Sangharakshita",
       "paragraphs": [
-        "Yes, that is quite feasible. But that would still mean that he'd have to work out the verses quietly on his own perhaps during the night. Perhaps the deva represents a sort of force of poetic inspiration; one could even look at it like that. The Buddha thinks to himself: 'Well, these people that I am in contact with and who come to see me - what are the sources of downfall for them? What makes them decline?' He asks himself that question, and then the answers come from within himself; and he put these various sources of downfall into verses. It then comes to be said that a deva in the night asks him what were the sources of downfall and this is what he said in reply. One could again look at it like that.",
-        "[148] Mike Howes: It seems, for me at least, to be quite helpful to hear references to devas and just let them go in and not think about them, and think about the substance. And maybe that's a sort of emotional balance - the deva idea - to cope with some of the intellectual stuff."
+        "Yes, that is quite feasible. But that would still mean that he'd have to work out the verses quietly on his own perhaps during the night. Perhaps the deva represents a sort of force of poetic inspiration; one could even look at it like that. The Buddha thinks to himself: 'Well, these people that I am in contact with and who come to see me - what are the sources of downfall for them? What makes them decline?' He asks himself that question, and then the answers come from within himself; and he put these various sources of downfall into verses. It then comes to be said that a deva in the night asks him what were the sources of downfall and this is what he said in reply. One could again look at it like that."
+      ]
+    },
+    {
+      "speaker": "Mike Howes",
+      "paragraphs": [
+        "It seems, for me at least, to be quite helpful to hear references to devas and just let them go in and not think about them, and think about the substance. And maybe that's a sort of emotional balance - the deva idea - to cope with some of the intellectual stuff."
       ]
     },
     {

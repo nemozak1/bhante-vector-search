@@ -59,7 +59,7 @@
 {:else if transcript}
 	<div class="viewer">
 		<nav class="viewer-nav">
-			<a href="/seminars" class="back-link">&larr; Back to search</a>
+			<a href="/seminars" class="back-link">&larr; All seminars</a>
 			<a
 				href="https://www.freebuddhistaudio.com/texts/read?num={transcript.code}"
 				target="_blank"

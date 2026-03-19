@@ -3,12 +3,14 @@
 		onSearch: (query: string, k: number) => void;
 		loading?: boolean;
 		placeholder?: string;
+		initialQuery?: string;
+		initialK?: number;
 	}
 
-	let { onSearch, loading = false, placeholder = 'Search the teachings...' }: Props = $props();
+	let { onSearch, loading = false, placeholder = 'Search the teachings...', initialQuery = '', initialK = 5 }: Props = $props();
 
-	let query = $state('');
-	let k = $state(5);
+	let query = $state(initialQuery);
+	let k = $state(initialK);
 
 	function handleSubmit() {
 		const trimmed = query.trim();

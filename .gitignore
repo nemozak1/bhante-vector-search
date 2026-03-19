@@ -17,6 +17,7 @@ data/seminars/*
 !data/seminars/cleaned/
 !data/seminars/cleaned/**
 !data/seminars/review_status.json
+!data/seminars/REVIEW.md
 
 # SvelteKit
 src/client/node_modules/

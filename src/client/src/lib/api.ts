@@ -78,6 +78,21 @@ export async function getSeminarTranscript(code: string): Promise<SeminarTranscr
 	return fetchJSON(`${BASE_URL}/api/seminars/${encodeURIComponent(code)}`);
 }
 
+export interface SeminarListItem {
+	code: string;
+	title: string;
+	date: string | null;
+	location: string | null;
+}
+
+export interface SeminarListResponse {
+	seminars: SeminarListItem[];
+}
+
+export async function listSeminars(): Promise<SeminarListResponse> {
+	return fetchJSON(`${BASE_URL}/api/seminars`);
+}
+
 export async function checkHealth(): Promise<boolean> {
 	try {
 		const res = await fetch(`${BASE_URL}/health`);

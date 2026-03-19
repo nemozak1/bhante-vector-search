@@ -5,13 +5,11 @@
 	let { children }: { children: Snippet } = $props();
 
 	const tabs = [
-		{ href: '/', label: 'All' },
-		{ href: '/books', label: 'Books' },
+		{ href: '/search', label: 'Search' },
 		{ href: '/seminars', label: 'Seminars' },
 	];
 
 	function isActive(href: string): boolean {
-		if (href === '/') return page.url.pathname === '/';
 		return page.url.pathname.startsWith(href);
 	}
 </script>
