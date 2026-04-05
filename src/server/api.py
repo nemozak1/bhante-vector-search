@@ -6,7 +6,7 @@ with proper page references and metadata. Supports both EPUB books and seminar
 transcripts.
 """
 
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
@@ -25,6 +25,8 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 # Load environment variables
 load_dotenv(PROJECT_ROOT / ".env")
+
+from src.server.auth import CurrentUser, get_current_user  # noqa: E402
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -203,7 +205,7 @@ async def health_check():
 # ── Book search (existing, unchanged) ────────────────────────────────
 
 @app.post("/api/search", response_model=SearchResponse)
-async def search(request: SearchRequest):
+async def search(request: SearchRequest, user: CurrentUser = Depends(get_current_user)):
     """Perform semantic search on the Buddhist texts (books)."""
     if epub_store is None:
         raise HTTPException(status_code=503, detail="Epub vector store not initialized")
@@ -240,14 +242,15 @@ async def search(request: SearchRequest):
 async def search_get(
     query: str = Query(..., description="The search query text"),
     k: int = Query(default=5, description="Number of results", ge=1, le=20),
+    user: CurrentUser = Depends(get_current_user),
 ):
     """GET endpoint for semantic search on books."""
     request = SearchRequest(query=query, k=k)
-    return await search(request)
+    return await search(request, user=user)
 
 
 @app.get("/api/works")
-async def list_works():
+async def list_works(user: CurrentUser = Depends(get_current_user)):
     """List all available works in the epub collection."""
     return {
         "works": [
@@ -260,7 +263,7 @@ async def list_works():
 # ── Seminar search ───────────────────────────────────────────────────
 
 @app.post("/api/seminars/search", response_model=SeminarSearchResponse)
-async def search_seminars(request: SearchRequest):
+async def search_seminars(request: SearchRequest, user: CurrentUser = Depends(get_current_user)):
     """Perform semantic search on seminar transcripts."""
     if seminar_store is None:
         raise HTTPException(status_code=503, detail="Seminar vector store not initialized")
@@ -299,14 +302,15 @@ async def search_seminars(request: SearchRequest):
 async def search_seminars_get(
     query: str = Query(..., description="The search query text"),
     k: int = Query(default=5, description="Number of results", ge=1, le=20),
+    user: CurrentUser = Depends(get_current_user),
 ):
     """GET endpoint for semantic search on seminars."""
     request = SearchRequest(query=query, k=k)
-    return await search_seminars(request)
+    return await search_seminars(request, user=user)
 
 
 @app.get("/api/seminars")
-async def list_seminars():
+async def list_seminars(user: CurrentUser = Depends(get_current_user)):
     """List all available seminars from cleaned/raw files on disk."""
     import json as json_module
 
@@ -355,7 +359,7 @@ async def list_seminars():
 
 
 @app.get("/api/review/status")
-async def get_review_status():
+async def get_review_status(user: CurrentUser = Depends(get_current_user)):
     """Return seminar review status for the review dashboard."""
     import json as json_module
 
@@ -367,7 +371,7 @@ async def get_review_status():
 
 
 @app.get("/api/review/{code}/diff")
-async def get_review_diff(code: str):
+async def get_review_diff(code: str, user: CurrentUser = Depends(get_current_user)):
     """Return a unified text diff between raw parse and cleaned file."""
     import json as json_module
     import difflib
@@ -442,7 +446,7 @@ async def get_review_diff(code: str):
 
 
 @app.get("/api/seminars/{code}", response_model=SeminarTranscriptResponse)
-async def get_seminar_transcript(code: str):
+async def get_seminar_transcript(code: str, user: CurrentUser = Depends(get_current_user)):
     """Get the full transcript of a seminar for the viewer.
 
     Prefers cleaned (reviewed) version if available, otherwise parses raw on-the-fly.
@@ -598,7 +602,7 @@ def _seminar_to_html(data: dict, for_print: bool = False) -> str:
 
 
 @app.get("/api/seminars/{code}/pdf")
-async def export_seminar_pdf(code: str):
+async def export_seminar_pdf(code: str, user: CurrentUser = Depends(get_current_user)):
     """Export a seminar transcript as PDF."""
     from fastapi.responses import Response
     from xhtml2pdf import pisa
@@ -621,7 +625,7 @@ async def export_seminar_pdf(code: str):
 
 
 @app.get("/api/seminars/{code}/epub")
-async def export_seminar_epub(code: str):
+async def export_seminar_epub(code: str, user: CurrentUser = Depends(get_current_user)):
     """Export a seminar transcript as EPUB."""
     from fastapi.responses import Response
     from ebooklib import epub
@@ -687,7 +691,7 @@ async def export_seminar_epub(code: str):
 
 
 @app.get("/api/seminars/{code}/print")
-async def print_seminar(code: str):
+async def print_seminar(code: str, user: CurrentUser = Depends(get_current_user)):
     """Return a print-friendly HTML page for a seminar."""
     from fastapi.responses import HTMLResponse
 
@@ -699,7 +703,7 @@ async def print_seminar(code: str):
 # ── Unified search ───────────────────────────────────────────────────
 
 @app.post("/api/search/all", response_model=UnifiedSearchResponse)
-async def search_all(request: SearchRequest):
+async def search_all(request: SearchRequest, user: CurrentUser = Depends(get_current_user)):
     """Search both book and seminar collections, merged by score."""
     results = []
 
@@ -761,10 +765,11 @@ async def search_all(request: SearchRequest):
 async def search_all_get(
     query: str = Query(..., description="The search query text"),
     k: int = Query(default=5, description="Number of results", ge=1, le=20),
+    user: CurrentUser = Depends(get_current_user),
 ):
     """GET endpoint for unified search across all collections."""
     request = SearchRequest(query=query, k=k)
-    return await search_all(request)
+    return await search_all(request, user=user)
 
 
 # ── Static files (SvelteKit build) ───────────────────────────────────

@@ -12,3 +12,6 @@ chromadb==0.4.22
 
 # Additional dependencies
 openai==1.35.0
+
+# Auth (Supabase JWT validation via JWKS)
+pyjwt[crypto]==2.9.0

@@ -1,4 +1,14 @@
+import { getAccessToken } from './auth.svelte';
+
 const BASE_URL = import.meta.env.DEV ? '' : 'http://localhost:8000';
+
+/** Raised when a request hits a protected endpoint without a valid session. */
+export class AuthRequiredError extends Error {
+	constructor() {
+		super('Authentication required');
+		this.name = 'AuthRequiredError';
+	}
+}
 
 export interface BookResult {
 	content: string;
@@ -42,8 +52,14 @@ interface SearchResponse<T> {
 	total_results: number;
 }
 
+async function authHeaders(): Promise<Record<string, string>> {
+	const token = await getAccessToken();
+	return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
 async function fetchJSON<T>(url: string): Promise<T> {
-	const res = await fetch(url);
+	const res = await fetch(url, { headers: await authHeaders() });
+	if (res.status === 401) throw new AuthRequiredError();
 	if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
 	return res.json();
 }
@@ -129,4 +145,15 @@ export async function checkHealth(): Promise<boolean> {
 	} catch {
 		return false;
 	}
+}
+
+/** Build an authed URL for direct <a href> navigation (e.g. PDF downloads).
+ * Appends the access token as a query param — only use for GET endpoints.
+ * NOTE: the backend currently expects tokens in the Authorization header, so
+ * for download links you'll need to fetch-as-blob instead. Prefer fetchBlob. */
+export async function fetchBlob(url: string): Promise<Blob> {
+	const res = await fetch(url, { headers: await authHeaders() });
+	if (res.status === 401) throw new AuthRequiredError();
+	if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+	return res.blob();
 }
