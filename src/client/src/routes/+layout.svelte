@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import type { Snippet } from 'svelte';
+	import { auth, initAuth, signOut } from '$lib/auth.svelte';
 
 	let { children }: { children: Snippet } = $props();
 
@@ -12,6 +15,31 @@
 
 	function isActive(href: string): boolean {
 		return page.url.pathname.startsWith(href);
+	}
+
+	const PUBLIC_ROUTES = ['/login'];
+
+	function isPublicRoute(path: string): boolean {
+		return PUBLIC_ROUTES.some((p) => path === p || path.startsWith(p + '/'));
+	}
+
+	onMount(() => {
+		initAuth();
+	});
+
+	// Redirect unauthenticated users to /login (once auth state has loaded).
+	$effect(() => {
+		if (auth.loading) return;
+		const path = page.url.pathname;
+		if (!auth.user && !isPublicRoute(path)) {
+			const redirect = encodeURIComponent(path + page.url.search);
+			goto(`/login?redirect=${redirect}`, { replaceState: true });
+		}
+	});
+
+	async function handleSignOut() {
+		await signOut();
+		goto('/login');
 	}
 </script>
 
@@ -32,6 +60,12 @@
 						{tab.label}
 					</a>
 				{/each}
+				{#if auth.user}
+					<div class="user-menu">
+						<span class="user-email">{auth.user.email}</span>
+						<button type="button" class="signout" onclick={handleSignOut}>Sign out</button>
+					</div>
+				{/if}
 			</nav>
 		</div>
 	</header>
@@ -141,6 +175,35 @@
 	.tab.active {
 		color: var(--accent);
 		border-bottom-color: var(--accent);
+	}
+
+	.user-menu {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		padding-bottom: 0.6rem;
+	}
+
+	.user-email {
+		font-size: 0.78rem;
+		color: var(--text-muted);
+	}
+
+	.signout {
+		font-family: inherit;
+		font-size: 0.78rem;
+		background: none;
+		border: 1px solid var(--border);
+		color: var(--text-muted);
+		padding: 0.3rem 0.7rem;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+
+	.signout:hover {
+		color: var(--text);
+		border-color: var(--accent);
 	}
 
 	main {
