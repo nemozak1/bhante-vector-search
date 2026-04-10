@@ -1404,7 +1404,7 @@
     "has_location": false
   },
   "SEM054P3": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Buddha by Trevor Ling - The - Part 3",
     "format_type": "br-based",
     "turn_count": 702,
@@ -1671,7 +1671,7 @@
     "has_location": true
   },
   "SEM054P6": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Buddha by Trevor Ling - The - Part 6",
     "format_type": "br-based",
     "turn_count": 911,
@@ -3012,7 +3012,7 @@
     "has_location": true
   },
   "SEM091": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Mind in Buddhist Psychology - Unchecked",
     "format_type": "p-based",
     "turn_count": 5063,
@@ -4471,7 +4471,7 @@
     "has_location": true
   },
   "SEM128": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Precious Garland - Unchecked",
     "format_type": "p-based",
     "turn_count": 2512,
@@ -4968,7 +4968,7 @@
     "has_location": false
   },
   "SEM142": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Sutra of Forty - two Sections - New Zealand Unchecked",
     "format_type": "p-based",
     "turn_count": 1464,
