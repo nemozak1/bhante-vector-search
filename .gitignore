@@ -1,15 +1,18 @@
 # venv
 bhante/
 
-# chroma vector db
+# chroma vector db (deleted in Phase 6)
 chroma/
 
-# bhante lectures raw data, pdfs txts etc. to transform
-src/server/database/chroma/*
-data/*
+# Python bytecode
+__pycache__/
+*.pyc
 
-.env
-.ipynb_checkpoints
+# Postgres data volume (mounted by docker-compose)
+pgdata/
+
+# bhante lectures raw data
+data/*
 
 # Seminar cleaned transcripts and review status ARE tracked
 !data/seminars/
@@ -19,7 +22,12 @@ data/seminars/*
 !data/seminars/review_status.json
 !data/seminars/REVIEW.md
 
-# SvelteKit
-src/client/node_modules/
-src/client/.svelte-kit/
-src/client/build/
+# Env
+.env
+.ipynb_checkpoints
+
+# Node / SvelteKit
+node_modules/
+.svelte-kit/
+build/
+.vite/
