@@ -1,62 +1,52 @@
-/**
- * Reactive auth state backed by Supabase.
- *
- * Usage:
- *   import { auth, initAuth } from '$lib/auth.svelte';
- *   // in root layout onMount: initAuth();
- *   // then read auth.user, auth.session, auth.loading
- */
-import type { Session, User } from '@supabase/supabase-js';
-import { supabase } from './supabase';
+import { authClient } from './auth-client';
+
+const sessionStore = authClient.useSession();
 
 type AuthState = {
-	session: Session | null;
-	user: User | null;
+	session: unknown | null;
+	user: { id: string; email: string; name?: string } | null;
 	loading: boolean;
 };
 
-export const auth = $state<AuthState>({
+export const auth: AuthState = $state({
 	session: null,
 	user: null,
-	loading: true,
+	loading: true
 });
 
-let initialized = false;
+sessionStore.subscribe((s) => {
+	auth.session = s.data?.session ?? null;
+	auth.user = (s.data?.user ?? null) as AuthState['user'];
+	auth.loading = !!s.isPending;
+});
 
 export async function initAuth(): Promise<void> {
-	if (initialized) return;
-	initialized = true;
-
-	const { data } = await supabase.auth.getSession();
-	auth.session = data.session;
-	auth.user = data.session?.user ?? null;
-	auth.loading = false;
-
-	supabase.auth.onAuthStateChange((_event, session) => {
-		auth.session = session;
-		auth.user = session?.user ?? null;
-	});
+	// Better Auth's useSession is self-initializing on first read.
 }
 
 export async function signIn(email: string, password: string) {
-	const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-	if (error) throw error;
+	const { data, error } = await authClient.signIn.email({ email, password });
+	if (error) throw new Error(error.message ?? 'Sign in failed');
 	return data;
 }
 
 export async function signUp(email: string, password: string) {
-	const { data, error } = await supabase.auth.signUp({ email, password });
-	if (error) throw error;
+	const name = email.split('@')[0] ?? 'user';
+	const { data, error } = await authClient.signUp.email({ email, password, name });
+	if (error) throw new Error(error.message ?? 'Sign up failed');
 	return data;
 }
 
 export async function signOut() {
-	const { error } = await supabase.auth.signOut();
-	if (error) throw error;
+	const { error } = await authClient.signOut();
+	if (error) throw new Error(error.message ?? 'Sign out failed');
 }
 
-/** Get the current access token (refreshing if needed). Returns null if signed out. */
+/**
+ * Better Auth uses httpOnly cookies; same-origin fetches automatically include
+ * them, so consumers no longer need to attach an Authorization header. Returned
+ * value is always null — kept for source compatibility while api.ts is updated.
+ */
 export async function getAccessToken(): Promise<string | null> {
-	const { data } = await supabase.auth.getSession();
-	return data.session?.access_token ?? null;
+	return null;
 }

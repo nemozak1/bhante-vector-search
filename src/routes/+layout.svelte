@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/state';
 	import type { Snippet } from 'svelte';
-	import { auth, initAuth, signOut } from '$lib/auth.svelte';
+	import { auth, signOut } from '$lib/auth.svelte';
 
 	let { children }: { children: Snippet } = $props();
 
@@ -22,10 +21,6 @@
 	function isPublicRoute(path: string): boolean {
 		return PUBLIC_ROUTES.some((p) => path === p || path.startsWith(p + '/'));
 	}
-
-	onMount(() => {
-		initAuth();
-	});
 
 	// Redirect unauthenticated users to /login (once auth state has loaded).
 	$effect(() => {
