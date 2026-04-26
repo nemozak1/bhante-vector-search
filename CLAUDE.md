@@ -120,13 +120,14 @@ src/
 │       │   ├── saved-queries.ts
 │       │   ├── search-history.ts
 │       │   ├── chunks.ts           pgvector halfvec similarity query
+│       │   ├── seminars.ts         seminars catalog (list, getByCode)
 │       │   └── seminar-contents.ts
 │       ├── services/               orchestration; takes userId; throws kit errors
 │       │   ├── bookmarks.ts
 │       │   ├── saved-queries.ts
 │       │   ├── search-history.ts
 │       │   ├── search.ts           embed → DAL → result shape → record history
-│       │   ├── seminars.ts         filesystem readdir + load + DAL contents
+│       │   ├── seminars.ts         DAL list + disk-load transcript + DAL contents
 │       │   ├── works.ts
 │       │   └── review.ts           review_status.json + diff against raw parse
 │       └── seminars/               filesystem/parsing helpers (used by services)
