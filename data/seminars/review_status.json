@@ -534,7 +534,7 @@
     "has_location": false
   },
   "SEM033": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Sex Celibacy and Relationships - Women-s Order Convention 1987",
     "format_type": "mixed",
     "turn_count": 179,
@@ -548,7 +548,7 @@
     "has_location": false
   },
   "SEM034": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Spreading the Dharma - Women-s Order Convention 1987",
     "format_type": "p-based",
     "turn_count": 169,
@@ -564,7 +564,7 @@
     "has_location": false
   },
   "SEM035": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Fifteen Points for New and Old Order Members - Guhyaloka 1988",
     "format_type": "mixed",
     "turn_count": 6,
@@ -584,7 +584,7 @@
     "has_location": false
   },
   "SEM036": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Guhyaloka 1988 - Questions and Answers",
     "format_type": "p-based",
     "turn_count": 343,
@@ -605,7 +605,7 @@
     "has_location": false
   },
   "SEM037": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "National Gathering 1988 - Questions and Answers",
     "format_type": "br-based",
     "turn_count": 153,
@@ -618,7 +618,7 @@
     "has_location": true
   },
   "SEM038": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pre - Ordination Course for Women - Questions and Answers September 1988",
     "format_type": "br-based",
     "turn_count": 107,
@@ -680,7 +680,7 @@
     "has_location": true
   },
   "SEM039": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Women-s Ordination Retreat - Questions and Answers February 1988",
     "format_type": "br-based",
     "turn_count": 316,
@@ -741,7 +741,7 @@
     "has_location": true
   },
   "SEM040": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "London Buddhist Centre - Questions and Answers 1990",
     "format_type": "mixed",
     "turn_count": 702,
@@ -781,7 +781,7 @@
     "has_location": true
   },
   "SEM041": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Amitabha Sadhana - Questions and Answers",
     "format_type": "mixed",
     "turn_count": 93,
@@ -801,7 +801,7 @@
     "has_location": false
   },
   "SEM042": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Combined Convention 1991 - Questions and Answers",
     "format_type": "br-based",
     "turn_count": 63,
