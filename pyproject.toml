@@ -1,24 +1,26 @@
 [tool.poetry]
 name = "bhante-vector-search"
-version = "0.1.0"
-description = "A tool to search Urgyen (Bhante) Sangharakshita's complete works"
+version = "0.2.0"
+description = "Ingestion + search for Urgyen (Bhante) Sangharakshita's complete works"
 authors = ["nemo <nemozak1@gmail.com>"]
 readme = "README.md"
 package-mode = false
 
 
+# Python deps for the ingestion + admin scripts. The runtime API and frontend
+# live in the SvelteKit app at the repo root and have nothing to do with
+# Python. Search runs via pgvector now (see scripts/migrate_chroma_to_pgvector.py)
+# but ingest_seminars.py / ingest_epub.py still write to Chroma — that
+# rewrite is a follow-up.
 [tool.poetry.dependencies]
 python = "^3.10"
-chromadb = "^0.5.15"
-langchain-chroma = "^0.1.4"
-langchain-openai = "^0.2.2"
-pydantic = "^2.9.2"
-fastapi = "^0.115.2"
-dotenv = "^0.9.9"
 ebooklib = "^0.20"
 beautifulsoup4 = "^4.14.2"
-httpx = ">=0.25,<0.28"
-pyjwt = {extras = ["crypto"], version = "^2.9.0"}
+dotenv = "^0.9.9"
+asyncpg = "^0.31.0"
+chromadb = "^0.5.15"            # still used by ingest_*.py and the chroma->pgvector migration script
+langchain-chroma = "^0.1.4"     # ditto
+langchain-openai = "^0.2.2"     # ditto
 
 
 [build-system]

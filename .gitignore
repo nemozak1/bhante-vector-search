@@ -1,22 +1,19 @@
 # venv
 bhante/
 
-# chroma vector db
+# chroma vector db (read-only via symlink to main repo during Phase 6 work; preserved on disk after)
 chroma/
-
-# bhante lectures raw data, pdfs txts etc. to transform
-src/server/database/chroma/*
-data/*
-
-.env
-.ipynb_checkpoints
+chroma
 
 # Python bytecode
 __pycache__/
 *.pyc
 
-# Claude Code per-project cache (skill data, auth, etc.)
-.claude/
+# Postgres data volume (mounted by docker-compose)
+pgdata/
+
+# bhante lectures raw data
+data/*
 
 # Seminar cleaned transcripts and review status ARE tracked
 !data/seminars/
@@ -26,7 +23,15 @@ data/seminars/*
 !data/seminars/review_status.json
 !data/seminars/REVIEW.md
 
-# SvelteKit
-src/client/node_modules/
-src/client/.svelte-kit/
-src/client/build/
+# Env
+.env
+.ipynb_checkpoints
+
+# Claude Code per-project cache (skill data, auth, worktrees, etc.)
+.claude/
+
+# Node / SvelteKit
+node_modules/
+.svelte-kit/
+build/
+.vite/

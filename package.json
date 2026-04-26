@@ -1,0 +1,39 @@
+{
+  "name": "bhante-search",
+  "version": "3.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "docker compose up -d postgres && vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node build/index.js",
+    "migrate": "node --experimental-strip-types --no-warnings src/lib/server/db/migrate.ts",
+    "seed:dev": "node --env-file=.env --experimental-strip-types --no-warnings scripts/seed_dev_user.ts",
+    "seed:contents": "node --env-file=.env --experimental-strip-types --no-warnings scripts/seed_seminar_contents.ts",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^5.2.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.11.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "typescript": "^5.6.0",
+    "vite": "^6.0.0"
+  },
+  "dependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/pdfkit": "^0.17.6",
+    "better-auth": "^1.6.9",
+    "cheerio": "^1.2.0",
+    "diff": "^9.0.0",
+    "dotenv": "^17.4.2",
+    "epub-gen-memory": "^1.1.2",
+    "openai": "^6.34.0",
+    "pdfkit": "^0.18.0",
+    "pg": "^8.13.0"
+  }
+}

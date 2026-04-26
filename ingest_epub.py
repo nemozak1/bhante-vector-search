@@ -1,309 +1,157 @@
 #!/usr/bin/env python3
 """
-EPUB Ingestion Script
+Ingest an EPUB into pgvector.
 
-This script processes EPUB files and populates ChromaDB with vectorized chunks.
-It extracts text with page references and creates searchable documents.
+Each EPUB is identified by `--book-slug` (e.g. "complete_works_vol1"); chunks
+get unique IDs of the form "<slug>::<work_title>::p<page>::<i>" so re-ingesting
+the same volume idempotently overwrites without duplicating.
+
+Writes:
+  - chunks (pgvector)
+  - ingestion_log (entity_kind='book', entity_id=<slug>)
 
 Usage:
-    python ingest_epub.py --epub-path ./data/your_file.epub
-    python ingest_epub.py --epub-path ./data/your_file.epub --collection-name my_collection
+  python ingest_epub.py --epub-path ./data/your_file.epub
+  python ingest_epub.py --epub-path ./data/your_file.epub --book-slug complete_works_vol2 --work-index complete_works_vol2
 """
-
 import argparse
+import asyncio
+import hashlib
+import json
 import os
+import re
+import subprocess
 import sys
 from pathlib import Path
-from typing import Dict, Tuple
+
+import asyncpg
+import openai
 from dotenv import load_dotenv
 
-# Add src to path for imports
-sys.path.insert(0, str(Path(__file__).parent))
+PROJECT_ROOT = Path(__file__).parent
+sys.path.insert(0, str(PROJECT_ROOT))
+load_dotenv(PROJECT_ROOT / ".env")
 
-from src.epub_processor import process_epub_to_langchain
-from langchain_chroma import Chroma
-from langchain_openai import OpenAIEmbeddings
+from src.epub_processor import process_epub_to_langchain  # noqa: E402
 
+DEFAULT_COLLECTION = "bhante_epub_search"
+DEFAULT_EMBEDDING_MODEL = "text-embedding-3-large"
+EMBEDDING_BATCH = 100
+INSERT_BATCH = 200
 
-# Define work indexes for different volumes
 WORK_INDEXES = {
     "complete_works_vol1": {
         "A Survey of Buddhism": (35, 611),
-        "The Buddha's Noble Eightfold Path": (629, 792)
+        "The Buddha's Noble Eightfold Path": (629, 792),
     },
-    # Add more volumes as needed
-    # "complete_works_vol2": {
-    #     "Work Title": (start_page, end_page),
-    # }
 }
 
 
-def validate_environment():
-    """Validate that required environment variables are set."""
-    if not os.getenv("OPENAI_API_KEY"):
-        print("❌ Error: OPENAI_API_KEY not found in environment")
-        print("Please create a .env file with your OpenAI API key:")
-        print("  OPENAI_API_KEY=your_key_here")
-        sys.exit(1)
+def _vec_to_pg(values) -> str:
+    return "[" + ",".join(repr(float(x)) for x in values) + "]"
 
 
-def ingest_epub(
-    epub_path: str,
-    collection_name: str = "bhante_epub_search",
-    persist_directory: str = "./chroma",
-    work_index_name: str = "complete_works_vol1",
-    max_chunk_size: int = 500,
-    embedding_model: str = "text-embedding-3-large",
-    batch_size: int = 100
-):
-    """
-    Ingest an EPUB file into ChromaDB.
-    
-    Args:
-        epub_path: Path to the EPUB file
-        collection_name: Name for the ChromaDB collection
-        persist_directory: Directory to store ChromaDB data
-        work_index_name: Name of the work index to use (from WORK_INDEXES)
-        max_chunk_size: Maximum characters per chunk
-        embedding_model: OpenAI embedding model to use
-        batch_size: Number of documents to add at once
-    """
-    print("=" * 70)
-    print("📚 EPUB Ingestion Script")
-    print("=" * 70)
-    
-    # Validate inputs
-    epub_file = Path(epub_path)
+def _slugify(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", s.lower()).strip("_")
+
+
+def _file_sha(path: Path) -> str:
+    try:
+        out = subprocess.run(
+            ["git", "hash-object", str(path)],
+            capture_output=True, text=True, check=True, cwd=str(PROJECT_ROOT),
+        )
+        return out.stdout.strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+async def main_async(args):
+    if not os.environ.get("OPENAI_API_KEY"):
+        print("OPENAI_API_KEY not set", file=sys.stderr); sys.exit(1)
+    if not os.environ.get("DATABASE_URL"):
+        print("DATABASE_URL not set", file=sys.stderr); sys.exit(1)
+
+    epub_file = Path(args.epub_path)
     if not epub_file.exists():
-        print(f"❌ Error: EPUB file not found: {epub_file}")
-        sys.exit(1)
-    
-    if work_index_name not in WORK_INDEXES:
-        print(f"❌ Error: Unknown work index: {work_index_name}")
-        print(f"Available indexes: {list(WORK_INDEXES.keys())}")
-        sys.exit(1)
-    
-    work_index = WORK_INDEXES[work_index_name]
-    
-    print(f"\n📖 Processing EPUB: {epub_file.name}")
-    print(f"📊 Collection: {collection_name}")
-    print(f"💾 Storage: {persist_directory}")
-    print(f"🔧 Chunk size: {max_chunk_size} characters")
-    print(f"🤖 Embedding model: {embedding_model}")
-    print(f"\n📚 Work Index ({work_index_name}):")
-    for title, (start, end) in work_index.items():
-        print(f"   • {title}: pages {start}-{end}")
-    
-    # Process EPUB
-    print(f"\n⚙️  Processing EPUB file...")
+        print(f"file not found: {epub_file}", file=sys.stderr); sys.exit(1)
+
+    if args.work_index not in WORK_INDEXES:
+        print(f"unknown --work-index: {args.work_index}", file=sys.stderr); sys.exit(1)
+
+    work_index = WORK_INDEXES[args.work_index]
+    print(f"chunking {epub_file.name} ({args.work_index})...")
+    documents = process_epub_to_langchain(
+        epub_path=str(epub_file),
+        work_index=work_index,
+        max_chunk_size=args.chunk_size,
+    )
+    print(f"  {len(documents)} chunks")
+
+    sha = _file_sha(epub_file)
+    print(f"  source sha={sha[:12]}")
+
+    openai_client = openai.OpenAI()
+    conn = await asyncpg.connect(os.environ["DATABASE_URL"])
     try:
-        documents = process_epub_to_langchain(
-            epub_path=str(epub_file),
-            work_index=work_index,
-            max_chunk_size=max_chunk_size
+        # Wipe prior chunks for this slug, then re-insert (avoids duplicates / orphans).
+        deleted = await conn.fetchval(
+            "with d as (delete from chunks where collection = $1 and metadata->>'book_slug' = $2 returning 1) select count(*) from d",
+            args.collection, args.book_slug,
         )
-        print(f"✅ Extracted {len(documents)} document chunks")
-    except Exception as e:
-        print(f"❌ Error processing EPUB: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
-    
-    # Show sample document
-    if documents:
-        print(f"\n📄 Sample document:")
-        sample = documents[0]
-        print(f"   Content: {sample.page_content[:150]}...")
-        print(f"   Metadata: {sample.metadata}")
-    
-    # Initialize embeddings
-    print(f"\n🔄 Initializing embeddings ({embedding_model})...")
-    try:
-        embeddings = OpenAIEmbeddings(model=embedding_model)
-    except Exception as e:
-        print(f"❌ Error initializing embeddings: {e}")
-        print("Make sure your OPENAI_API_KEY is set correctly")
-        sys.exit(1)
-    
-    # Create or connect to ChromaDB
-    print(f"\n💾 Connecting to ChromaDB...")
-    persist_path = Path(persist_directory)
-    persist_path.mkdir(parents=True, exist_ok=True)
-    
-    try:
-        # Check if collection exists
-        import chromadb
-        from chromadb.config import DEFAULT_TENANT, DEFAULT_DATABASE, Settings
-        
-        chroma_client = chromadb.PersistentClient(
-            path=str(persist_path),
-            settings=Settings(),
-            tenant=DEFAULT_TENANT,
-            database=DEFAULT_DATABASE,
+        if deleted:
+            print(f"  cleared {deleted} existing chunks for {args.book_slug}")
+
+        inserted = 0
+        for i in range(0, len(documents), EMBEDDING_BATCH):
+            batch = documents[i:i + EMBEDDING_BATCH]
+            resp = openai_client.embeddings.create(model=args.embedding_model, input=[d.page_content for d in batch])
+
+            rows = []
+            for j, (doc, emb_obj) in enumerate(zip(batch, resp.data)):
+                meta = dict(doc.metadata)
+                meta["book_slug"] = args.book_slug
+                meta["content_type"] = "epub"
+                page_part = f"p{meta.get('page', 'na')}"
+                _id = f"{args.book_slug}::{_slugify(meta.get('work', 'unk'))}::{page_part}::{i + j:05d}"
+                rows.append((_id, args.collection, _vec_to_pg(emb_obj.embedding), doc.page_content, json.dumps(meta)))
+
+            for k in range(0, len(rows), INSERT_BATCH):
+                await conn.executemany(
+                    """insert into chunks (id, collection, embedding, document, metadata)
+                        values ($1, $2, $3::vector, $4, $5::jsonb)
+                        on conflict (id) do update
+                          set embedding = excluded.embedding,
+                              document = excluded.document,
+                              metadata = excluded.metadata""",
+                    rows[k:k + INSERT_BATCH],
+                )
+            inserted += len(rows)
+            print(f"  {inserted}/{len(documents)} embedded+inserted", flush=True)
+
+        await conn.execute(
+            """insert into ingestion_log
+                  (entity_kind, entity_id, collection_name, embedding_model, chunk_count, source_sha)
+                values ('book', $1, $2, $3, $4, $5)""",
+            args.book_slug, args.collection, args.embedding_model, len(documents), sha,
         )
-        
-        # Check if collection already exists
-        existing_collections = [col.name for col in chroma_client.list_collections()]
-        collection_exists = collection_name in existing_collections
-        
-        if collection_exists:
-            print(f"⚠️  Collection '{collection_name}' already exists")
-            response = input("Do you want to (a)ppend to it, (r)eplace it, or (c)ancel? [a/r/c]: ")
-            
-            if response.lower() == 'c':
-                print("❌ Cancelled by user")
-                sys.exit(0)
-            elif response.lower() == 'r':
-                print(f"🗑️  Deleting existing collection...")
-                chroma_client.delete_collection(collection_name)
-                collection_exists = False
-        
-        # Create vector store
-        print(f"🔄 Creating vector store...")
-        
-        if collection_exists:
-            # Append to existing collection
-            vector_store = Chroma(
-                client=chroma_client,
-                collection_name=collection_name,
-                embedding_function=embeddings,
-            )
-            
-            # Add documents in batches
-            print(f"📝 Adding {len(documents)} documents in batches of {batch_size}...")
-            for i in range(0, len(documents), batch_size):
-                batch = documents[i:i+batch_size]
-                vector_store.add_documents(batch)
-                print(f"   Added batch {i//batch_size + 1}/{(len(documents)-1)//batch_size + 1}")
-        else:
-            # Create new collection
-            print(f"📝 Creating new collection and adding {len(documents)} documents...")
-            vector_store = Chroma.from_documents(
-                documents=documents,
-                embedding=embeddings,
-                collection_name=collection_name,
-                client=chroma_client,
-            )
-        
-        print(f"✅ Successfully added documents to ChromaDB")
-        
-    except Exception as e:
-        print(f"❌ Error with ChromaDB: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
-    
-    # Test the vector store
-    print(f"\n🔍 Testing vector search...")
-    try:
-        test_query = "What is a kalpa?"
-        results = vector_store.similarity_search(test_query, k=3)
-        print(f"✅ Search test successful! Found {len(results)} results for: '{test_query}'")
-        
-        if results:
-            print(f"\n📄 Top result:")
-            top_result = results[0]
-            print(f"   Content: {top_result.page_content[:200]}...")
-            print(f"   Metadata: {top_result.metadata}")
-    except Exception as e:
-        print(f"⚠️  Warning: Search test failed: {e}")
-    
-    # Summary
-    print(f"\n" + "=" * 70)
-    print("✨ Ingestion Complete!")
-    print("=" * 70)
-    print(f"📊 Collection: {collection_name}")
-    print(f"📝 Documents: {len(documents)}")
-    print(f"💾 Location: {persist_path.absolute()}")
-    print(f"\n🚀 Next steps:")
-    print(f"   1. Start the API: ./start_api.sh")
-    print(f"   2. Visit: http://localhost:8000/docs")
-    print(f"   3. Open the web client: src/client/index.html")
-    print("=" * 70)
+    finally:
+        await conn.close()
+
+    print(f"\ndone. Inserted {len(documents)} chunks under collection={args.collection}")
 
 
 def main():
-    """Main entry point."""
-    parser = argparse.ArgumentParser(
-        description="Ingest EPUB files into ChromaDB for semantic search",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Basic usage
-  python ingest_epub.py --epub-path ./data/my_book.epub
-  
-  # Custom collection name
-  python ingest_epub.py --epub-path ./data/my_book.epub --collection-name my_texts
-  
-  # Smaller chunks
-  python ingest_epub.py --epub-path ./data/my_book.epub --chunk-size 300
-  
-  # Different work index
-  python ingest_epub.py --epub-path ./data/my_book.epub --work-index complete_works_vol2
-        """
-    )
-    
-    parser.add_argument(
-        "--epub-path",
-        required=True,
-        help="Path to the EPUB file to ingest"
-    )
-    
-    parser.add_argument(
-        "--collection-name",
-        default="bhante_epub_search",
-        help="Name for the ChromaDB collection (default: bhante_epub_search)"
-    )
-    
-    parser.add_argument(
-        "--persist-dir",
-        default="./chroma",
-        help="Directory to store ChromaDB data (default: ./chroma)"
-    )
-    
-    parser.add_argument(
-        "--work-index",
-        default="complete_works_vol1",
-        choices=list(WORK_INDEXES.keys()),
-        help="Work index to use for page mapping (default: complete_works_vol1)"
-    )
-    
-    parser.add_argument(
-        "--chunk-size",
-        type=int,
-        default=500,
-        help="Maximum characters per chunk (default: 500)"
-    )
-    
-    parser.add_argument(
-        "--embedding-model",
-        default="text-embedding-3-large",
-        help="OpenAI embedding model (default: text-embedding-3-large)"
-    )
-    
-    parser.add_argument(
-        "--batch-size",
-        type=int,
-        default=100,
-        help="Number of documents to add at once (default: 100)"
-    )
-    
+    parser = argparse.ArgumentParser(description="Ingest an EPUB into pgvector")
+    parser.add_argument("--epub-path", required=True)
+    parser.add_argument("--book-slug", default="complete_works_vol1",
+                        help="Stable identifier used in chunk IDs and ingestion_log.entity_id")
+    parser.add_argument("--work-index", default="complete_works_vol1", choices=list(WORK_INDEXES.keys()))
+    parser.add_argument("--collection", default=DEFAULT_COLLECTION)
+    parser.add_argument("--embedding-model", default=DEFAULT_EMBEDDING_MODEL)
+    parser.add_argument("--chunk-size", type=int, default=500)
     args = parser.parse_args()
-    
-    # Load environment variables
-    load_dotenv()
-    validate_environment()
-    
-    # Run ingestion
-    ingest_epub(
-        epub_path=args.epub_path,
-        collection_name=args.collection_name,
-        persist_directory=args.persist_dir,
-        work_index_name=args.work_index,
-        max_chunk_size=args.chunk_size,
-        embedding_model=args.embedding_model,
-        batch_size=args.batch_size
-    )
+    asyncio.run(main_async(args))
 
 
 if __name__ == "__main__":
