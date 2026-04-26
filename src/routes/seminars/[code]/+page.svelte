@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { tick, onMount } from 'svelte';
+	import { tick } from 'svelte';
 	import * as seminarsRemote from '../../seminars.remote';
 	import type { SeminarDetail } from '$lib/types';
 	import { Button } from '$lib/components/ui/button';
@@ -12,9 +12,12 @@
 	const FONT_MAX = 1.8;
 	const FONT_STEP = 0.1;
 
-	let transcript = $state<SeminarDetail | null>(null);
-	let loading = $state(true);
-	let error = $state('');
+	let code = $derived(page.params.code as string);
+	let highlight = $derived(page.url.searchParams.get('highlight') || '');
+
+	let transcriptQ = $derived(seminarsRemote.get(code));
+	let transcript: SeminarDetail | null = $derived(transcriptQ.current ?? null);
+
 	let paginate = $state(true);
 	let currentPage = $state(1);
 	let fontSize = $state(1.15);
@@ -31,9 +34,6 @@
 	function scrollToTop() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
-
-	let code = $derived(page.params.code as string);
-	let highlight = $derived(page.url.searchParams.get('highlight') || '');
 
 	let totalTurns = $derived(transcript?.turns.length ?? 0);
 	let totalPages = $derived(Math.max(1, Math.ceil(totalTurns / perPage)));
@@ -65,19 +65,10 @@
 		return out;
 	}
 
-	onMount(async () => {
-		try {
-			transcript = await seminarsRemote.get(code).run();
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load transcript';
-		} finally {
-			loading = false;
-		}
-
-		if (highlight) {
+	$effect(() => {
+		if (transcript && highlight) {
 			paginate = false;
-			await tick();
-			scrollToHighlight();
+			tick().then(() => scrollToHighlight());
 		}
 	});
 
@@ -104,10 +95,10 @@
 	}
 </script>
 
-{#if loading}
+{#if transcriptQ.loading}
 	<div class="loading">Loading transcript...</div>
-{:else if error}
-	<div class="error-msg">{error}</div>
+{:else if transcriptQ.error}
+	<div class="error-msg">{transcriptQ.error.message}</div>
 {:else if transcript}
 	<div class="viewer">
 		<nav class="viewer-nav">

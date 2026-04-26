@@ -1,18 +1,16 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import * as seminarsRemote from '../seminars.remote';
 	import type { SeminarListItem } from '$lib/types';
 
-	let seminars: SeminarListItem[] = $state([]);
-	let loading = $state(true);
-	let error = $state('');
+	let listQ = $derived(seminarsRemote.list());
+	let seminars: SeminarListItem[] = $derived(listQ.current ?? []);
 	let filter = $state('');
 	let currentPage = $state(1);
 	const perPage = 20;
 
 	let filtered = $derived(
 		filter
-			? seminars.filter(s => s.title.toLowerCase().includes(filter.toLowerCase()))
+			? seminars.filter((s) => s.title.toLowerCase().includes(filter.toLowerCase()))
 			: seminars
 	);
 
@@ -23,16 +21,6 @@
 	$effect(() => {
 		filter;
 		currentPage = 1;
-	});
-
-	onMount(async () => {
-		try {
-			seminars = await seminarsRemote.list().run();
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load seminars';
-		} finally {
-			loading = false;
-		}
 	});
 </script>
 
@@ -46,10 +34,10 @@
 		/>
 	</div>
 
-	{#if loading}
+	{#if listQ.loading}
 		<p class="status">Loading seminars...</p>
-	{:else if error}
-		<div class="error-msg">{error}</div>
+	{:else if listQ.error}
+		<div class="error-msg">{listQ.error.message}</div>
 	{:else if filtered.length === 0}
 		<p class="status">No seminars found.</p>
 	{:else}

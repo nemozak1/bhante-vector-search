@@ -1,23 +1,11 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import * as reviewRemote from '../review.remote';
 	import type { ReviewStatusItem } from '$lib/types';
 
-	let data: Record<string, ReviewStatusItem> = $state({});
-	let loading = $state(true);
-	let error = $state('');
+	let statusQ = $derived(reviewRemote.status());
+	let data: Record<string, ReviewStatusItem> = $derived(statusQ.current ?? {});
 	let sortBy = $state<'issues' | 'code' | 'status'>('issues');
 	let filterStatus = $state<'all' | 'reviewed' | 'unreviewed' | 'broken'>('all');
-
-	onMount(async () => {
-		try {
-			data = await reviewRemote.status().run();
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load review status';
-		} finally {
-			loading = false;
-		}
-	});
 
 	let entries = $derived.by(() => {
 		let items = Object.entries(data).map(([code, info]) => ({ code, ...info }));
@@ -62,10 +50,10 @@
 <div class="review-page">
 	<h2>Seminar Review Status</h2>
 
-	{#if loading}
+	{#if statusQ.loading}
 		<p class="status-msg">Loading review data...</p>
-	{:else if error}
-		<div class="error-msg">{error}</div>
+	{:else if statusQ.error}
+		<div class="error-msg">{statusQ.error.message}</div>
 	{:else}
 		<div class="summary-cards">
 			<div class="card">

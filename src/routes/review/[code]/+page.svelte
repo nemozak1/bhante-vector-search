@@ -1,30 +1,15 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import * as reviewRemote from '../../review.remote';
 	import type { ReviewDiff, ReviewStatusItem } from '$lib/types';
 
-	let diff = $state<ReviewDiff | null>(null);
-	let statusItem = $state<ReviewStatusItem | null>(null);
-	let loading = $state(true);
-	let error = $state('');
-
 	let code = $derived(page.params.code as string);
 
-	onMount(async () => {
-		try {
-			const [diffData, statusData] = await Promise.all([
-				reviewRemote.diff(code).run(),
-				reviewRemote.status().run(),
-			]);
-			diff = diffData;
-			statusItem = statusData[code] ?? null;
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Failed to load diff';
-		} finally {
-			loading = false;
-		}
-	});
+	let diffQ = $derived(reviewRemote.diff(code));
+	let statusQ = $derived(reviewRemote.status());
+
+	let diff: ReviewDiff | null = $derived(diffQ.current ?? null);
+	let statusItem: ReviewStatusItem | null = $derived(statusQ.current?.[code] ?? null);
 
 	function lineClass(line: string): string {
 		if (line.startsWith('+++') || line.startsWith('---')) return 'diff-file';
@@ -54,10 +39,10 @@
 		<span>{code}</span>
 	</div>
 
-	{#if loading}
+	{#if diffQ.loading}
 		<p class="status-msg">Computing diff...</p>
-	{:else if error}
-		<div class="error-msg">{error}</div>
+	{:else if diffQ.error}
+		<div class="error-msg">{diffQ.error.message}</div>
 	{:else if diff}
 		<h2>{diff.title}</h2>
 
