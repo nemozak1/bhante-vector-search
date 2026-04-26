@@ -25,6 +25,10 @@ npm run dev                                # http://localhost:5173
 # Apply migrations explicitly (also runs on dev startup)
 npm run migrate
 
+# Seed the dev user (dev@bhante.local / devpassword) — powers the
+# "Sign in as dev@bhante.local" button on /login (visible only when import.meta.env.DEV)
+npm run seed:dev
+
 # Backfill ingest_log.json into ingestion_log (one-shot, idempotent)
 python scripts/seed_from_files.py
 

@@ -3,6 +3,10 @@
 	import { page } from '$app/state';
 	import { signIn, signUp } from '$lib/auth.svelte';
 
+	const DEV_EMAIL = 'dev@bhante.local';
+	const DEV_PASSWORD = 'devpassword';
+	const isDev = import.meta.env.DEV;
+
 	let email = $state('');
 	let password = $state('');
 	let mode: 'signin' | 'signup' = $state('signin');
@@ -35,10 +39,35 @@
 			loading = false;
 		}
 	}
+
+	async function devLogin() {
+		loading = true;
+		error = null;
+		info = null;
+		try {
+			await signIn(DEV_EMAIL, DEV_PASSWORD);
+			const redirect = page.url.searchParams.get('redirect') ?? '/search';
+			goto(redirect);
+		} catch (e) {
+			error =
+				(e instanceof Error ? e.message : String(e)) +
+				' — run `npm run seed:dev` to create the dev account.';
+		} finally {
+			loading = false;
+		}
+	}
 </script>
 
 <div class="auth-wrap">
 	<h2>{mode === 'signin' ? 'Sign in' : 'Create account'}</h2>
+
+	{#if isDev}
+		<button type="button" class="dev-login" disabled={loading} onclick={devLogin}>
+			<span class="dev-tag">dev</span>
+			Sign in as {DEV_EMAIL}
+		</button>
+		<div class="divider"><span>or</span></div>
+	{/if}
 
 	<form onsubmit={handleSubmit}>
 		<label>
@@ -157,5 +186,55 @@
 		cursor: pointer;
 		font: inherit;
 		padding: 0;
+	}
+	.dev-login {
+		font-family: inherit;
+		font-size: 0.85rem;
+		width: 100%;
+		padding: 0.55rem 0.75rem;
+		background: var(--bg);
+		color: var(--text);
+		border: 1px dashed var(--border);
+		border-radius: 4px;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.55rem;
+	}
+	.dev-login:hover:not(:disabled) {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+	.dev-login:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+	.dev-tag {
+		font-size: 0.62rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		background: var(--seminar-accent);
+		color: white;
+		padding: 0.12rem 0.4rem;
+		border-radius: 3px;
+	}
+	.divider {
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		margin: 1rem 0;
+		font-size: 0.72rem;
+		color: var(--text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+	}
+	.divider::before,
+	.divider::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: var(--border-light);
 	}
 </style>

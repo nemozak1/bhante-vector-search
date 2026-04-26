@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "start": "node build/index.js",
     "migrate": "node --experimental-strip-types --no-warnings src/lib/server/db/migrate.ts",
+    "seed:dev": "node --env-file=.env --experimental-strip-types --no-warnings scripts/seed_dev_user.ts",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
