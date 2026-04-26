@@ -194,7 +194,7 @@
     "has_location": true
   },
   "SEM013": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Vinehall Mitra Event 2 - Follow up Questions at Padmaloka 1981",
     "format_type": "p-based",
     "turn_count": 211,
@@ -209,7 +209,7 @@
     "has_location": false
   },
   "SEM014": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pre - ordination Course for Men Prior to Tuscany - Padmaloka 1982",
     "format_type": "br-based",
     "turn_count": 279,
@@ -228,7 +228,7 @@
     "has_location": true
   },
   "SEM015": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Combined Order Convention 1985 - Questions and Answers",
     "format_type": "br-based",
     "turn_count": 15,
@@ -249,7 +249,7 @@
     "has_location": true
   },
   "SEM016": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Men-s Order Convention 1985 - Questions and Answers",
     "format_type": "mixed",
     "turn_count": 17,
@@ -264,7 +264,7 @@
     "has_location": true
   },
   "SEM017": {
-    "status": "unreviewed",
+    "status": "broken",
     "title": "Mitra Retreat 1985 - Questions and Answers",
     "format_type": "br-based",
     "turn_count": 1,
@@ -279,7 +279,7 @@
     "has_location": false
   },
   "SEM018": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "New Zealanders in the UK 1985 - Questions and Answers",
     "format_type": "p-based",
     "turn_count": 217,
@@ -292,7 +292,7 @@
     "has_location": true
   },
   "SEM019": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "The Past and Future of the Order Part 1 - Order Weekend 1985",
     "format_type": "p-based",
     "turn_count": 5,
@@ -306,7 +306,7 @@
     "has_location": true
   },
   "SEM020": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "The Past and Future of the Order Part 2 - Order Weekend 1985",
     "format_type": "p-based",
     "turn_count": 14,
@@ -332,7 +332,7 @@
     "has_location": false
   },
   "SEM021": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Chairmens Event 1986",
     "format_type": "br-based",
     "turn_count": 363,
@@ -350,7 +350,7 @@
     "has_location": true
   },
   "SEM022": {
-    "status": "unreviewed",
+    "status": "broken",
     "title": "Going for Refuge - Questions and Answers Women-s Pre-ordination Retreat 1986",
     "format_type": "p-based",
     "turn_count": 34,
