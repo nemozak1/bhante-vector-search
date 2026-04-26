@@ -2,80 +2,151 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Overview
+## Project overview
 
-Semantic search system for Bhante Sangharakshita's Buddhist texts and seminar transcripts. Processes EPUB files and seminar transcripts (from freebuddhistaudio.com) into vectorized chunks stored in ChromaDB, served via a FastAPI REST API with a SvelteKit frontend.
+Semantic search for Bhante Sangharakshita's books and seminar transcripts. Single SvelteKit app (Node adapter) with Postgres + pgvector. Auth is Better Auth.
+
+Two storage stories run side by side:
+- **Cleaned transcripts and review status are JSON files in git.** A remote Claude agent edits `data/seminars/cleaned/{code}.json` and `data/seminars/review_status.json` and opens GitHub PRs; humans review via PR review. The SvelteKit app reads these straight from disk.
+- **Embeddings, ingestion log, and per-user state are in Postgres.** Better Auth tables, `chunks` (pgvector, 3072-dim text-embedding-3-large vectors via halfvec HNSW), `ingestion_log`, `bookmarks`, `search_history`, `saved_queries`.
+
+The remote-agent / PR workflow is V1. V2 (post-bulk-cleanup) will add an editor-user role and move canonical content into Postgres — but the schema for that is deferred until the editor UX is scoped.
 
 ## Commands
 
 ```bash
-# Install dependencies
-poetry install
-# or: pip install -r requirements-api.txt
+# Bring Postgres up (one-time per machine reboot)
+docker compose up -d postgres
 
-# Ingest an EPUB into ChromaDB
+# Dev server (auto-runs migrations on first request)
+npm install
+npm run dev                                # http://localhost:5173
+
+# Apply migrations explicitly (also runs on dev startup)
+npm run migrate
+
+# Backfill ingest_log.json into ingestion_log (one-shot, idempotent)
+python scripts/seed_from_files.py
+
+# Migrate embeddings from Chroma into pgvector (one-shot, idempotent)
+python scripts/migrate_chroma_to_pgvector.py
+
+# Build for production
+npm run build
+npm run start                              # serves the adapter-node build
+
+# Type-check the SvelteKit project
+npm run check
+```
+
+### Ingestion (Python, batch tools)
+
+```bash
+# Scrape new seminars from freebuddhistaudio.com
+python scrape_seminars.py
+python scrape_seminars.py --codes SEM050,SEM052P1
+python scrape_seminars.py --discover-only
+
+# Ingest an EPUB into the vector store
 python ingest_epub.py --epub-path ./data/your_file.epub
 
-# Scrape seminar transcripts from freebuddhistaudio.com
-python scrape_seminars.py                          # full discovery + download
-python scrape_seminars.py --retry-failed           # retry failures only
-python scrape_seminars.py --codes SEM050,SEM052P1  # specific codes
-python scrape_seminars.py --discover-only          # just build catalog
-
-# Ingest seminar transcripts into ChromaDB
-python ingest_seminars.py                         # ingest all downloaded
-python ingest_seminars.py --codes SEM050,SEM051   # specific ones
-python ingest_seminars.py --reprocess             # delete + re-add all
-
-# Quick start (ingest + optionally start API)
-./quickstart.sh ./data/your_file.epub
-
-# Start API server
-./start_api.sh
-# or: python src/server/api.py
-# or with hot reload: uvicorn src.server.api:app --reload --host 0.0.0.0 --port 8000
-
-# Frontend (SvelteKit)
-cd src/client && npm install && npm run dev    # dev server (proxies API to :8000)
-cd src/client && npm run build                 # build static files to src/client/build/
-
-# Run system tests (checks vector DB connectivity and API deps)
-python test_system.py
+# Ingest seminar transcripts (currently writes to Chroma; pgvector port is TODO)
+python ingest_seminars.py
+python ingest_seminars.py --codes SEM050,SEM051
+python ingest_seminars.py --reprocess
 ```
+
+**Note:** `ingest_seminars.py` and `ingest_epub.py` still write embeddings to ChromaDB at `./chroma/`. The runtime app reads from pgvector. To get new ingestions visible to search, re-run `python scripts/migrate_chroma_to_pgvector.py` after each ingestion run. Switching the ingestion scripts to write directly to pgvector (via asyncpg) is a small follow-up.
 
 ## Architecture
 
-**Book pipeline**: EPUB → `src/epub_processor.py` (extract chunks with page refs) → `ingest_epub.py` (embed via OpenAI + store in ChromaDB) → `src/server/api.py` → SvelteKit frontend
+```
+src/
+├── routes/                              SvelteKit routes
+│   ├── login/, search/, seminars/, review/   pages (CSR; auth gated client-side)
+│   └── api/                                  +server.ts endpoints, auth gated in hooks
+│       ├── auth/[...auth]/+server.ts         Better Auth catch-all
+│       ├── search, search/all, seminars/search   pgvector queries
+│       ├── seminars, seminars/[code], works  filesystem reads from data/seminars/
+│       ├── seminars/[code]/{pdf,epub,print}  pdfkit + epub-gen-memory
+│       ├── review/status, review/[code]/diff disk reads + diff lib
+│       ├── bookmarks, search-history, saved-queries  Postgres CRUD
+│       └── health                            unauth liveness check
+├── lib/
+│   ├── auth.ts            Better Auth instance (pg.Pool + sveltekitCookies)
+│   ├── auth-client.ts     createAuthClient for the browser
+│   ├── auth.svelte.ts     thin facade preserving existing signIn/signUp/signOut
+│   ├── api.ts             client SDK (cookies travel automatically; no Auth header)
+│   └── server/
+│       ├── env.ts                  fail-loud env reader
+│       ├── db/pool.ts              singleton pg.Pool
+│       ├── db/migrate.ts           startup migrations runner
+│       ├── repos/{bookmarks,saved-queries,search-history}.ts
+│       ├── seminars/processor.ts   port of process_for_display (cheerio)
+│       ├── seminars/load.ts        cleaned-or-raw file loader
+│       ├── seminars/render.ts      shared HTML for /print and /pdf fallback
+│       └── vector/{embed,search}.ts  OpenAI embeddings + pgvector queries
+├── hooks.server.ts         Better Auth session resolution + /api/* gate
+├── app.d.ts                Locals typing
+├── epub_processor.py       Python ingestion library (used by ingest_epub.py)
+├── seminar_processor.py    Python ingestion library (used by ingest_seminars.py)
+└── seminar_scraper.py      Python scraper
 
-**Seminar pipeline**: FBA catalog API → `src/seminar_scraper.py` (discover + download) → `src/seminar_processor.py` (parse speaker turns, strip boilerplate, chunk) → `ingest_seminars.py` (embed + store) → `src/server/api.py` → SvelteKit frontend
+migrations/                 numbered .sql files, applied in order
+├── 0001_better_auth.sql    user, session, account, verification (generated)
+├── 0002_ingestion.sql      ingestion_log
+├── 0003_user_features.sql  bookmarks, search_history, saved_queries
+└── 0004_pgvector.sql       chunks (vector(3072) + halfvec HNSW index)
 
-Key components:
-- `src/epub_processor.py` — `EPUBProcessor` class parses EPUB HTML, extracts page numbers from `<a id="page_XXX">` anchors, splits text into chunks. `process_epub_to_langchain()` converts chunks to LangChain `Document` objects with page/chapter/work metadata.
-- `ingest_epub.py` — CLI script that orchestrates EPUB ingestion. Contains `WORK_INDEXES` dict mapping work titles to page ranges for multi-work volumes.
-- `src/seminar_scraper.py` — `SeminarScraper` class discovers seminars via FBA catalog API, downloads transcript HTML, extracts `document.__FBA__.text` JSON. Saves to `data/seminars/raw/`.
-- `scrape_seminars.py` — CLI entry point for scraping.
-- `src/seminar_processor.py` — `SeminarProcessor` class parses transcript HTML into speaker-turn chunks, strips boilerplate intro/footer, handles speaker normalization. `process_seminar_to_langchain()` converts to LangChain Documents.
-- `ingest_seminars.py` — CLI script that orchestrates seminar ingestion into ChromaDB.
-- `src/server/api.py` — FastAPI app with endpoints for books (`/api/search`), seminars (`/api/seminars/search`), unified (`/api/search/all`), plus `/api/works`, `/api/seminars`, `/health`.
-- `src/client/` — SvelteKit app with three tabs: All, Books, Seminars. Built to `src/client/build/` and served by FastAPI as static files.
-- `src/client/index.html` — Legacy vanilla HTML/JS search UI (kept as fallback).
+scripts/                    one-shot Python scripts
+├── seed_from_files.py             ingest_log.json → Postgres
+└── migrate_chroma_to_pgvector.py  Chroma → pgvector (no re-embedding)
 
-## API Endpoints
+data/seminars/              source of truth for seminar text
+├── cleaned/{code}.json     PR-edited cleaned transcripts (TRACKED)
+├── raw/{code}.json         immutable scrape output (gitignored)
+├── review_status.json      review state (TRACKED)
+└── ingest_log.json         what's been vectorised (gitignored)
 
-- `POST/GET /api/search` — search book (EPUB) collection
-- `POST/GET /api/seminars/search` — search seminar collection
-- `POST/GET /api/search/all` — unified search across both collections
-- `GET /api/works` — list book works
-- `GET /api/seminars` — list seminars in collection
-- `GET /health` — health check
+chroma/                     legacy embedding store, kept on disk after the
+                            pgvector migration as a backup. Search no longer
+                            reads from it; only ingest_*.py write to it.
+```
+
+## API endpoints
+
+Public:
+- `GET /api/health`
+- `GET /api/auth/*` (Better Auth — sign-up, sign-in, sign-out, get-session, etc.)
+
+Auth required (cookie):
+- `POST/GET /api/search`, `/api/seminars/search`, `/api/search/all` — pgvector
+- `GET /api/works`, `/api/seminars`, `/api/seminars/[code]`
+- `GET /api/seminars/[code]/{pdf,epub,print}`
+- `GET /api/review/status`, `/api/review/[code]/diff`
+- `GET/POST/DELETE /api/bookmarks`
+- `GET/POST/DELETE /api/saved-queries`
+- `GET /api/search-history`
 
 ## Environment
 
-- Requires `OPENAI_API_KEY` in `.env` file (loaded via python-dotenv)
-- Python 3.10+, managed with Poetry
-- ChromaDB data persists in `./chroma/` directory
-- Book collection: `bhante_epub_search`
-- Seminar collection: `bhante_seminar_search`
-- Default embedding model: `text-embedding-3-large`
-- Seminar data stored in `data/seminars/` (gitignored)
-- `bhante-prototyping.ipynb` — Jupyter notebook used for experimentation
+Required (`.env` at repo root, `.env.example` is the template):
+
+| Var | Purpose |
+|---|---|
+| `OPENAI_API_KEY` | Embeddings (search + ingestion) |
+| `DATABASE_URL` | Postgres (e.g. `postgresql://bhante:bhante@localhost:5433/bhante`) |
+| `BETTER_AUTH_SECRET` | Min 32 chars; `openssl rand -base64 32` |
+| `BETTER_AUTH_URL` | App URL, e.g. `http://localhost:5173` |
+
+Optional:
+- `EMBEDDING_MODEL` — defaults to `text-embedding-3-large`
+- `BOOK_COLLECTION` / `SEMINAR_COLLECTION` — defaults to the historical Chroma collection names; both are passed through to the `chunks.collection` column in pgvector
+
+The Postgres dev container exposes 5432 → host **5433** (5432 was taken on the original dev machine).
+
+## Notable migrations / one-time operations
+
+- `npm run migrate` applies any unapplied `migrations/*.sql` files. Idempotent. Auto-runs on first request to the dev server.
+- `python scripts/seed_from_files.py` — backfills `ingest_log.json` into `ingestion_log`. Run once after schema lands.
+- `python scripts/migrate_chroma_to_pgvector.py` — copies all 13K chunks from `./chroma` into the `chunks` table. No re-embedding. Idempotent (skips if pgvector already has ≥ chroma's count). Run once after `0004_pgvector.sql` is applied; re-run after any new Chroma-side ingestion.
