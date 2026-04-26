@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { SeminarResult } from '$lib/api';
+	import type { SeminarResult } from '$lib/types';
 
 	let { result }: { result: SeminarResult } = $props();
 

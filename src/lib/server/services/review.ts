@@ -1,8 +1,23 @@
-import { error, json } from '@sveltejs/kit';
+import { error } from '@sveltejs/kit';
 import { readFile, access } from 'node:fs/promises';
 import { createTwoFilesPatch } from 'diff';
-import { cleanedPath, rawPath } from '$lib/server/seminars/load.ts';
-import { processForDisplay, type SpeakerTurn } from '$lib/server/seminars/processor.ts';
+import {
+	REVIEW_STATUS_PATH,
+	cleanedPath,
+	rawPath
+} from '../seminars/load.ts';
+import { processForDisplay, type SpeakerTurn } from '../seminars/processor.ts';
+import type { ReviewStatus, ReviewStatusItem, ReviewDiff } from '$lib/types';
+
+export type { ReviewStatus, ReviewStatusItem, ReviewDiff };
+
+export async function getStatus(): Promise<ReviewStatus> {
+	try {
+		return JSON.parse(await readFile(REVIEW_STATUS_PATH, 'utf8'));
+	} catch {
+		error(404, 'Review status file not found');
+	}
+}
 
 async function exists(path: string) {
 	try {
@@ -13,7 +28,11 @@ async function exists(path: string) {
 	}
 }
 
-function turnsToText(turns: SpeakerTurn[], date: string | null, location: string | null): string {
+function turnsToText(
+	turns: SpeakerTurn[],
+	date: string | null,
+	location: string | null
+): string {
 	const lines: string[] = [];
 	if (date) lines.push(`Date: ${date}`);
 	if (location) lines.push(`Location: ${location}`);
@@ -31,8 +50,7 @@ function turnsToText(turns: SpeakerTurn[], date: string | null, location: string
 	return lines.join('\n');
 }
 
-export const GET = async ({ params }) => {
-	const code = params.code;
+export async function getDiff(code: string): Promise<ReviewDiff> {
 	const cPath = cleanedPath(code);
 	const rPath = rawPath(code);
 
@@ -51,7 +69,11 @@ export const GET = async ({ params }) => {
 	);
 
 	const rawText = turnsToText(rawResult.turns, rawResult.date, rawResult.location);
-	const cleanedText = turnsToText(cleanedTurns, cleaned.date ?? null, cleaned.location ?? null);
+	const cleanedText = turnsToText(
+		cleanedTurns,
+		cleaned.date ?? null,
+		cleaned.location ?? null
+	);
 
 	const patch = createTwoFilesPatch(
 		`${code} (raw parse)`,
@@ -63,14 +85,12 @@ export const GET = async ({ params }) => {
 		{ context: 3 }
 	);
 
-	const diffLines = patch.split('\n');
-
-	return json({
+	return {
 		code,
 		title: cleaned.title ?? '',
 		raw_turn_count: rawResult.turns.length,
 		cleaned_turn_count: cleanedTurns.length,
-		diff_lines: diffLines,
+		diff_lines: patch.split('\n'),
 		has_changes: rawText !== cleanedText
-	});
-};
+	};
+}

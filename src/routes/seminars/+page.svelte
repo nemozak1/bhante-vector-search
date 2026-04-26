@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { listSeminars, type SeminarListItem } from '$lib/api';
+	import * as seminarsRemote from '../seminars.remote';
+	import type { SeminarListItem } from '$lib/types';
 
 	let seminars: SeminarListItem[] = $state([]);
 	let loading = $state(true);
@@ -26,8 +27,7 @@
 
 	onMount(async () => {
 		try {
-			const data = await listSeminars();
-			seminars = data.seminars;
+			seminars = await seminarsRemote.list();
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Failed to load seminars';
 		} finally {

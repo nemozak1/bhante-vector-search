@@ -1,20 +1,21 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
-	import { getReviewDiff, getReviewStatus, type ReviewDiff, type ReviewStatusItem } from '$lib/api';
+	import * as reviewRemote from '../../review.remote';
+	import type { ReviewDiff, ReviewStatusItem } from '$lib/types';
 
-	let diff: ReviewDiff | null = $state(null);
-	let statusItem: ReviewStatusItem | null = $state(null);
+	let diff = $state<ReviewDiff | null>(null);
+	let statusItem = $state<ReviewStatusItem | null>(null);
 	let loading = $state(true);
 	let error = $state('');
 
-	let code = $derived(page.params.code);
+	let code = $derived(page.params.code as string);
 
 	onMount(async () => {
 		try {
 			const [diffData, statusData] = await Promise.all([
-				getReviewDiff(code),
-				getReviewStatus(),
+				reviewRemote.diff(code),
+				reviewRemote.status(),
 			]);
 			diff = diffData;
 			statusItem = statusData[code] ?? null;

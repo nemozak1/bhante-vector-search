@@ -1,4 +1,4 @@
-import type { UnifiedResult, BookResult, SeminarResult } from './api';
+import type { UnifiedResult, BookResult, SeminarResult } from './types';
 
 interface SearchState<T> {
 	query: string;

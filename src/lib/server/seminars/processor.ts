@@ -33,19 +33,9 @@ const LOCATION_KEYWORDS = [
 
 const LOCATION_PHRASE_RE = /(?:in|at)\s+(.+?)(?:\.|$)/;
 
-export type SpeakerTurn = {
-	speaker: string | null;
-	paragraphs: string[];
-	turn_index: number;
-};
+import type { SpeakerTurn, SeminarTranscript } from '$lib/types';
 
-export type SeminarTranscript = {
-	code: string;
-	title: string;
-	date: string | null;
-	location: string | null;
-	turns: SpeakerTurn[];
-};
+export type { SpeakerTurn, SeminarTranscript };
 
 type RawSeminar = {
 	catNum?: string;

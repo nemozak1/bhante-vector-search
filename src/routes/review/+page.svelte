@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { getReviewStatus, type ReviewStatusItem } from '$lib/api';
+	import * as reviewRemote from '../review.remote';
+	import type { ReviewStatusItem } from '$lib/types';
 
 	let data: Record<string, ReviewStatusItem> = $state({});
 	let loading = $state(true);
@@ -10,7 +11,7 @@
 
 	onMount(async () => {
 		try {
-			data = await getReviewStatus();
+			data = await reviewRemote.status();
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Failed to load review status';
 		} finally {

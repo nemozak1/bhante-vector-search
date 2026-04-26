@@ -1,16 +1,9 @@
 import { pool } from '../db/pool.ts';
+import type { Bookmark, BookmarkKind } from '$lib/types';
 
-export type BookmarkKind = 'seminar' | 'book_chunk' | 'seminar_chunk';
+export type { Bookmark, BookmarkKind };
 
-export type Bookmark = {
-	id: number;
-	kind: BookmarkKind;
-	ref: Record<string, unknown>;
-	note: string | null;
-	created_at: string;
-};
-
-export async function listBookmarks(userId: string): Promise<Bookmark[]> {
+export async function listByUser(userId: string): Promise<Bookmark[]> {
 	const { rows } = await pool.query<Bookmark>(
 		`select id, kind, ref, note, created_at
 		   from bookmarks
@@ -21,7 +14,7 @@ export async function listBookmarks(userId: string): Promise<Bookmark[]> {
 	return rows;
 }
 
-export async function addBookmark(
+export async function upsert(
 	userId: string,
 	kind: BookmarkKind,
 	ref: Record<string, unknown>,
@@ -37,7 +30,10 @@ export async function addBookmark(
 	return rows[0];
 }
 
-export async function deleteBookmark(userId: string, id: number): Promise<boolean> {
-	const { rowCount } = await pool.query('delete from bookmarks where user_id = $1 and id = $2', [userId, id]);
+export async function deleteByUserAndId(userId: string, id: number): Promise<boolean> {
+	const { rowCount } = await pool.query(
+		'delete from bookmarks where user_id = $1 and id = $2',
+		[userId, id]
+	);
 	return (rowCount ?? 0) > 0;
 }

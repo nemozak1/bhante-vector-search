@@ -1,8 +1,9 @@
 import { pool } from '../db/pool.ts';
+import type { ContentsEntry } from '$lib/types';
 
-export type ContentsEntry = { ord: number; page: number; label: string };
+export type { ContentsEntry };
 
-export async function getContentsForSeminar(seminarCode: string): Promise<ContentsEntry[]> {
+export async function listBySeminar(seminarCode: string): Promise<ContentsEntry[]> {
 	const { rows } = await pool.query<ContentsEntry>(
 		`select ord, page, label
 		   from seminar_contents

@@ -2,7 +2,8 @@
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import SeminarResult from '$lib/components/SeminarResult.svelte';
 	import ResultList from '$lib/components/ResultList.svelte';
-	import { searchSeminars, type SeminarResult as SeminarResultType } from '$lib/api';
+	import * as searchRemote from '../../search.remote';
+	import type { SeminarResult as SeminarResultType } from '$lib/types';
 	import { seminarSearchState } from '$lib/searchState';
 
 	let cached = seminarSearchState.get();
@@ -17,7 +18,7 @@
 		error = '';
 		query = q;
 		try {
-			const data = await searchSeminars(q, k);
+			const data = await searchRemote.seminars({ query: q, k });
 			results = data.results;
 			searched = true;
 			seminarSearchState.set({ query: q, k, results: data.results, searched: true });

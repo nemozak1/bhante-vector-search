@@ -84,32 +84,56 @@ When a seminar is re-ingested, the script first **deletes any existing chunks** 
 
 ## Architecture
 
+Three layers — **remote → services → DAL** — let RBAC, validation and orchestration each live in one place. SQL is confined to the DAL; the auth gate (and any future `can()` check) lives in remote functions; services own composition and never read `locals`.
+
 ```
 src/
 ├── routes/                              SvelteKit routes
 │   ├── login/, search/, seminars/, review/   pages (CSR; auth gated client-side)
-│   └── api/                                  +server.ts endpoints, auth gated in hooks
-│       ├── auth/[...auth]/+server.ts         Better Auth catch-all
-│       ├── search, search/all, seminars/search   pgvector queries
-│       ├── seminars, seminars/[code], works  filesystem reads from data/seminars/
-│       ├── seminars/[code]/{pdf,epub,print}  pdfkit + epub-gen-memory
-│       ├── review/status, review/[code]/diff disk reads + diff lib
-│       ├── bookmarks, search-history, saved-queries  Postgres CRUD
+│   ├── *.remote.ts                           transport: query/command/form fns,
+│   │                                          auth gate via requireUser(), valibot validation
+│   │   ├── search.remote.ts                 books, seminars, all
+│   │   ├── seminars.remote.ts               list, get
+│   │   ├── works.remote.ts                  list
+│   │   ├── review.remote.ts                 status, diff
+│   │   ├── bookmarks.remote.ts              list, create, remove
+│   │   ├── saved-queries.remote.ts          list, save, remove
+│   │   └── search-history.remote.ts         recent
+│   └── api/                                  legacy +server.ts (binary streams + Better Auth)
+│       ├── auth/[...auth]                   Better Auth catch-all (handled by hooks)
+│       ├── seminars/[code]/{pdf,epub,print} pdfkit + epub-gen-memory streams
 │       └── health                            unauth liveness check
 ├── lib/
 │   ├── auth.ts            Better Auth instance (pg.Pool + sveltekitCookies)
 │   ├── auth-client.ts     createAuthClient for the browser
-│   ├── auth.svelte.ts     thin facade preserving existing signIn/signUp/signOut
-│   ├── api.ts             client SDK (cookies travel automatically; no Auth header)
+│   ├── auth.svelte.ts     thin facade preserving signIn/signUp/signOut
+│   ├── types.ts           shared client+server types (canonical)
+│   ├── searchState.ts     in-memory cache for search results across tab switches
 │   └── server/
 │       ├── env.ts                  fail-loud env reader
+│       ├── auth-context.ts         requireUser() — auth gate used by remote fns
+│       ├── embed.ts                OpenAI embeddings client
 │       ├── db/pool.ts              singleton pg.Pool
 │       ├── db/migrate.ts           startup migrations runner
-│       ├── repos/{bookmarks,saved-queries,search-history}.ts
-│       ├── seminars/processor.ts   port of process_for_display (cheerio)
-│       ├── seminars/load.ts        cleaned-or-raw file loader
-│       ├── seminars/render.ts      shared HTML for /print and /pdf fallback
-│       └── vector/{embed,search}.ts  OpenAI embeddings + pgvector queries
+│       ├── dal/                    pure SQL, one file per domain (no business logic)
+│       │   ├── bookmarks.ts        listByUser, upsert, deleteByUserAndId
+│       │   ├── saved-queries.ts
+│       │   ├── search-history.ts
+│       │   ├── chunks.ts           pgvector halfvec similarity query
+│       │   └── seminar-contents.ts
+│       ├── services/               orchestration; takes userId; throws kit errors
+│       │   ├── bookmarks.ts
+│       │   ├── saved-queries.ts
+│       │   ├── search-history.ts
+│       │   ├── search.ts           embed → DAL → result shape → record history
+│       │   ├── seminars.ts         filesystem readdir + load + DAL contents
+│       │   ├── works.ts
+│       │   └── review.ts           review_status.json + diff against raw parse
+│       └── seminars/               filesystem/parsing helpers (used by services)
+│           ├── processor.ts        port of process_for_display (cheerio)
+│           ├── load.ts             cleaned-or-raw file loader
+│           ├── parse-contents.ts   parser for {code}C.json TOC pages
+│           └── render.ts           shared HTML for /print and /pdf fallback
 ├── hooks.server.ts         Better Auth session resolution + /api/* gate
 ├── app.d.ts                Locals typing
 ├── epub_processor.py       Python ingestion library (used by ingest_epub.py)
@@ -139,20 +163,34 @@ chroma/                     legacy embedding store, kept on disk after the
                             reads from it; only ingest_*.py write to it.
 ```
 
-## API endpoints
+## Endpoints
+
+### Remote functions (`*.remote.ts`)
+
+All cookie-gated. Pages import directly: `import * as searchRemote from '../search.remote'`. SvelteKit handles RPC transport — no client SDK needed.
+
+| File | Exports | Verb |
+|---|---|---|
+| `search.remote.ts` | `books`, `seminars`, `all` | query |
+| `seminars.remote.ts` | `list`, `get` | query |
+| `works.remote.ts` | `list` | query |
+| `review.remote.ts` | `status`, `diff` | query |
+| `search-history.remote.ts` | `recent` | query |
+| `bookmarks.remote.ts` | `list` (q), `create` / `remove` (cmd) | query / command |
+| `saved-queries.remote.ts` | `list` (q), `save` / `remove` (cmd) | query / command |
+
+Each remote function calls `requireUser()` first; the same module is where future RBAC checks (`can(user, 'bookmarks:read')`) will land.
+
+### Legacy HTTP endpoints (`+server.ts`)
+
+Reserved for Better Auth and binary streams that don't fit the remote-fn model.
 
 Public:
 - `GET /api/health`
-- `GET /api/auth/*` (Better Auth — sign-up, sign-in, sign-out, get-session, etc.)
+- `GET/POST /api/auth/*` (Better Auth — sign-up, sign-in, sign-out, get-session, etc.)
 
-Auth required (cookie):
-- `POST/GET /api/search`, `/api/seminars/search`, `/api/search/all` — pgvector
-- `GET /api/works`, `/api/seminars`, `/api/seminars/[code]`
-- `GET /api/seminars/[code]/{pdf,epub,print}`
-- `GET /api/review/status`, `/api/review/[code]/diff`
-- `GET/POST/DELETE /api/bookmarks`
-- `GET/POST/DELETE /api/saved-queries`
-- `GET /api/search-history`
+Auth required (cookie, gated in `hooks.server.ts`):
+- `GET /api/seminars/[code]/{pdf,epub,print}` — binary downloads
 
 ## Environment
 

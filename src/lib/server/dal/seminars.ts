@@ -8,7 +8,7 @@ export type Seminar = {
 	source: 'cleaned' | 'raw' | 'placeholder';
 };
 
-export async function listSeminars(): Promise<Seminar[]> {
+export async function list(): Promise<Seminar[]> {
 	const { rows } = await pool.query<Seminar>(
 		`select code, title, date, location, source
 		   from seminars
@@ -18,7 +18,7 @@ export async function listSeminars(): Promise<Seminar[]> {
 	return rows;
 }
 
-export async function getSeminar(code: string): Promise<Seminar | null> {
+export async function getByCode(code: string): Promise<Seminar | null> {
 	const { rows } = await pool.query<Seminar>(
 		`select code, title, date, location, source
 		   from seminars

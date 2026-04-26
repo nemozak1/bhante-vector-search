@@ -2,7 +2,8 @@
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import BookResult from '$lib/components/BookResult.svelte';
 	import ResultList from '$lib/components/ResultList.svelte';
-	import { searchBooks, type BookResult as BookResultType } from '$lib/api';
+	import * as searchRemote from '../../search.remote';
+	import type { BookResult as BookResultType } from '$lib/types';
 	import { bookSearchState } from '$lib/searchState';
 
 	let cached = bookSearchState.get();
@@ -17,7 +18,7 @@
 		error = '';
 		query = q;
 		try {
-			const data = await searchBooks(q, k);
+			const data = await searchRemote.books({ query: q, k });
 			results = data.results;
 			searched = true;
 			bookSearchState.set({ query: q, k, results: data.results, searched: true });

@@ -3,7 +3,8 @@
 	import BookResult from '$lib/components/BookResult.svelte';
 	import SeminarResult from '$lib/components/SeminarResult.svelte';
 	import ResultList from '$lib/components/ResultList.svelte';
-	import { searchAll, type UnifiedResult } from '$lib/api';
+	import * as searchRemote from '../search.remote';
+	import type { UnifiedResult } from '$lib/types';
 	import { allSearchState } from '$lib/searchState';
 
 	let cached = allSearchState.get();
@@ -18,7 +19,7 @@
 		error = '';
 		query = q;
 		try {
-			const data = await searchAll(q, k);
+			const data = await searchRemote.all({ query: q, k });
 			results = data.results;
 			searched = true;
 			allSearchState.set({ query: q, k, results: data.results, searched: true });

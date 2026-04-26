@@ -1,17 +1,9 @@
 import { pool } from '../db/pool.ts';
-import type { SearchScope } from './search-history.ts';
+import type { SavedQuery, SearchScope } from '$lib/types';
 
-export type SavedQuery = {
-	id: number;
-	name: string;
-	query: string;
-	scope: SearchScope;
-	filters: unknown;
-	created_at: string;
-	updated_at: string;
-};
+export type { SavedQuery };
 
-export async function listSavedQueries(userId: string): Promise<SavedQuery[]> {
+export async function listByUser(userId: string): Promise<SavedQuery[]> {
 	const { rows } = await pool.query<SavedQuery>(
 		`select id, name, query, scope, filters, created_at, updated_at
 		   from saved_queries
@@ -22,7 +14,7 @@ export async function listSavedQueries(userId: string): Promise<SavedQuery[]> {
 	return rows;
 }
 
-export async function saveQuery(
+export async function upsert(
 	userId: string,
 	name: string,
 	query: string,
@@ -41,7 +33,10 @@ export async function saveQuery(
 	return rows[0];
 }
 
-export async function deleteSavedQuery(userId: string, id: number): Promise<boolean> {
-	const { rowCount } = await pool.query('delete from saved_queries where user_id = $1 and id = $2', [userId, id]);
+export async function deleteByUserAndId(userId: string, id: number): Promise<boolean> {
+	const { rowCount } = await pool.query(
+		'delete from saved_queries where user_id = $1 and id = $2',
+		[userId, id]
+	);
 	return (rowCount ?? 0) > 0;
 }

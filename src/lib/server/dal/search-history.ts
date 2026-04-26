@@ -1,17 +1,9 @@
 import { pool } from '../db/pool.ts';
+import type { HistoryRow, SearchScope } from '$lib/types';
 
-export type SearchScope = 'all' | 'books' | 'seminars';
+export type { HistoryRow, SearchScope };
 
-export type HistoryRow = {
-	id: number;
-	query: string;
-	scope: SearchScope;
-	filters: unknown;
-	result_count: number;
-	created_at: string;
-};
-
-export async function recordSearch(
+export async function insert(
 	userId: string,
 	query: string,
 	scope: SearchScope,
@@ -25,7 +17,7 @@ export async function recordSearch(
 	);
 }
 
-export async function recentSearches(userId: string, limit = 50): Promise<HistoryRow[]> {
+export async function listRecent(userId: string, limit: number): Promise<HistoryRow[]> {
 	const { rows } = await pool.query<HistoryRow>(
 		`select id, query, scope, filters, result_count, created_at
 		   from search_history

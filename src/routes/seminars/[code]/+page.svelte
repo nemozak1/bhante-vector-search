@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { tick, onMount } from 'svelte';
-	import { getSeminarTranscript, type SeminarTranscript } from '$lib/api';
+	import * as seminarsRemote from '../../seminars.remote';
+	import type { SeminarDetail } from '$lib/types';
 	import { Button } from '$lib/components/ui/button';
 	import { Plus, Minus, ArrowUp } from '@lucide/svelte';
 
@@ -11,7 +12,7 @@
 	const FONT_MAX = 1.8;
 	const FONT_STEP = 0.1;
 
-	let transcript: SeminarTranscript | null = $state(null);
+	let transcript = $state<SeminarDetail | null>(null);
 	let loading = $state(true);
 	let error = $state('');
 	let paginate = $state(true);
@@ -31,7 +32,7 @@
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 
-	let code = $derived(page.params.code);
+	let code = $derived(page.params.code as string);
 	let highlight = $derived(page.url.searchParams.get('highlight') || '');
 
 	let totalTurns = $derived(transcript?.turns.length ?? 0);
@@ -66,7 +67,7 @@
 
 	onMount(async () => {
 		try {
-			transcript = await getSeminarTranscript(code);
+			transcript = await seminarsRemote.get(code);
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Failed to load transcript';
 		} finally {

@@ -1,20 +1,19 @@
 import { pool } from '../db/pool.ts';
-import { env } from '../env.ts';
 
-export type SearchHit = {
+export type ChunkHit = {
 	id: string;
 	document: string;
 	metadata: Record<string, unknown>;
 	distance: number;
 };
 
-async function searchCollection(
+export async function searchByEmbedding(
 	collection: string,
 	queryEmbedding: number[],
 	k: number
-): Promise<SearchHit[]> {
+): Promise<ChunkHit[]> {
 	const vec = `[${queryEmbedding.join(',')}]`;
-	const { rows } = await pool.query<SearchHit>(
+	const { rows } = await pool.query<ChunkHit>(
 		`select id,
 		        document,
 		        metadata,
@@ -26,12 +25,4 @@ async function searchCollection(
 		[vec, collection, k]
 	);
 	return rows;
-}
-
-export function searchBooks(queryEmbedding: number[], k: number) {
-	return searchCollection(env.BOOK_COLLECTION, queryEmbedding, k);
-}
-
-export function searchSeminars(queryEmbedding: number[], k: number) {
-	return searchCollection(env.SEMINAR_COLLECTION, queryEmbedding, k);
 }
