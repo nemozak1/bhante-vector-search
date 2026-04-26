@@ -3,6 +3,7 @@ import { embed } from '../embed.ts';
 import * as chunksDal from '../dal/chunks.ts';
 import type { ChunkHit } from '../dal/chunks.ts';
 import * as searchHistory from './search-history.ts';
+import * as rerankSvc from '../rerank.ts';
 import { env } from '../env.ts';
 import type {
 	BookResult,
@@ -53,6 +54,20 @@ function recordIfUser(
 	if (userId) searchHistory.record(userId, query, scope, null, count).catch(() => {});
 }
 
+// When the reranker is on, ask pgvector for more candidates than we'll return,
+// rerank them, then take top K. With it off, ask for exactly K.
+const overfetch = (k: number) => (rerankSvc.isEnabled() ? k * env.RERANK_OVERFETCH : k);
+
+async function rerankAndTake<T extends { content: string; score: number }>(
+	query: string,
+	results: T[],
+	k: number
+): Promise<T[]> {
+	if (!rerankSvc.isEnabled() || results.length === 0) return results.slice(0, k);
+	const ranked = await rerankSvc.rerank(query, results, (r) => r.content);
+	return ranked.slice(0, k).map(({ doc, score }) => ({ ...doc, score }));
+}
+
 export async function searchBooks(
 	query: string,
 	k: number,
@@ -60,8 +75,8 @@ export async function searchBooks(
 ): Promise<SearchResponse<BookResult>> {
 	const q = validateQuery(query);
 	const emb = await embed(q);
-	const hits = await chunksDal.searchByEmbedding(env.BOOK_COLLECTION, emb, k);
-	const results = hits.map(toBookResult);
+	const hits = await chunksDal.searchByEmbedding(env.BOOK_COLLECTION, emb, overfetch(k));
+	const results = await rerankAndTake(q, hits.map(toBookResult), k);
 	recordIfUser(userId, q, 'books', results.length);
 	return { query: q, results, total_results: results.length };
 }
@@ -73,8 +88,8 @@ export async function searchSeminars(
 ): Promise<SearchResponse<SeminarResult>> {
 	const q = validateQuery(query);
 	const emb = await embed(q);
-	const hits = await chunksDal.searchByEmbedding(env.SEMINAR_COLLECTION, emb, k);
-	const results = hits.map(toSeminarResult);
+	const hits = await chunksDal.searchByEmbedding(env.SEMINAR_COLLECTION, emb, overfetch(k));
+	const results = await rerankAndTake(q, hits.map(toSeminarResult), k);
 	recordIfUser(userId, q, 'seminars', results.length);
 	return { query: q, results, total_results: results.length };
 }
@@ -86,18 +101,18 @@ export async function searchAll(
 ): Promise<SearchResponse<UnifiedResult>> {
 	const q = validateQuery(query);
 	const emb = await embed(q);
+	const ofK = overfetch(k);
 	const [books, seminars] = await Promise.all([
-		chunksDal.searchByEmbedding(env.BOOK_COLLECTION, emb, k),
-		chunksDal.searchByEmbedding(env.SEMINAR_COLLECTION, emb, k)
+		chunksDal.searchByEmbedding(env.BOOK_COLLECTION, emb, ofK),
+		chunksDal.searchByEmbedding(env.SEMINAR_COLLECTION, emb, ofK)
 	]);
 
 	const merged: UnifiedResult[] = [
 		...books.map((h) => ({ ...toBookResult(h), content_type: 'epub' as const })),
 		...seminars.map((h) => ({ ...toSeminarResult(h), content_type: 'seminar' as const }))
-	]
-		.sort((a, b) => b.score - a.score)
-		.slice(0, k);
+	].sort((a, b) => b.score - a.score);
 
-	recordIfUser(userId, q, 'all', merged.length);
-	return { query: q, results: merged, total_results: merged.length };
+	const results = await rerankAndTake(q, merged, k);
+	recordIfUser(userId, q, 'all', results.length);
+	return { query: q, results, total_results: results.length };
 }
