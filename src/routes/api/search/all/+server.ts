@@ -9,7 +9,7 @@ function bookResult(h: SearchHit) {
 	return {
 		content: h.document,
 		content_type: 'epub' as const,
-		score: h.distance,
+		score: 1 - h.distance,
 		page: typeof h.metadata.page === 'number' ? h.metadata.page : null,
 		page_label: typeof h.metadata.page_label === 'string' ? h.metadata.page_label : null,
 		chapter: typeof h.metadata.chapter === 'string' ? h.metadata.chapter : null,
@@ -21,7 +21,7 @@ function seminarResult(h: SearchHit) {
 	return {
 		content: h.document,
 		content_type: 'seminar' as const,
-		score: h.distance,
+		score: 1 - h.distance,
 		seminar_title: typeof h.metadata.seminar_title === 'string' ? h.metadata.seminar_title : null,
 		seminar_code: typeof h.metadata.seminar_code === 'string' ? h.metadata.seminar_code : null,
 		speaker: typeof h.metadata.speaker === 'string' ? h.metadata.speaker : null,
@@ -37,7 +37,7 @@ async function runUnifiedSearch(query: string, k: number, userId: string | null)
 	const [books, seminars] = await Promise.all([searchBooks(emb, k), searchSeminars(emb, k)]);
 
 	const merged = [...books.map(bookResult), ...seminars.map(seminarResult)]
-		.sort((a, b) => a.score - b.score)
+		.sort((a, b) => b.score - a.score)
 		.slice(0, k);
 
 	if (userId) recordSearch(userId, query, 'all', null, merged.length).catch(() => {});

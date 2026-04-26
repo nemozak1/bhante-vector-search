@@ -18,7 +18,7 @@ async function runSeminarSearch(query: string, k: number, userId: string | null)
 		section_heading: typeof h.metadata.section_heading === 'string' ? h.metadata.section_heading : null,
 		date: typeof h.metadata.date === 'string' ? h.metadata.date : null,
 		location: typeof h.metadata.location === 'string' ? h.metadata.location : null,
-		score: h.distance
+		score: 1 - h.distance
 	}));
 
 	if (userId) recordSearch(userId, query, 'seminars', null, results.length).catch(() => {});

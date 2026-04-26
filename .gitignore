@@ -9,7 +9,8 @@ chroma
 __pycache__/
 *.pyc
 
-# Postgres data volume (mounted by docker-compose)
+# Postgres data volume (now mounted from ../bhante-pgdata; legacy in-tree path
+# preserved here so older worktrees keep working)
 pgdata/
 
 # bhante lectures raw data
@@ -35,3 +36,9 @@ node_modules/
 .svelte-kit/
 build/
 .vite/
+
+# Playwright
+e2e/.auth/
+test-results/
+playwright-report/
+playwright/.cache/

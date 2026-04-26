@@ -2,15 +2,34 @@
 	import { page } from '$app/state';
 	import { tick, onMount } from 'svelte';
 	import { getSeminarTranscript, type SeminarTranscript } from '$lib/api';
+	import { Button } from '$lib/components/ui/button';
+	import { Plus, Minus, ArrowUp } from '@lucide/svelte';
 
 	const BASE_URL = import.meta.env.DEV ? '' : 'http://localhost:8000';
+
+	const FONT_MIN = 0.85;
+	const FONT_MAX = 1.8;
+	const FONT_STEP = 0.1;
 
 	let transcript: SeminarTranscript | null = $state(null);
 	let loading = $state(true);
 	let error = $state('');
 	let paginate = $state(true);
 	let currentPage = $state(1);
+	let fontSize = $state(1.15);
 	const perPage = 50;
+
+	function increaseFont() {
+		fontSize = Math.min(FONT_MAX, Math.round((fontSize + FONT_STEP) * 100) / 100);
+	}
+
+	function decreaseFont() {
+		fontSize = Math.max(FONT_MIN, Math.round((fontSize - FONT_STEP) * 100) / 100);
+	}
+
+	function scrollToTop() {
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+	}
 
 	let code = $derived(page.params.code);
 	let highlight = $derived(page.url.searchParams.get('highlight') || '');
@@ -120,7 +139,7 @@
 			{/if}
 		</div>
 
-		<div class="transcript">
+		<div class="transcript" style:--transcript-font-size="{fontSize}rem">
 			{#each visibleTurns as turn (turn.turn_index)}
 				<div
 					class="turn"
@@ -158,6 +177,40 @@
 				</button>
 			</nav>
 		{/if}
+
+		<div
+			class="fixed bottom-6 right-6 z-50 flex items-center gap-1 rounded-full bg-white/95 backdrop-blur p-1.5 shadow-lg border border-stone-200"
+		>
+			<Button
+				variant="ghost"
+				size="icon"
+				onclick={decreaseFont}
+				disabled={fontSize <= FONT_MIN}
+				aria-label="Decrease text size"
+				title="Decrease text size"
+			>
+				<Minus />
+			</Button>
+			<Button
+				variant="ghost"
+				size="icon"
+				onclick={increaseFont}
+				disabled={fontSize >= FONT_MAX}
+				aria-label="Increase text size"
+				title="Increase text size"
+			>
+				<Plus />
+			</Button>
+			<Button
+				variant="ghost"
+				size="icon"
+				onclick={scrollToTop}
+				aria-label="Jump to top"
+				title="Jump to top"
+			>
+				<ArrowUp />
+			</Button>
+		</div>
 	</div>
 {/if}
 
@@ -259,7 +312,7 @@
 	}
 	.turn-body {
 		font-family: 'Cormorant Garamond', serif;
-		font-size: 1.15rem;
+		font-size: var(--transcript-font-size, 1.15rem);
 		line-height: 1.85;
 		color: var(--text);
 	}
@@ -354,7 +407,7 @@
 			padding-left: 0.75rem;
 		}
 		.turn-body {
-			font-size: 1.05rem;
+			font-size: var(--transcript-font-size, 1.05rem);
 		}
 	}
 </style>

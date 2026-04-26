@@ -16,7 +16,7 @@ async function runBookSearch(query: string, k: number, userId: string | null) {
 		page_label: typeof h.metadata.page_label === 'string' ? h.metadata.page_label : null,
 		chapter: typeof h.metadata.chapter === 'string' ? h.metadata.chapter : null,
 		work: typeof h.metadata.work === 'string' ? h.metadata.work : null,
-		score: h.distance
+		score: 1 - h.distance
 	}));
 
 	if (userId) recordSearch(userId, query, 'books', null, results.length).catch(() => {});

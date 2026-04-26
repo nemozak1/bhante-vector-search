@@ -50,6 +50,12 @@ npm run start                              # serves the adapter-node build
 
 # Type-check the SvelteKit project
 npm run check
+
+# End-to-end tests (Playwright; auto-starts dev server, signs in as the seeded
+# dev user, hits real Postgres + pgvector). Run `npm run seed:dev` first.
+npm run test:e2e
+npm run test:e2e:ui                        # interactive runner
+npm run test:e2e:headed                    # see the browser
 ```
 
 ### Ingestion (Python, batch tools — write directly to pgvector)
