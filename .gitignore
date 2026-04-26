@@ -1,8 +1,9 @@
 # venv
 bhante/
 
-# chroma vector db (deleted in Phase 6)
+# chroma vector db (read-only via symlink to main repo during Phase 6 work; preserved on disk after)
 chroma/
+chroma
 
 # Python bytecode
 __pycache__/

@@ -23,10 +23,15 @@
     "vite": "^6.0.0"
   },
   "dependencies": {
+    "@types/diff": "^7.0.2",
+    "@types/pdfkit": "^0.17.6",
     "better-auth": "^1.6.9",
     "cheerio": "^1.2.0",
+    "diff": "^9.0.0",
     "dotenv": "^17.4.2",
+    "epub-gen-memory": "^1.1.2",
     "openai": "^6.34.0",
+    "pdfkit": "^0.18.0",
     "pg": "^8.13.0"
   }
 }
