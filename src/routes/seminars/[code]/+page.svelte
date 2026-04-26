@@ -24,14 +24,13 @@
 				? transcript.turns.slice((currentPage - 1) * perPage, currentPage * perPage)
 				: transcript.turns
 	);
-	let contents = $derived(transcript?.contents ?? null);
 
 	function goToPage(p: number) {
 		currentPage = p;
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 
-	/** Split a paragraph at every [N] marker so we can render <span id="page-N">. */
+	/** Split a paragraph at every [N] marker so we can render an inline page hint. */
 	function splitOnMarkers(text: string): Array<{ kind: 'text' | 'page'; value: string; n?: number }> {
 		const out: Array<{ kind: 'text' | 'page'; value: string; n?: number }> = [];
 		const re = /\[(\d+)\]/g;
@@ -44,15 +43,6 @@
 		}
 		if (last < text.length) out.push({ kind: 'text', value: text.slice(last) });
 		return out;
-	}
-
-	async function jumpToPageMarker(n: number) {
-		// Page markers appear inline in paragraphs; if pagination hides them,
-		// turn it off so we can scroll to the anchor.
-		paginate = false;
-		await tick();
-		const el = document.getElementById(`page-${n}`);
-		if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 
 	onMount(async () => {
@@ -99,7 +89,7 @@
 {:else if error}
 	<div class="error-msg">{error}</div>
 {:else if transcript}
-	<div class="viewer" class:has-contents={contents && contents.length > 0}>
+	<div class="viewer">
 		<nav class="viewer-nav">
 			<a href="/seminars" class="back-link">&larr; All seminars</a>
 		</nav>
@@ -130,49 +120,31 @@
 			{/if}
 		</div>
 
-		<div class="layout">
-			{#if contents && contents.length > 0}
-				<aside class="contents">
-					<h2 class="contents-title">Contents</h2>
-					<ol class="contents-list">
-						{#each contents as entry (entry.page)}
-							<li>
-								<button type="button" class="contents-link" onclick={() => jumpToPageMarker(entry.page)}>
-									<span class="contents-page">{entry.page}</span>
-									<span class="contents-label">{entry.label}</span>
-								</button>
-							</li>
+		<div class="transcript">
+			{#each visibleTurns as turn (turn.turn_index)}
+				<div
+					class="turn"
+					class:turn-sangharakshita={turn.speaker === 'Sangharakshita'}
+					data-turn-index={turn.turn_index}
+				>
+					{#if turn.speaker}
+						<div class="turn-speaker">{turn.speaker}</div>
+					{/if}
+					<div class="turn-body">
+						{#each turn.paragraphs as paragraph, i (i)}
+							<p>
+								{#each splitOnMarkers(paragraph) as part, j (j)}
+									{#if part.kind === 'page'}
+										<span class="page-marker">{part.value}</span>
+									{:else}
+										{part.value}
+									{/if}
+								{/each}
+							</p>
 						{/each}
-					</ol>
-				</aside>
-			{/if}
-
-			<div class="transcript">
-				{#each visibleTurns as turn (turn.turn_index)}
-					<div
-						class="turn"
-						class:turn-sangharakshita={turn.speaker === 'Sangharakshita'}
-						data-turn-index={turn.turn_index}
-					>
-						{#if turn.speaker}
-							<div class="turn-speaker">{turn.speaker}</div>
-						{/if}
-						<div class="turn-body">
-							{#each turn.paragraphs as paragraph, i (i)}
-								<p>
-									{#each splitOnMarkers(paragraph) as part, j (j)}
-										{#if part.kind === 'page'}
-											<span id="page-{part.n}" class="page-marker">{part.value}</span>
-										{:else}
-											{part.value}
-										{/if}
-									{/each}
-								</p>
-							{/each}
-						</div>
 					</div>
-				{/each}
-			</div>
+				</div>
+			{/each}
 		</div>
 
 		{#if paginate && totalPages > 1}
@@ -264,74 +236,6 @@
 		border-color: var(--accent);
 	}
 
-	.layout {
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
-	}
-	.viewer.has-contents .layout {
-		grid-template-columns: 220px 1fr;
-		gap: 2.5rem;
-	}
-
-	.contents {
-		font-family: 'Source Sans 3', sans-serif;
-		font-size: 0.82rem;
-		align-self: start;
-		position: sticky;
-		top: 1rem;
-		max-height: calc(100vh - 2rem);
-		overflow-y: auto;
-		border-right: 1px solid var(--border-light);
-		padding-right: 1rem;
-	}
-	.contents-title {
-		font-family: 'Cormorant Garamond', serif;
-		font-weight: 500;
-		font-size: 1rem;
-		color: var(--text-muted);
-		text-transform: uppercase;
-		letter-spacing: 0.12em;
-		margin-bottom: 0.85rem;
-	}
-	.contents-list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 0.2rem;
-	}
-	.contents-link {
-		display: flex;
-		gap: 0.55rem;
-		width: 100%;
-		text-align: left;
-		font: inherit;
-		color: var(--text-muted);
-		background: none;
-		border: none;
-		padding: 0.3rem 0.4rem;
-		border-radius: 3px;
-		cursor: pointer;
-		line-height: 1.35;
-	}
-	.contents-link:hover {
-		color: var(--accent);
-		background: var(--surface);
-	}
-	.contents-page {
-		flex: 0 0 auto;
-		font-variant-numeric: tabular-nums;
-		font-weight: 600;
-		color: var(--seminar-accent);
-		min-width: 1.6em;
-		text-align: right;
-	}
-	.contents-label {
-		flex: 1 1 auto;
-	}
-
 	.transcript {
 		max-width: 680px;
 	}
@@ -371,7 +275,6 @@
 		color: var(--text-muted);
 		vertical-align: super;
 		margin: 0 0.15em;
-		scroll-margin-top: 1rem;
 	}
 
 	.view-options {
@@ -440,25 +343,6 @@
 		}
 		100% {
 			background: transparent;
-		}
-	}
-
-	@media (max-width: 900px) {
-		.viewer.has-contents .layout {
-			grid-template-columns: 1fr;
-		}
-		.contents {
-			position: static;
-			max-height: none;
-			border-right: none;
-			border-bottom: 1px solid var(--border-light);
-			padding-right: 0;
-			padding-bottom: 1rem;
-			margin-bottom: 1rem;
-		}
-		.contents-list {
-			max-height: 240px;
-			overflow-y: auto;
 		}
 	}
 

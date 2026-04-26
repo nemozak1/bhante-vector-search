@@ -76,6 +76,7 @@ export interface SpeakerTurn {
 }
 
 export interface ContentsEntry {
+	ord: number;
 	page: number;
 	label: string;
 }
