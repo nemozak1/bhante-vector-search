@@ -32,6 +32,11 @@ npm run seed:dev
 # Backfill ingest_log.json into ingestion_log (one-shot, idempotent)
 python scripts/seed_from_files.py
 
+# Seed the seminars catalog from data/seminars/cleaned/{code}.json (preferred)
+# or raw/{code}.json (fallback). Re-run after the agent merges PRs that touch
+# titles/dates/locations. Use `-- --code SEM001` for one seminar.
+npm run seed:catalog
+
 # Seed seminar_contents from data/seminars/raw/*C.json files (one-shot, idempotent;
 # re-run after adding/changing C files). Use `-- --code SEM001` for one seminar.
 npm run seed:contents
@@ -110,7 +115,8 @@ migrations/                 numbered .sql files, applied in order
 ├── 0002_ingestion.sql      ingestion_log
 ├── 0003_user_features.sql  bookmarks, search_history, saved_queries
 ├── 0004_pgvector.sql       chunks (vector(3072) + halfvec HNSW index)
-└── 0005_seminar_contents.sql  seminar_contents (TOC entries scraped from raw/*C.json)
+├── 0005_seminar_contents.sql  seminar_contents (TOC entries scraped from raw/*C.json)
+└── 0006_seminars.sql       seminars catalog + FK from seminar_contents.seminar_code
 
 scripts/                    one-shot Python scripts
 ├── seed_from_files.py             ingest_log.json → Postgres

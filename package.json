@@ -11,6 +11,7 @@
     "migrate": "node --experimental-strip-types --no-warnings src/lib/server/db/migrate.ts",
     "seed:dev": "node --env-file=.env --experimental-strip-types --no-warnings scripts/seed_dev_user.ts",
     "seed:contents": "node --env-file=.env --experimental-strip-types --no-warnings scripts/seed_seminar_contents.ts",
+    "seed:catalog": "node --env-file=.env --experimental-strip-types --no-warnings scripts/seed_seminars.ts",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
