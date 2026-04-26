@@ -1,0 +1,73 @@
+# Daily backup of the irreplaceable Postgres tables to Cloudflare R2.
+#
+# What's backed up: user accounts (Better Auth), per-user state (bookmarks,
+# search_history, saved_queries), ingestion_log. Excludes `chunks` (huge,
+# replaceable from data/seminars/cleaned/ + OpenAI re-embed) and the
+# seminars/seminar_contents catalog (replaceable via npm run seed:catalog
+# / seed:contents).
+#
+# Required secrets (Repo Settings → Secrets and variables → Actions):
+#   NEON_DATABASE_URL        Neon production connection string
+#   R2_ACCOUNT_ID            Cloudflare account ID
+#   R2_ACCESS_KEY_ID         R2 token, scoped to the bucket
+#   R2_SECRET_ACCESS_KEY     R2 token secret
+#   R2_BUCKET                bucket name, e.g. bhante-db-backups
+#
+# See DEPLOYMENT.md §7 for setup. Bucket should have a 90-day lifecycle
+# rule to auto-delete old backups.
+
+name: db-backup
+
+on:
+  schedule:
+    # 04:00 UTC daily — quiet hours for both UK and US testers
+    - cron: '0 4 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Install postgres-client-16
+        run: |
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /usr/share/keyrings/postgresql.gpg
+          sudo sed -i 's|deb http|deb [signed-by=/usr/share/keyrings/postgresql.gpg] http|' /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client-16
+
+      - name: Dump irreplaceable tables
+        env:
+          PGSSLMODE: require
+        run: |
+          STAMP=$(date -u +%Y%m%d-%H%M)
+          OUT="backup-${STAMP}.sql"
+          pg_dump "${{ secrets.NEON_DATABASE_URL }}" \
+            --no-owner --no-acl --clean --if-exists \
+            --table='"user"' \
+            --table='session' \
+            --table='account' \
+            --table='verification' \
+            --table='bookmarks' \
+            --table='search_history' \
+            --table='saved_queries' \
+            --table='ingestion_log' \
+            > "$OUT"
+          gzip -9 "$OUT"
+          ls -lh "${OUT}.gz"
+          echo "BACKUP_FILE=${OUT}.gz" >> $GITHUB_ENV
+
+      - name: Upload to Cloudflare R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+        run: |
+          aws s3 cp "$BACKUP_FILE" \
+            "s3://${{ secrets.R2_BUCKET }}/$BACKUP_FILE" \
+            --endpoint-url "https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+          # Also keep a 'latest' alias for the recovery runbook
+          aws s3 cp "$BACKUP_FILE" \
+            "s3://${{ secrets.R2_BUCKET }}/latest.sql.gz" \
+            --endpoint-url "https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com"
