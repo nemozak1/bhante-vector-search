@@ -11,6 +11,13 @@ data/*
 .env
 .ipynb_checkpoints
 
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Claude Code per-project cache (skill data, auth, etc.)
+.claude/
+
 # Seminar cleaned transcripts and review status ARE tracked
 !data/seminars/
 data/seminars/*
