@@ -39,7 +39,7 @@ npm run start                              # serves the adapter-node build
 npm run check
 ```
 
-### Ingestion (Python, batch tools)
+### Ingestion (Python, batch tools — write directly to pgvector)
 
 ```bash
 # Scrape new seminars from freebuddhistaudio.com
@@ -47,16 +47,21 @@ python scrape_seminars.py
 python scrape_seminars.py --codes SEM050,SEM052P1
 python scrape_seminars.py --discover-only
 
-# Ingest an EPUB into the vector store
+# Ingest an EPUB into pgvector
 python ingest_epub.py --epub-path ./data/your_file.epub
 
-# Ingest seminar transcripts (currently writes to Chroma; pgvector port is TODO)
-python ingest_seminars.py
-python ingest_seminars.py --codes SEM050,SEM051
-python ingest_seminars.py --reprocess
+# Ingest seminars into pgvector (prefers cleaned/{code}.json, falls back to raw via processor)
+python ingest_seminars.py                      # all
+python ingest_seminars.py --codes SEM050,151   # specific codes
+python ingest_seminars.py --raw-only           # ignore cleaned/, use raw via processor
+python ingest_seminars.py --reprocess          # force re-ingestion even if source SHA matches the last log row
 ```
 
-**Note:** `ingest_seminars.py` and `ingest_epub.py` still write embeddings to ChromaDB at `./chroma/`. The runtime app reads from pgvector. To get new ingestions visible to search, re-run `python scripts/migrate_chroma_to_pgvector.py` after each ingestion run. Switching the ingestion scripts to write directly to pgvector (via asyncpg) is a small follow-up.
+`ingest_seminars.py` is **idempotent at the source-SHA level**: it computes `git hash-object data/seminars/cleaned/{code}.json` (falling back to a sha256 of the file bytes if not in git, then to the raw file if cleaned doesn't exist) and skips the seminar if the most recent `ingestion_log` row for that code already has the same `source_sha`. Use `--reprocess` to override.
+
+When a seminar is re-ingested, the script first **deletes any existing chunks** for that `seminar_code` in the target collection, then re-embeds and inserts fresh — no orphaned chunks. The OpenAI embedding call costs apply.
+
+**Planned bulk re-ingest:** once the remote-Claude PR review pass has cleaned all 200 seminars, run `python ingest_seminars.py --reprocess` to rebuild the entire seminar index from the cleaned versions. Until then, ingestion runs incrementally for whatever seminars have been added or changed.
 
 ## Architecture
 
