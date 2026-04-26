@@ -33,6 +33,7 @@ export const GET = async () => {
 	for (const file of await safeReaddir(CLEANED_DIR)) {
 		if (!file.endsWith('.json')) continue;
 		const code = file.replace(/\.json$/, '');
+		if (code.endsWith('C')) continue; // contents-companion file, not a seminar
 		const item = await tryLoad(join(CLEANED_DIR, file), code);
 		if (item) seminars.set(code, item);
 	}
@@ -40,6 +41,7 @@ export const GET = async () => {
 	for (const file of await safeReaddir(RAW_DIR)) {
 		if (!file.endsWith('.json')) continue;
 		const code = file.replace(/\.json$/, '');
+		if (code.endsWith('C')) continue; // contents-companion file
 		if (seminars.has(code)) continue;
 		const item = await tryLoad(join(RAW_DIR, file), code);
 		if (item) seminars.set(code, item);

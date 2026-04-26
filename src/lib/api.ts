@@ -75,12 +75,18 @@ export interface SpeakerTurn {
 	turn_index: number;
 }
 
+export interface ContentsEntry {
+	page: number;
+	label: string;
+}
+
 export interface SeminarTranscript {
 	code: string;
 	title: string;
 	date: string | null;
 	location: string | null;
 	turns: SpeakerTurn[];
+	contents: ContentsEntry[] | null;
 }
 
 export async function getSeminarTranscript(code: string): Promise<SeminarTranscript> {

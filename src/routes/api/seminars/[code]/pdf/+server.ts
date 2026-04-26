@@ -38,12 +38,6 @@ export const GET = async ({ params }) => {
 		}
 	}
 
-	doc
-		.moveDown(2)
-		.fontSize(8)
-		.fillColor('#8c7e6a')
-		.text('Source: Free Buddhist Audio — freebuddhistaudio.com');
-
 	doc.end();
 	const pdfBuf = await finished;
 

@@ -44,7 +44,6 @@ export function seminarToHtml(data: SeminarTranscript, opts: { forPrint?: boolea
   .body { font-size: 1.1rem; }
   .body p { margin-bottom: 0.5em; }
   .body p:last-child { margin-bottom: 0; }
-  .source { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e8e3da; font-family: sans-serif; font-size: 0.75rem; color: #8c7e6a; }
   ${printStyle}
 </style>
 </head>
@@ -52,7 +51,6 @@ export function seminarToHtml(data: SeminarTranscript, opts: { forPrint?: boolea
   <h1>${title}</h1>
   ${subtitle ? `<p class="subtitle">${subtitle.slice(3)}</p>` : ''}
   ${turnsHtml}
-  <div class="source">Source: Free Buddhist Audio — freebuddhistaudio.com</div>
 </body>
 </html>`;
 }

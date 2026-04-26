@@ -71,8 +71,6 @@
 
 	<footer class="app-footer">
 		<span>Texts by Urgyen Sangharakshita</span>
-		<span class="sep">&#183;</span>
-		<span>Seminars from <a href="https://www.freebuddhistaudio.com" target="_blank" rel="noopener">Free Buddhist Audio</a></span>
 	</footer>
 </div>
 
