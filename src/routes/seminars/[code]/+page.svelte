@@ -67,7 +67,7 @@
 
 	onMount(async () => {
 		try {
-			transcript = await seminarsRemote.get(code);
+			transcript = await seminarsRemote.get(code).run();
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Failed to load transcript';
 		} finally {

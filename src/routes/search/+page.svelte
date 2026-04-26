@@ -19,7 +19,7 @@
 		error = '';
 		query = q;
 		try {
-			const data = await searchRemote.all({ query: q, k });
+			const data = await searchRemote.all({ query: q, k }).run();
 			results = data.results;
 			searched = true;
 			allSearchState.set({ query: q, k, results: data.results, searched: true });

@@ -27,7 +27,7 @@
 
 	onMount(async () => {
 		try {
-			seminars = await seminarsRemote.list();
+			seminars = await seminarsRemote.list().run();
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Failed to load seminars';
 		} finally {

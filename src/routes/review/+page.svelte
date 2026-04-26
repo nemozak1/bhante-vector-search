@@ -11,7 +11,7 @@
 
 	onMount(async () => {
 		try {
-			data = await reviewRemote.status();
+			data = await reviewRemote.status().run();
 		} catch (e) {
 			error = e instanceof Error ? e.message : 'Failed to load review status';
 		} finally {

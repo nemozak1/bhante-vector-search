@@ -14,8 +14,8 @@
 	onMount(async () => {
 		try {
 			const [diffData, statusData] = await Promise.all([
-				reviewRemote.diff(code),
-				reviewRemote.status(),
+				reviewRemote.diff(code).run(),
+				reviewRemote.status().run(),
 			]);
 			diff = diffData;
 			statusItem = statusData[code] ?? null;

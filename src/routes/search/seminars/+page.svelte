@@ -18,7 +18,7 @@
 		error = '';
 		query = q;
 		try {
-			const data = await searchRemote.seminars({ query: q, k });
+			const data = await searchRemote.seminars({ query: q, k }).run();
 			results = data.results;
 			searched = true;
 			seminarSearchState.set({ query: q, k, results: data.results, searched: true });
