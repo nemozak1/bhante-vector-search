@@ -23,6 +23,7 @@ data/seminars/*
 !data/seminars/cleaned/**
 !data/seminars/review_status.json
 !data/seminars/REVIEW.md
+!data/seminars/consolidated.json
 
 # Env
 .env

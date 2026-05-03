@@ -212,6 +212,19 @@ async def _log_ingestion(
     )
 
 
+def _consolidated_parts() -> set[str]:
+    """Codes that have been merged into a parent seminar (per consolidated.json).
+    These are excluded from default ingest so the parent is the single source of truth."""
+    path = PROJECT_ROOT / "data" / "seminars" / "consolidated.json"
+    if not path.exists():
+        return set()
+    reg = json.loads(path.read_text())
+    skip: set[str] = set()
+    for entry in reg.values():
+        skip.update(entry.get("parts", []))
+    return skip
+
+
 async def _list_targets(codes: Optional[list[str]]) -> list[str]:
     cleaned_dir = PROJECT_ROOT / "data" / "seminars" / "cleaned"
     raw_dir = PROJECT_ROOT / "data" / "seminars" / "raw"
@@ -222,13 +235,14 @@ async def _list_targets(codes: Optional[list[str]]) -> list[str]:
     if raw_dir.exists():
         available.update(p.stem for p in raw_dir.glob("*.json") if not p.stem.endswith("C"))
 
+    skip_parts = _consolidated_parts()
     if codes:
         targets = [c for c in codes if c in available]
         missing = set(codes) - available
         if missing:
             print(f"warning: codes not found: {sorted(missing)}", file=sys.stderr)
     else:
-        targets = sorted(available)
+        targets = sorted(available - skip_parts)
     return targets
 
 

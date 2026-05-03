@@ -23,6 +23,26 @@ if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is not set');
 const DATA_ROOT = resolve(process.cwd(), 'data', 'seminars');
 const CLEANED = resolve(DATA_ROOT, 'cleaned');
 const RAW = resolve(DATA_ROOT, 'raw');
+const CONSOLIDATED = resolve(DATA_ROOT, 'consolidated.json');
+
+/**
+ * Read consolidated.json and return the set of part-codes that have been
+ * merged into a parent seminar. Those parts must not be seeded as their own
+ * rows — only the parent code should appear in the seminars table.
+ */
+async function loadConsolidatedParts(): Promise<Set<string>> {
+	const skip = new Set<string>();
+	try {
+		const raw = await readFile(CONSOLIDATED, 'utf8');
+		const reg = JSON.parse(raw) as Record<string, { parts?: string[] }>;
+		for (const entry of Object.values(reg)) {
+			for (const p of entry.parts ?? []) skip.add(p);
+		}
+	} catch {
+		// no registry → nothing to skip
+	}
+	return skip;
+}
 
 function parseOnlyCode(): string | null {
 	const eq = process.argv.find((a) => a.startsWith('--code='));
@@ -35,6 +55,7 @@ function parseOnlyCode(): string | null {
 type Seminar = { code: string; source: 'cleaned' | 'raw'; path: string };
 
 async function listSeminarFiles(onlyCode: string | null): Promise<Seminar[]> {
+	const consolidatedParts = await loadConsolidatedParts();
 	const seen = new Map<string, Seminar>();
 	for (const dir of [CLEANED, RAW]) {
 		let files: string[];
@@ -48,6 +69,7 @@ async function listSeminarFiles(onlyCode: string | null): Promise<Seminar[]> {
 			if (!name.endsWith('.json')) continue;
 			const code = name.replace(/\.json$/, '');
 			if (code.endsWith('C')) continue; // contents companion, not a transcript
+			if (consolidatedParts.has(code)) continue; // merged into a parent code
 			if (onlyCode && code !== onlyCode) continue;
 			if (seen.has(code)) continue; // prefer cleaned
 			seen.set(code, { code, source, path: resolve(dir, name) });
