@@ -819,7 +819,7 @@
     "has_location": true
   },
   "SEM043": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Dhanakosa Opening 1993 - Questions and Answers",
     "format_type": "br-based",
     "turn_count": 5,
@@ -832,7 +832,7 @@
     "has_location": true
   },
   "SEM044": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Fifteen Points for Buddhist Parents - Questions and Answers",
     "format_type": "p-based",
     "turn_count": 19,
@@ -845,7 +845,7 @@
     "has_location": true
   },
   "SEM045": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Twenty Years in the UK - Interview",
     "format_type": "br-based",
     "turn_count": 186,
@@ -859,7 +859,7 @@
     "has_location": true
   },
   "SEM046": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Theris - Questions and Answers 2002",
     "format_type": "mixed",
     "turn_count": 185,
@@ -875,7 +875,7 @@
     "has_location": false
   },
   "SEM047": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "A Survey of Buddhism - Chapter 1 Sections 8 - 18",
     "format_type": "p-based",
     "turn_count": 1434,
@@ -891,7 +891,7 @@
     "has_location": true
   },
   "SEM048": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Advice to the Three Fortunate Women - Unchecked",
     "format_type": "p-based",
     "turn_count": 558,
@@ -912,7 +912,7 @@
     "has_location": false
   },
   "SEM049": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "An Interview with Five Clergymen",
     "format_type": "mixed",
     "turn_count": 230,
@@ -927,7 +927,7 @@
     "has_location": true
   },
   "SEM050": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Auckland Questions and Answers - March 1979",
     "format_type": "br-based",
     "turn_count": 71,
@@ -944,7 +944,7 @@
     "has_location": true
   },
   "SEM051": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Auckland Questions and Answers - May 1979",
     "format_type": "br-based",
     "turn_count": 177,
@@ -995,7 +995,7 @@
     "has_location": true
   },
   "SEM052P1": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 1 - Unchecked",
     "format_type": "p-based",
     "turn_count": 58,
