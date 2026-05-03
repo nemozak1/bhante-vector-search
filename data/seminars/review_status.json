@@ -1159,7 +1159,7 @@
     "has_location": false
   },
   "SEM063": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Endlessly Fascinating Cry - Complete Text",
     "format_type": "p-based",
     "turn_count": 1463,
@@ -1174,7 +1174,7 @@
     "has_location": true
   },
   "SEM064": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Five Spiritual Faculties - The Way to Wisdom - Unchecked",
     "format_type": "p-based",
     "turn_count": 432,
@@ -1215,107 +1215,8 @@
     "has_date": false,
     "has_location": true
   },
-  "SEM065P1": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 1",
-    "format_type": "mixed",
-    "turn_count": 384,
-    "total_paragraphs": 556,
-    "unattributed_pct": 1.8,
-    "issues": [
-      "suspect_speaker:Thus have I heard(1)",
-      "suspect_speaker:Then a little further down the same page(1)",
-      "suspect_speaker:Aryamitra(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM065P2": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 2",
-    "format_type": "p-based",
-    "turn_count": 365,
-    "total_paragraphs": 520,
-    "unattributed_pct": 0.8,
-    "issues": [
-      "suspect_speaker:Tejananda(1)",
-      "suspect_speaker:A voice(1)"
-    ],
-    "has_date": true,
-    "has_location": true
-  },
-  "SEM065P3": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 3",
-    "format_type": "p-based",
-    "turn_count": 408,
-    "total_paragraphs": 589,
-    "unattributed_pct": 0.5,
-    "issues": [
-      "suspect_speaker:A Voice(1)",
-      "suspect_speaker:Ratnapriya(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM065P4": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 4",
-    "format_type": "p-based",
-    "turn_count": 362,
-    "total_paragraphs": 533,
-    "unattributed_pct": 0.9,
-    "issues": [
-      "suspect_speaker:Sona(1)",
-      "suspect_speaker:The Forest Monks of Sri Lanka(1)",
-      "suspect_speaker:You asked(1)",
-      "suspect_speaker:Susiddhi(1)",
-      "suspect_speaker:So I said(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM065P5": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 5",
-    "format_type": "mixed",
-    "turn_count": 404,
-    "total_paragraphs": 551,
-    "unattributed_pct": 0.7,
-    "issues": [
-      "suspect_speaker:Subhuti(1)",
-      "suspect_speaker:Susiddhi(1)",
-      "suspect_speaker:Several voices(1)",
-      "suspect_speaker:A voice(1)",
-      "missing_location"
-    ],
-    "has_date": true,
-    "has_location": false
-  },
-  "SEM065P6": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 6",
-    "format_type": "mixed",
-    "turn_count": 560,
-    "total_paragraphs": 774,
-    "unattributed_pct": 0.9,
-    "issues": [
-      "suspect_speaker:Ratnavira(1)",
-      "suspect_speaker:Firstly(1)",
-      "suspect_speaker:Then again another interesting point(1)",
-      "suspect_speaker:Susiddhi(1)",
-      "missing_location"
-    ],
-    "has_date": true,
-    "has_location": false
-  },
   "SEM066": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Going for Refuge - Questions and Answers Tuscany 1986",
     "format_type": "p-based",
     "turn_count": 382,
@@ -1335,7 +1236,7 @@
     "has_location": true
   },
   "SEM067": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Hedonism and the Spiritual Life",
     "format_type": "p-based",
     "turn_count": 811,
@@ -1357,7 +1258,7 @@
     "has_location": true
   },
   "SEM068": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "In the Realm of the Lotus - An Interview with J.O.Mallander About Art",
     "format_type": "p-based",
     "turn_count": 171,
@@ -1372,7 +1273,7 @@
     "has_location": true
   },
   "SEM069": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation - Meeting Spiritual Friends - Unchecked",
     "format_type": "p-based",
     "turn_count": 414,
@@ -1436,7 +1337,7 @@
     "has_location": false
   },
   "SEM070": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation - Various Tuscany 1985",
     "format_type": "p-based",
     "turn_count": 2370,
@@ -1471,7 +1372,7 @@
     "has_location": true
   },
   "SEM071": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 1 - The Motive",
     "format_type": "p-based",
     "turn_count": 1250,
@@ -1500,7 +1401,7 @@
     "has_location": true
   },
   "SEM072": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 10 - Training in an Enlightened Attitude",
     "format_type": "mixed",
     "turn_count": 1508,
@@ -1518,7 +1419,7 @@
     "has_location": false
   },
   "SEM073": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 2 - Working Basis",
     "format_type": "p-based",
     "turn_count": 1300,
@@ -1546,7 +1447,7 @@
     "has_location": true
   },
   "SEM074": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 21 - Buddha Activity",
     "format_type": "p-based",
     "turn_count": 515,
@@ -1563,7 +1464,7 @@
     "has_location": true
   },
   "SEM075": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 4 - Transitoriness",
     "format_type": "p-based",
     "turn_count": 1717,
@@ -1584,7 +1485,7 @@
     "has_location": false
   },
   "SEM076": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 7 - Benevolence and Compassion - Unchecked",
     "format_type": "p-based",
     "turn_count": 734,
@@ -1648,7 +1549,7 @@
     "has_location": false
   },
   "SEM077": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapters 14 and 15 - Patience and Strenuousness - Unchecked",
     "format_type": "p-based",
     "turn_count": 1214,
@@ -1705,7 +1606,7 @@
     "has_location": false
   },
   "SEM078": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Manjughosa Stuti Sadhana",
     "format_type": "p-based",
     "turn_count": 536,
@@ -1721,7 +1622,7 @@
     "has_location": true
   },
   "SEM079": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Micchaditthis - Wrong Views",
     "format_type": "p-based",
     "turn_count": 336,
@@ -1745,7 +1646,7 @@
     "has_location": true
   },
   "SEM080": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Heartfelt Advice to Rechungpa",
     "format_type": "p-based",
     "turn_count": 833,
@@ -1765,7 +1666,7 @@
     "has_location": true
   },
   "SEM081": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa and the Novices - Song of a Yogi-s Joy - Unchecked",
     "format_type": "p-based",
     "turn_count": 480,
@@ -1782,7 +1683,7 @@
     "has_location": true
   },
   "SEM082": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa-s First Meeting with Rechungpa",
     "format_type": "mixed",
     "turn_count": 761,
@@ -4558,6 +4459,25 @@
       "SEM062P2",
       "SEM062P3",
       "SEM062P4"
+    ]
+  },
+  "SEM065": {
+    "status": "reviewed",
+    "title": "The Forest Monks of Sri Lanka",
+    "format_type": "merged",
+    "turn_count": 2483,
+    "total_paragraphs": 3528,
+    "unattributed_pct": 0.4,
+    "issues": [],
+    "has_date": true,
+    "has_location": true,
+    "consolidated_from": [
+      "SEM065P1",
+      "SEM065P2",
+      "SEM065P3",
+      "SEM065P4",
+      "SEM065P5",
+      "SEM065P6"
     ]
   }
 }

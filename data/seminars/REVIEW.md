@@ -171,8 +171,13 @@ or set to `null`.
   for date clues.
 - **location**: Same area — look for place names like Padmaloka, Sukhavati,
   Bethnal Green, Il Convento, etc.
-- **title**: Usually correct from FBA metadata, but remove " - Unchecked" suffix
-  if the transcript has been reviewed.
+- **title**: Usually correct from FBA metadata. **Leave the " - Unchecked" suffix
+  in place** even after a structural review. "Unchecked" specifically means the
+  transcript has never been verified against the original audio recording —
+  which is a different (and stricter) bar than the structural cleanup this
+  workflow performs (speakers, metadata, false-positive merges, OCR variants).
+  The suffix only goes when a human has actually compared the prose against
+  the recording.
 
 ### 4. Merge Broken Turns
 
