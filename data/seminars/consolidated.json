@@ -21,5 +21,39 @@
     ],
     "merged_at": "2026-05-03",
     "description": "Bodhisattva Ideal - Questions and Answers Tuscany 1984: 17 tape-side parts merged into a single seminar with inline part markers"
+  },
+  "SEM054": {
+    "parts": [
+      "SEM054P1",
+      "SEM054P2",
+      "SEM054P3",
+      "SEM054P4",
+      "SEM054P5",
+      "SEM054P6"
+    ],
+    "merged_at": "2026-05-03",
+    "description": "Trevor Ling's The Buddha (Padmaloka, September 1976): 6 tape parts merged"
+  },
+  "SEM055": {
+    "parts": [
+      "SEM055P1",
+      "SEM055P2",
+      "SEM055P3",
+      "SEM055P4",
+      "SEM055P5",
+      "SEM055P6"
+    ],
+    "merged_at": "2026-05-03",
+    "description": "The Buddha's Law Among the Birds Seminar (Il Convento, Tuscany, November 1982): 6 parts merged"
+  },
+  "SEM062": {
+    "parts": [
+      "SEM062P1",
+      "SEM062P2",
+      "SEM062P3",
+      "SEM062P4"
+    ],
+    "merged_at": "2026-05-03",
+    "description": "The Duties of Brotherhood in Islam (Padmaloka Chairmen's Retreat, September 1983): 4 parts merged"
   }
 }
