@@ -7,6 +7,9 @@ declare global {
 			user: Session['user'] | null;
 		}
 	}
+
+	const __APP_VERSION__: string;
+	const __APP_RELEASED__: string;
 }
 
 export {};

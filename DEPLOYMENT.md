@@ -266,6 +266,56 @@ Same Actions page should show "Next run: tomorrow 04:00 UTC" or similar. From no
 
 ---
 
+## 7B. Feedback widget bucket (~5 min, optional)
+
+The in-app feedback widget uploads screenshots to a SEPARATE R2 bucket, kept private. The widget still works without R2 — submitters just can't attach a screenshot. Enable this when you want screenshot capture.
+
+### 7B.a. Create the bucket
+
+1. R2 dashboard → **Create bucket** → name: `bhante-feedback`
+2. **Settings → CORS policy** → add:
+   ```json
+   [
+     {
+       "AllowedOrigins": ["https://YOUR-PROD-DOMAIN", "http://localhost:5173"],
+       "AllowedMethods": ["PUT"],
+       "AllowedHeaders": ["Content-Type"]
+     }
+   ]
+   ```
+3. (Optional) **Object lifecycle rules**: delete `feedback/*` older than 365 days.
+
+### 7B.b. Reuse or create R2 API tokens
+
+The token from step 7b only has access to `bhante-db-backups`. Either:
+- **Option A (simpler):** edit the existing token to also include `bhante-feedback` in its bucket scope.
+- **Option B (cleaner):** create a second token scoped to `bhante-feedback` only.
+
+Either way, the app reads `R2_ACCESS_KEY_ID`/`R2_SECRET_ACCESS_KEY`/`R2_ACCOUNT_ID` from env. Set `R2_FEEDBACK_BUCKET=bhante-feedback`.
+
+### 7B.c. Set the Vercel env vars
+
+In Vercel project settings → Environment Variables, add:
+
+| Var | Value |
+|---|---|
+| `R2_ACCOUNT_ID` | (same as backups) |
+| `R2_ACCESS_KEY_ID` | (same or new token) |
+| `R2_SECRET_ACCESS_KEY` | (same or new token) |
+| `R2_FEEDBACK_BUCKET` | `bhante-feedback` |
+| `ADMIN_EMAILS` | comma-separated emails of admins (e.g. `nemo@example.com`) |
+| `FEEDBACK_SLACK_WEBHOOK_URL` | (optional) Slack incoming webhook URL |
+
+`ADMIN_EMAILS` gates `/admin/feedback`. Without it, nobody can review reports — submitters can still submit, but the queue is invisible until you add yourself.
+
+### 7B.d. Verify
+
+1. Sign in, click the FAB (bottom-right), submit a test report with a screenshot.
+2. R2 dashboard → `bhante-feedback` → see `feedback/YYYY/MM/<id>.png`
+3. `https://YOUR-PROD-DOMAIN/admin/feedback` shows the row; detail page shows the screenshot via a 1-hour presigned GET URL.
+
+---
+
 ## 8. Final sanity checks (~5 min)
 
 - [ ] Sign up as a new test user, run a search, sign out

@@ -4,6 +4,10 @@
 	import { page } from '$app/state';
 	import type { Snippet } from 'svelte';
 	import { auth, signOut } from '$lib/auth.svelte';
+	import FeedbackWidget from '$lib/components/feedback/FeedbackWidget.svelte';
+	import { install as installConsoleBuffer } from '$lib/components/feedback/console-buffer';
+
+	installConsoleBuffer();
 
 	let { children }: { children: Snippet } = $props();
 
@@ -37,6 +41,11 @@
 		await signOut();
 		goto('/login');
 	}
+
+	const appVersion = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : 'dev';
+	const appReleased =
+		typeof __APP_RELEASED__ !== 'undefined' ? __APP_RELEASED__ : new Date().toISOString();
+	const releasedDate = appReleased.slice(0, 10);
 </script>
 
 <div class="app">
@@ -72,8 +81,15 @@
 
 	<footer class="app-footer">
 		<span>Texts by Urgyen Sangharakshita</span>
+		<span class="version" title="Build {appVersion} released {appReleased}">
+			· {appVersion} ({releasedDate})
+		</span>
 	</footer>
 </div>
+
+{#if !auth.loading && auth.user && !isPublicRoute(page.url.pathname)}
+	<FeedbackWidget user={auth.user} />
+{/if}
 
 <style>
 	:global(*) {
@@ -224,6 +240,13 @@
 
 	.app-footer a:hover {
 		text-decoration: underline;
+	}
+
+	.app-footer .version {
+		color: var(--text-muted);
+		opacity: 0.65;
+		font-size: 0.72rem;
+		margin-left: 0.5rem;
 	}
 
 	.sep {
