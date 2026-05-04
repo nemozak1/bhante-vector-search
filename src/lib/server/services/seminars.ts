@@ -17,7 +17,13 @@ export async function list(): Promise<SeminarListItem[]> {
 }
 
 export async function get(code: string): Promise<SeminarDetail> {
-	const data = await loadSeminarForDisplay(code);
+	// Prefer the transcript stored on seminars.transcript (populated by
+	// seed:catalog from data/seminars/cleaned/{code}.json). Falls back to the
+	// filesystem loader so local dev still works before re-seeding, and so
+	// raw-only seminars (no cleaned file) still render.
+	const data =
+		(await seminarsDal.getTranscriptByCode(code)) ??
+		(await loadSeminarForDisplay(code));
 	if (!data) error(404, `Seminar ${code} not found`);
 	const contents = await seminarContentsDal.listBySeminar(code);
 	return { ...data, contents: contents.length ? contents : null };

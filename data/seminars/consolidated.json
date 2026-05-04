@@ -67,5 +67,21 @@
     ],
     "merged_at": "2026-05-03",
     "description": "The Forest Monks of Sri Lanka (Padmaloka Chairmen's Study Retreat, August 1985): 6 parts merged"
+  },
+  "SEM092": {
+    "parts": [
+      "SEM092P1",
+      "SEM092P2"
+    ],
+    "merged_at": "2026-05-04",
+    "description": "Mitrata Omnibus - Pre-ordination Course (Tuscany 1981 / Padmaloka 1982): 2 parts merged"
+  },
+  "SEM093": {
+    "parts": [
+      "SEM093P1",
+      "SEM093P2"
+    ],
+    "merged_at": "2026-05-04",
+    "description": "Nanamoli's Life of the Buddha - Chapters 4 and 11 (Tuscany 1986): 2 parts merged"
   }
 }

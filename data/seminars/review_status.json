@@ -1699,7 +1699,7 @@
     "has_location": true
   },
   "SEM083": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Rechungpa-s Departure",
     "format_type": "mixed",
     "turn_count": 1677,
@@ -1718,10 +1718,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM084": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Rechungpa's Journey to Weu",
     "format_type": "mixed",
     "turn_count": 1387,
@@ -1752,10 +1753,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM085": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Rechungpa-s Repentance - Unchecked",
     "format_type": "p-based",
     "turn_count": 1933,
@@ -1818,10 +1820,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM086": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Rechungpa's Third Journey",
     "format_type": "p-based",
     "turn_count": 1191,
@@ -1835,10 +1838,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM087": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Red Rock Jewel Valley - Unchecked",
     "format_type": "p-based",
     "turn_count": 186,
@@ -1859,10 +1863,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM088": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - The Meeting at Silver Spring - Unchecked",
     "format_type": "mixed",
     "turn_count": 633,
@@ -1896,10 +1901,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM089": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - The Shepherd-s Search for Mind",
     "format_type": "p-based",
     "turn_count": 504,
@@ -1915,10 +1921,11 @@
       "suspect_speaker:PS(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM090": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - The Yak Horn - Unchecked",
     "format_type": "p-based",
     "turn_count": 1604,
@@ -1969,10 +1976,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM091": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Mind in Buddhist Psychology - Unchecked",
     "format_type": "p-based",
     "turn_count": 5063,
@@ -2106,121 +2114,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
-  },
-  "SEM092P1": {
-    "status": "unreviewed",
-    "title": "Mitrata Omnibus - Pre - ordination Course Tuscany 1981 and 1982 - Part 1",
-    "format_type": "p-based",
-    "turn_count": 1801,
-    "total_paragraphs": 2546,
-    "unattributed_pct": 1.4,
-    "issues": [
-      "suspect_speaker:system(1)",
-      "suspect_speaker:With regard to the other matter(1)",
-      "suspect_speaker:Cieran Saunders(1)",
-      "suspect_speaker:As regards organizational contact(1)",
-      "suspect_speaker:interest(1)",
-      "suspect_speaker:Mark Bowden(1)",
-      "suspect_speaker:Seminar(1)",
-      "suspect_speaker:Simon M(1)",
-      "suspect_speaker:Clive Pomfrett(1)",
-      "suspect_speaker:Peter Hill(1)",
-      "suspect_speaker:Prajnananda(1)",
-      "suspect_speaker:Rudiger Janson(1)",
-      "suspect_speaker:Jinapriya(1)",
-      "suspect_speaker:Simon McIntyre(1)",
-      "suspect_speaker:Yashodeva(1)",
-      "suspect_speaker:Dharmaloka(1)",
-      "suspect_speaker:A Voice(1)",
-      "suspect_speaker:Transcriber's note(1)",
-      "suspect_speaker:And when you say(1)",
-      "suspect_speaker:In the next line you wouldn't say(1)",
-      "suspect_speaker:In the same way you wouldn't say(1)",
-      "suspect_speaker:But anyway the general principle is(1)",
-      "suspect_speaker:Bob(1)",
-      "suspect_speaker:you have in that person(1)",
-      "suspect_speaker:David(1)",
-      "suspect_speaker:Jon. Rice(1)",
-      "suspect_speaker:Rudiger Jensen(1)",
-      "suspect_speaker:Yashopala(1)",
-      "suspect_speaker:Another(1)",
-      "suspect_speaker:A.A.(1)",
-      "all_caps_speaker:M.S",
-      "all_caps_speaker:A.A",
-      "suspect_speaker:But nonetheless the question arises(1)",
-      "suspect_speaker:The Voice(1)",
-      "all_caps_speaker:D.L",
-      "suspect_speaker:A(1)",
-      "suspect_speaker:Well the answer is(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM092P2": {
-    "status": "unreviewed",
-    "title": "Mitrata Omnibus - Pre - ordination Course Tuscany 1981 and 1982 - Part 2",
-    "format_type": "p-based",
-    "turn_count": 417,
-    "total_paragraphs": 679,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:Final Preordination Retreat(1)",
-      "suspect_speaker:Paul(1)",
-      "suspect_speaker:Mike(1)",
-      "suspect_speaker:Terry(1)",
-      "suspect_speaker:Chris Harper(1)",
-      "suspect_speaker:Darren Dewitt(1)",
-      "suspect_speaker:Chris(1)",
-      "suspect_speaker:Adrian Macro(1)",
-      "suspect_speaker:Graham Steven(1)",
-      "suspect_speaker:Supposing someone asks you(1)",
-      "suspect_speaker:Kenneth(1)",
-      "suspect_speaker:Berni(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM093P1": {
-    "status": "unreviewed",
-    "title": "Nanamoli-s Life of the Buddha - Chapters 4 and 11 Tuscany 1986 Part 1",
-    "format_type": "p-based",
-    "turn_count": 705,
-    "total_paragraphs": 819,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:fundamentalism(1)",
-      "suspect_speaker:ago(1)",
-      "suspect_speaker:length. He says(1)",
-      "suspect_speaker:Sumana(1)",
-      "suspect_speaker:Tommy(1)",
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:Douglas(1)",
-      "suspect_speaker:Dhammamati(1)",
-      "suspect_speaker:Dharmamati(1)"
-    ],
-    "has_date": true,
-    "has_location": true
-  },
-  "SEM093P2": {
-    "status": "unreviewed",
-    "title": "Nanamoli-s Life of the Buddha - Chapters 4 and 11 Tuscany 1986 Part 2",
-    "format_type": "p-based",
-    "turn_count": 376,
-    "total_paragraphs": 447,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:Nanamoli XI(1)",
-      "suspect_speaker:Jayamati(1)",
-      "suspect_speaker:some cases(1)"
-    ],
-    "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM094": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Noble Eightfold Path - Questions and Answers Tuscany 1982",
     "format_type": "p-based",
     "turn_count": 2608,
@@ -2268,10 +2166,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM095": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Noble Eightfold Path - Questions and Answers Tuscany 1983",
     "format_type": "mixed",
     "turn_count": 740,
@@ -2286,10 +2185,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM096": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Ode on Dr Levett",
     "format_type": "p-based",
     "turn_count": 379,
@@ -2303,10 +2203,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM097": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Ode to Friendship",
     "format_type": "p-based",
     "turn_count": 588,
@@ -2320,10 +2221,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM098": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Padmasambhava - Life and Liberation Canto 38",
     "format_type": "mixed",
     "turn_count": 182,
@@ -2334,10 +2236,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM099": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Padmasambhava - Life and Liberation Cantos 37 and 39",
     "format_type": "p-based",
     "turn_count": 344,
@@ -2355,10 +2258,11 @@
       "missing_location"
     ],
     "has_date": true,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM100": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Alavaga Sutta",
     "format_type": "p-based",
     "turn_count": 165,
@@ -2369,10 +2273,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM101": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Ariyapariyesana Sutta",
     "format_type": "p-based",
     "turn_count": 484,
@@ -2383,10 +2288,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM102": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Bhaddali Sutta",
     "format_type": "p-based",
     "turn_count": 1012,
@@ -2398,7 +2304,8 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM103": {
     "status": "unreviewed",
@@ -4479,5 +4386,15 @@
       "SEM065P5",
       "SEM065P6"
     ]
+  },
+  "SEM092": {
+    "status": "reviewed",
+    "reviewed_at": "2026-05-04",
+    "issue_count": 0
+  },
+  "SEM093": {
+    "status": "reviewed",
+    "reviewed_at": "2026-05-04",
+    "issue_count": 0
   }
 }

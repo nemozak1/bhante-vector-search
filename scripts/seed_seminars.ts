@@ -94,16 +94,30 @@ async function seed() {
 			const title = data.title ?? '';
 			const date = data.date ?? null;
 			const location = data.location ?? null;
+			// Persist transcript so the deployed app doesn't need filesystem access.
+			const transcript = {
+				code: data.code ?? s.code,
+				title,
+				date,
+				location,
+				turns: (data.turns ?? []).map(
+					(t: { speaker?: string | null; paragraphs: string[] }) => ({
+						speaker: t.speaker ?? null,
+						paragraphs: t.paragraphs ?? []
+					})
+				)
+			};
 			await pool.query(
-				`insert into seminars (code, title, date, location, source, updated_at)
-				 values ($1, $2, $3, $4, $5, now())
+				`insert into seminars (code, title, date, location, source, transcript, updated_at)
+				 values ($1, $2, $3, $4, $5, $6, now())
 				 on conflict (code) do update
-				   set title    = excluded.title,
-				       date     = excluded.date,
-				       location = excluded.location,
-				       source   = excluded.source,
+				   set title      = excluded.title,
+				       date       = excluded.date,
+				       location   = excluded.location,
+				       source     = excluded.source,
+				       transcript = excluded.transcript,
 				       updated_at = now()`,
-				[s.code, title, date, location, s.source]
+				[s.code, title, date, location, s.source, JSON.stringify(transcript)]
 			);
 		}
 
