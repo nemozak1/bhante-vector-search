@@ -1,0 +1,72 @@
+# When the remote-Claude PR review pass merges to main and touches
+# data/seminars/cleaned/*.json, re-ingest the changed seminars into
+# Neon (pgvector) so production search reflects the cleaned versions.
+#
+# Idempotent: ingest_seminars.py uses git-hash-object source-SHA dedup,
+# so unchanged seminars are skipped within seconds. Cost ceiling for a
+# full re-embed of all ~200 seminars: ~$0.17 in OpenAI charges.
+#
+# Required secrets (Repo Settings → Secrets and variables → Actions):
+#   NEON_DATABASE_URL   Neon production connection string (same one used
+#                       by .github/workflows/db-backup.yml)
+#   OPENAI_API_KEY      OpenAI API key for the embedding call
+
+name: sync-content-to-neon
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/seminars/cleaned/**'
+  workflow_dispatch: {}
+
+# Don't run two ingests in parallel — let pushes queue up
+concurrency:
+  group: sync-content
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Install Python ingestion deps
+        run: |
+          pip install --upgrade pip
+          pip install \
+            asyncpg \
+            openai \
+            python-dotenv \
+            beautifulsoup4 \
+            ebooklib
+
+      - name: Re-ingest changed seminars
+        # Source-SHA dedup inside the script skips unchanged seminars,
+        # so running with no --codes is safe and fast on no-op pushes.
+        env:
+          DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python ingest_seminars.py
+
+      - name: Re-seed catalog (titles, dates, locations)
+        env:
+          DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/seed_seminars.ts
+
+      - name: Re-seed contents (TOC entries from raw/*C.json)
+        env:
+          DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+        run: node --experimental-strip-types --no-warnings scripts/seed_seminar_contents.ts

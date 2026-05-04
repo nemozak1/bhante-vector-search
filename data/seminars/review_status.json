@@ -994,365 +994,8 @@
     "has_date": false,
     "has_location": true
   },
-  "SEM052P1": {
-    "status": "reviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 1 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 58,
-    "total_paragraphs": 157,
-    "unattributed_pct": 1.9,
-    "issues": [
-      "suspect_speaker:Abhava(1)",
-      "suspect_speaker:Lalitavajra(1)",
-      "suspect_speaker:Lalltavajra(1)",
-      "suspect_speaker:Mike Shaw(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P10": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 10 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 70,
-    "total_paragraphs": 116,
-    "unattributed_pct": 0.9,
-    "issues": [
-      "suspect_speaker:Jonathan Brazier(1)",
-      "suspect_speaker:Kamilasila(1)",
-      "suspect_speaker:Prasanasiddhi(1)",
-      "suspect_speaker:Phil Shaun(1)",
-      "suspect_speaker:Devamtria(1)",
-      "suspect_speaker:Simon Turnbull(1)",
-      "suspect_speaker:Wade McKee(1)",
-      "suspect_speaker:Phil Miller(1)",
-      "suspect_speaker:Will Spens(1)",
-      "suspect_speaker:Rick(1)",
-      "suspect_speaker:Ric Cooney(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM052P11": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 11 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 110,
-    "total_paragraphs": 152,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:Mark McClelland(1)",
-      "suspect_speaker:Prasannasiddhi(1)",
-      "suspect_speaker:Ric Cooney(1)",
-      "suspect_speaker:Jonathan Brazier(1)",
-      "suspect_speaker:Jonathan(1)",
-      "suspect_speaker:Dave Living(1)",
-      "suspect_speaker:prasanasiddhi(1)",
-      "suspect_speaker:Wade McKee(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P12": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 12 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 82,
-    "total_paragraphs": 128,
-    "unattributed_pct": 0.8,
-    "issues": [
-      "suspect_speaker:Simon Turnbull(1)",
-      "suspect_speaker:Parasanasiddhi(1)",
-      "suspect_speaker:Mike(1)",
-      "suspect_speaker:Will Spens(1)",
-      "suspect_speaker:Phill Shann(1)",
-      "suspect_speaker:Prasanasiddhi(1)",
-      "suspect_speaker:Phil Miller(1)",
-      "suspect_speaker:padmavajra(1)",
-      "suspect_speaker:Mark McLelland(1)",
-      "suspect_speaker:phil Shann(1)",
-      "suspect_speaker:Lalitavajra(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P13": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 13 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 49,
-    "total_paragraphs": 164,
-    "unattributed_pct": 0.6,
-    "issues": [
-      "suspect_speaker:Devamitra(1)",
-      "suspect_speaker:padmavajra(1)",
-      "suspect_speaker:Prasanasiddhi(1)",
-      "suspect_speaker:Will Spens(1)",
-      "suspect_speaker:Simon Turnbull(1)",
-      "suspect_speaker:Will(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM052P14": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 14 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 1,
-    "total_paragraphs": 186,
-    "unattributed_pct": 100.0,
-    "issues": [
-      "missing_date",
-      "missing_location",
-      "high_unattributed:100.0%"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P15": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 15 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 86,
-    "total_paragraphs": 158,
-    "unattributed_pct": 21.5,
-    "issues": [
-      "suspect_speaker:Antonio(1)",
-      "suspect_speaker:Dave Living(1)",
-      "suspect_speaker:Dipankara(1)",
-      "suspect_speaker:Greg(1)",
-      "missing_date",
-      "missing_location",
-      "high_unattributed:21.5%"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P16": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 16 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 86,
-    "total_paragraphs": 136,
-    "unattributed_pct": 0.7,
-    "issues": [
-      "suspect_speaker:Phill Shann(1)",
-      "suspect_speaker:Pete Dobson(1)",
-      "suspect_speaker:Greg Shank(1)",
-      "suspect_speaker:Devamitra(1)",
-      "suspect_speaker:Prassanasiddhi(1)",
-      "suspect_speaker:Wade McKee(1)",
-      "suspect_speaker:V's(1)",
-      "suspect_speaker:Phil Miller(1)",
-      "suspect_speaker:Voice(1)",
-      "suspect_speaker:Will Spens(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P17": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 17 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 69,
-    "total_paragraphs": 91,
-    "unattributed_pct": 1.1,
-    "issues": [
-      "suspect_speaker:Kuladitya(1)",
-      "suspect_speaker:Shantivira(1)",
-      "suspect_speaker:wL-Aracitta(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P2": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 2 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 61,
-    "total_paragraphs": 123,
-    "unattributed_pct": 1.6,
-    "issues": [
-      "suspect_speaker:Devamitra(1)",
-      "suspect_speaker:Pete Dobson(1)",
-      "suspect_speaker:LALITAVAJRA(1)",
-      "suspect_speaker:Padmavajra(1)",
-      "suspect_speaker:KAMALASILA(1)",
-      "suspect_speaker:PHILIP SHANN(1)",
-      "all_caps_speaker:PRASANNASIDDHI",
-      "suspect_speaker:ABHAYA(1)",
-      "suspect_speaker:SIMON TURNBULL(1)",
-      "suspect_speaker:VESSANTARA(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P3": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 3 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 51,
-    "total_paragraphs": 82,
-    "unattributed_pct": 1.2,
-    "issues": [
-      "all_caps_speaker:VESSANTARA",
-      "suspect_speaker:WILL SPENS(1)",
-      "suspect_speaker:distinguished here(1)",
-      "all_caps_speaker:PRASANNASIDDHI",
-      "all_caps_speaker:PADMAVAJRA",
-      "suspect_speaker:LALITAVAJRA(1)",
-      "all_caps_speaker:SUSIDDHI",
-      "suspect_speaker:GREG SHANKS(1)",
-      "all_caps_speaker:ABHAYA",
-      "suspect_speaker:SIMON TURNBULL(1)",
-      "suspect_speaker:Vessantara(1)",
-      "suspect_speaker:Mike Shaw(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P4": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 4 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 95,
-    "total_paragraphs": 144,
-    "unattributed_pct": 0.7,
-    "issues": [
-      "suspect_speaker:Padmavaira(1)",
-      "suspect_speaker:PrasarQsiddhi(1)",
-      "suspect_speaker:This is also why it takes a long time(1)",
-      "suspect_speaker:Shanks(1)",
-      "suspect_speaker:Prasannasiddh-i(1)",
-      "suspect_speaker:Will Spens(1)",
-      "suspect_speaker:Abha a(1)",
-      "suspect_speaker:Wade McKee(1)",
-      "suspect_speaker:Lalitavajra(1)",
-      "suspect_speaker:Mark MeClelland(1)",
-      "suspect_speaker:Voices(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P5": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 5 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 90,
-    "total_paragraphs": 141,
-    "unattributed_pct": 0.7,
-    "issues": [
-      "suspect_speaker:Lalitavajra(1)",
-      "suspect_speaker:Abhaya(1)",
-      "suspect_speaker:Ric cooney(1)",
-      "suspect_speaker:Jonathan Brazier(1)",
-      "suspect_speaker:Wade McKee(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P6": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 6 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 100,
-    "total_paragraphs": 157,
-    "unattributed_pct": 0.6,
-    "issues": [
-      "suspect_speaker:And also(1)",
-      "suspect_speaker:Pete Dobson(1)",
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:Abhaya(1)",
-      "suspect_speaker:Prasannasiddhi(1)",
-      "suspect_speaker:Phil Shann(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P7": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 7 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 122,
-    "total_paragraphs": 190,
-    "unattributed_pct": 0.5,
-    "issues": [
-      "suspect_speaker:Jonathan Brazier(1)",
-      "suspect_speaker:Dave Living(1)",
-      "suspect_speaker:by saying(1)",
-      "suspect_speaker:Phil Miller(1)",
-      "suspect_speaker:Mike Shaw(1)",
-      "suspect_speaker:Pra sannasiddhi(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P8": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 8 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 81,
-    "total_paragraphs": 169,
-    "unattributed_pct": 0.6,
-    "issues": [
-      "suspect_speaker:Devarnitra(1)",
-      "suspect_speaker:Prassannasiddhi(1)",
-      "suspect_speaker:Abbaya(1)",
-      "suspect_speaker:Abhaya(1)",
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:Kamalasila(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM052P9": {
-    "status": "unreviewed",
-    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984 Part 9 - Unchecked",
-    "format_type": "p-based",
-    "turn_count": 125,
-    "total_paragraphs": 171,
-    "unattributed_pct": 0.6,
-    "issues": [
-      "suspect_speaker:V(1)",
-      "suspect_speaker:Abahya(1)",
-      "suspect_speaker:Pras-s-anaslddhi(1)",
-      "suspect_speaker:Prassanasiddlii-(1)",
-      "suspect_speaker:Greg(1)",
-      "suspect_speaker:prasannasiddhi(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
   "SEM053": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Buddha and the Future of His Religion by Dr Ambedkar - Questions and Answers",
     "format_type": "p-based",
     "turn_count": 583,
@@ -1372,509 +1015,8 @@
     "has_date": true,
     "has_location": true
   },
-  "SEM054P1": {
-    "status": "unreviewed",
-    "title": "Buddha by Trevor Ling - The - Part 1",
-    "format_type": "mixed",
-    "turn_count": 551,
-    "total_paragraphs": 842,
-    "unattributed_pct": 0.8,
-    "issues": [
-      "suspect_speaker:What I'm saying is(1)",
-      "suspect_speaker:Voice(1)",
-      "suspect_speaker:February to May(1)",
-      "suspect_speaker:But to go back to what I was saying(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM054P2": {
-    "status": "unreviewed",
-    "title": "Buddha by Trevor Ling - The - Part 2",
-    "format_type": "p-based",
-    "turn_count": 526,
-    "total_paragraphs": 694,
-    "unattributed_pct": 0.1,
-    "issues": [
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM054P3": {
-    "status": "unreviewed",
-    "title": "Buddha by Trevor Ling - The - Part 3",
-    "format_type": "br-based",
-    "turn_count": 702,
-    "total_paragraphs": 4153,
-    "unattributed_pct": 0.1,
-    "issues": [
-      "suspect_speaker:population(1)",
-      "suspect_speaker:hearts to the Aztec gods(1)",
-      "suspect_speaker:brahmanical theory of sacrifice(1)",
-      "suspect_speaker:being  ironical(1)",
-      "suspect_speaker:you describe it like that(1)",
-      "suspect_speaker:Irony is very serious(1)",
-      "suspect_speaker:wrong(1)",
-      "suspect_speaker:sacrifice which he describes(1)",
-      "suspect_speaker:has  not  been  given(1)",
-      "suspect_speaker:words(1)",
-      "suspect_speaker:had  to  say(1)",
-      "suspect_speaker:that would be asking for trouble(1)",
-      "suspect_speaker:fact  the  real  thing(1)",
-      "suspect_speaker:saying(1)",
-      "suspect_speaker:negate.And - Two(1)",
-      "suspect_speaker:on(1)",
-      "suspect_speaker:spells(1)",
-      "suspect_speaker:dreams(1)",
-      "suspect_speaker:the Buddha lists the many requirements(1)",
-      "suspect_speaker:demons(1)",
-      "suspect_speaker:rather than a single unique being(1)",
-      "suspect_speaker:the  common  people(1)",
-      "suspect_speaker:educative effects(1)",
-      "suspect_speaker:darkness  of  the  night  might  exclaim(1)",
-      "suspect_speaker:demonology(1)",
-      "suspect_speaker:with(1)",
-      "suspect_speaker:very deft sort of manner(1)",
-      "suspect_speaker:very discriminating(1)",
-      "suspect_speaker:its own merits(1)",
-      "suspect_speaker:animals that were sacrificed(1)",
-      "suspect_speaker:of something you regard as wrong(1)",
-      "suspect_speaker:it(1)",
-      "suspect_speaker:indignant and denounce it vigorously(1)",
-      "suspect_speaker:denunciation(1)",
-      "suspect_speaker:have the tradition in the Christian West(1)",
-      "suspect_speaker:these things(1)",
-      "suspect_speaker:they used to say to me that(1)",
-      "suspect_speaker:there said(1)",
-      "suspect_speaker:unskilful  is  unskilful(1)",
-      "suspect_speaker:abominations  of  the  heathen(1)",
-      "suspect_speaker:time(1)",
-      "suspect_speaker:outside(1)",
-      "suspect_speaker:sense.  So society is made up of groups(1)",
-      "suspect_speaker:punished  its  member(1)",
-      "suspect_speaker:London(1)",
-      "suspect_speaker:into(1)",
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:somebody at the top(1)",
-      "suspect_speaker:organisation(1)",
-      "suspect_speaker:masquerading  as  individuality(1)",
-      "suspect_speaker:got to get on with my self-development(1)",
-      "suspect_speaker:development(1)",
-      "suspect_speaker:Bodhisattva ideal of devotion to others(1)",
-      "suspect_speaker:for a great number of difficulties(1)",
-      "suspect_speaker:saying  you're  a  yoga  teacher(1)",
-      "suspect_speaker:have been the contribution of Purana(1)",
-      "suspect_speaker:destiny  was  unalterably  fixed(1)",
-      "suspect_speaker:King  Ajatashatru  greatly(1)",
-      "suspect_speaker:idea of any moral causation(1)",
-      "suspect_speaker:about the beings produced by chance(1)",
-      "suspect_speaker:actions(1)",
-      "suspect_speaker:Mahayana point of view(1)",
-      "suspect_speaker:Buddhists(1)",
-      "suspect_speaker:mantras(1)",
-      "suspect_speaker:that(1)",
-      "suspect_speaker:on the belief that the teaching is true(1)",
-      "suspect_speaker:lived more or less the same kind of life(1)",
-      "suspect_speaker:the way he dealt with Kisagotami(1)",
-      "suspect_speaker:Dipankara(1)",
-      "suspect_speaker:valueless(1)",
-      "suspect_speaker:personality  and  role  of  the  Buddha(1)",
-      "suspect_speaker:nature  of  his  public  activity(1)",
-      "suspect_speaker:king Pasenadi's messengers(1)",
-      "suspect_speaker:went  with  superior  social  class(1)",
-      "suspect_speaker:village(1)",
-      "suspect_speaker:a tribal society(1)",
-      "suspect_speaker:been near the roads(1)",
-      "suspect_speaker:to this early period(1)",
-      "suspect_speaker:of  so  many  modern  Indian  writers(1)",
-      "suspect_speaker:common to them(1)",
-      "suspect_speaker:time  again  with  the  Buddha(1)",
-      "suspect_speaker:he says(1)",
-      "suspect_speaker:As though it was not this at all(1)",
-      "suspect_speaker:experience(1)",
-      "suspect_speaker:itself  freedom  from  all  constraints(1)",
-      "suspect_speaker:countryside(1)",
-      "suspect_speaker:them to Banaras(1)",
-      "suspect_speaker:his flight from home(1)",
-      "suspect_speaker:life(1)",
-      "suspect_speaker:Buddhism(1)",
-      "suspect_speaker:much easier subjects(1)",
-      "suspect_speaker:sutta and begin it with the words(1)",
-      "suspect_speaker:there(1)",
-      "suspect_speaker:hundred  monks  with  food(1)",
-      "suspect_speaker:in all sorts of out of the way places(1)",
-      "suspect_speaker:which  emerges(1)",
-      "suspect_speaker:harm  can  come  to  them(1)",
-      "suspect_speaker:others  will  just  be  nowhere(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM054P4": {
-    "status": "unreviewed",
-    "title": "Buddha by Trevor Ling - The - Part 4",
-    "format_type": "br-based",
-    "turn_count": 550,
-    "total_paragraphs": 3117,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:means people(1)",
-      "suspect_speaker:the expanding kingdom of Magadha(1)",
-      "suspect_speaker:urban  areas.  Trevor  Ling  says(1)",
-      "suspect_speaker:And  do  you  think  that  as  regards(1)",
-      "suspect_speaker:be explained by the rational mind(1)",
-      "suspect_speaker:lokamitra(1)",
-      "suspect_speaker:coming along to the meditation centre(1)",
-      "suspect_speaker:which is(1)",
-      "suspect_speaker:Say(1)",
-      "suspect_speaker:own development(1)",
-      "suspect_speaker:In freedom the knowledge came to be(1)",
-      "suspect_speaker:sort  of  way.    And  he  goes  on(1)",
-      "suspect_speaker:powder and the water coming together(1)",
-      "suspect_speaker:Then what happens is(1)",
-      "suspect_speaker:the mind' means.  And he goes on(1)",
-      "suspect_speaker:just  passes  it  over(1)",
-      "suspect_speaker:related(1)",
-      "suspect_speaker:understood it as it really is(1)",
-      "suspect_speaker:in  the  last  watch  of  the  night(1)",
-      "suspect_speaker:question(1)",
-      "suspect_speaker:text(1)",
-      "suspect_speaker:conditionality(1)",
-      "suspect_speaker:therefore  I  am  a  Buddha(1)",
-      "suspect_speaker:terms  of  cessation(1)",
-      "suspect_speaker:work of art(1)",
-      "suspect_speaker:human  effort  of  understanding(1)",
-      "suspect_speaker:human mind(1)",
-      "suspect_speaker:ever come across this sort of difficulty(1)",
-      "suspect_speaker:in God but of course God created Man(1)",
-      "suspect_speaker:yourself as a man or a woman(1)",
-      "suspect_speaker:be  a  bear  in  your  next  one(1)",
-      "suspect_speaker:merely  the  human  potential(1)",
-      "suspect_speaker:experience(1)",
-      "suspect_speaker:what  it  was(1)",
-      "suspect_speaker:indefinitely(1)",
-      "suspect_speaker:apparent(1)",
-      "suspect_speaker:concerning  suffering(1)",
-      "suspect_speaker:hence are miserable and unsatisfactory(1)",
-      "suspect_speaker:you  could  say(1)",
-      "suspect_speaker:out  of  various  substances(1)",
-      "suspect_speaker:be  achieved(1)",
-      "suspect_speaker:accordance  with  that  perfect  vision(1)",
-      "all_caps_speaker:VOICE",
-      "suspect_speaker:who feel in a way under pressure(1)",
-      "suspect_speaker:from  meditation(1)",
-      "suspect_speaker:spontaneous(1)",
-      "suspect_speaker:this(1)",
-      "suspect_speaker:energy(1)",
-      "suspect_speaker:any being(1)",
-      "suspect_speaker:in mind too(1)",
-      "suspect_speaker:saying(1)",
-      "suspect_speaker:thinking  about  them(1)",
-      "suspect_speaker:ante'(1)",
-      "suspect_speaker:Yeah.   ....S(1)",
-      "suspect_speaker:can change(1)",
-      "suspect_speaker:change(1)",
-      "suspect_speaker:any mental elements.  Siddhiratna(1)",
-      "suspect_speaker:happens to that unchanging you(1)",
-      "suspect_speaker:human  faculties(1)",
-      "suspect_speaker:things  usually  went  together(1)",
-      "suspect_speaker:other day(1)",
-      "suspect_speaker:not admit of any categorical answer(1)",
-      "suspect_speaker:latter aspect of the Buddha's teaching(1)",
-      "suspect_speaker:were(1)",
-      "suspect_speaker:own Enlightenment(1)",
-      "suspect_speaker:positive  asceticism(1)",
-      "suspect_speaker:original impression of Buddhism(1)",
-      "suspect_speaker:trying to do(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM054P5": {
-    "status": "unreviewed",
-    "title": "Buddha by Trevor Ling - The - Part 5",
-    "format_type": "br-based",
-    "turn_count": 753,
-    "total_paragraphs": 4120,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:only as it is but as it can be(1)",
-      "suspect_speaker:Bimbasara was(1)",
-      "suspect_speaker:another very ambiguous word(1)",
-      "suspect_speaker:develop(1)",
-      "suspect_speaker:convert and become a Catholic(1)",
-      "suspect_speaker:That little boys for instance(1)",
-      "suspect_speaker:the  monks  quite  friendly(1)",
-      "suspect_speaker:monastery(1)",
-      "suspect_speaker:monks(1)",
-      "suspect_speaker:really cost them in the end(1)",
-      "suspect_speaker:intellectual effort alone(1)",
-      "suspect_speaker:you're in contact with the elements(1)",
-      "suspect_speaker:sports(1)",
-      "suspect_speaker:do nothing sometimes(1)",
-      "suspect_speaker:contradiction  in  terms  in  a  way(1)",
-      "suspect_speaker:individualism to individuality(1)",
-      "suspect_speaker:mentioned the other day(1)",
-      "suspect_speaker:But  what  about  this(1)",
-      "suspect_speaker:no  doubt  about  that(1)",
-      "suspect_speaker:made in a public lecture was(1)",
-      "suspect_speaker:It was so clear(1)",
-      "suspect_speaker:say(1)",
-      "suspect_speaker:about  the  public  good(1)",
-      "suspect_speaker:bit  of  chanting  every  now  and  then(1)",
-      "suspect_speaker:abused(1)",
-      "suspect_speaker:precepts(1)",
-      "suspect_speaker:was more than this that he received(1)",
-      "suspect_speaker:deference  and  gratitude(1)",
-      "suspect_speaker:which the group itself exists(1)",
-      "suspect_speaker:of  a  better  term(1)",
-      "suspect_speaker:himself fulltime to meditation(1)",
-      "suspect_speaker:artist(1)",
-      "suspect_speaker:common(1)",
-      "suspect_speaker:felt and experienced the whole body(1)",
-      "suspect_speaker:is the sequence(1)",
-      "suspect_speaker:impurities  are  purged  away(1)",
-      "suspect_speaker:structure(1)",
-      "suspect_speaker:case  of  rationalisation(1)",
-      "suspect_speaker:different  situations(1)",
-      "suspect_speaker:VOICE(1)",
-      "suspect_speaker:diffident(1)",
-      "suspect_speaker:setting  for  a  life  of  meditation(1)",
-      "suspect_speaker:NAGABODHI(1)",
-      "suspect_speaker:this point by point(1)",
-      "suspect_speaker:the same thing(1)",
-      "suspect_speaker:until he came to his senses(1)",
-      "suspect_speaker:exercised(1)",
-      "suspect_speaker:thought  more  clearly(1)",
-      "suspect_speaker:formula  is(1)",
-      "suspect_speaker:sorts of assemblies(1)",
-      "suspect_speaker:principles(1)",
-      "suspect_speaker:chosen the totalitarian way(1)",
-      "suspect_speaker:than any other single factor(1)",
-      "suspect_speaker:you've got of course Soviet Russia(1)",
-      "suspect_speaker:got Mao's China(1)",
-      "suspect_speaker:kind(1)",
-      "suspect_speaker:resents  any  ill  fortune(1)",
-      "suspect_speaker:bewilderment about it(1)",
-      "suspect_speaker:out to be a disappointment(1)",
-      "suspect_speaker:VOICES(1)",
-      "suspect_speaker:puthujjana(1)",
-      "suspect_speaker:strictly  Mahayana  conception(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM054P6": {
-    "status": "unreviewed",
-    "title": "Buddha by Trevor Ling - The - Part 6",
-    "format_type": "br-based",
-    "turn_count": 911,
-    "total_paragraphs": 4994,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:positive qualities of ordinary people(1)",
-      "suspect_speaker:remember a few other facts(1)",
-      "suspect_speaker:accept very definite limitations(1)",
-      "suspect_speaker:moved(1)",
-      "suspect_speaker:some of the literature has done(1)",
-      "suspect_speaker:from that point of view(1)",
-      "suspect_speaker:hand(1)",
-      "suspect_speaker:texts say that he is(1)",
-      "suspect_speaker:resents  any  ill  fortune(1)",
-      "suspect_speaker:bewilderment about it(1)",
-      "suspect_speaker:to be a disappointment(1)",
-      "suspect_speaker:enumerated(1)",
-      "suspect_speaker:marriage for him(1)",
-      "suspect_speaker:letting  the  family  down(1)",
-      "suspect_speaker:country(1)",
-      "suspect_speaker:way(1)",
-      "suspect_speaker:So even this may not be out-of-date(1)",
-      "suspect_speaker:have two primary focal points(1)",
-      "suspect_speaker:couldn't  contact(1)",
-      "suspect_speaker:even  more  appropriately(1)",
-      "suspect_speaker:practise  of  the  Dharma(1)",
-      "suspect_speaker:So  one  must  beware  of  this(1)",
-      "suspect_speaker:Irish Archbishop  in  attendance(1)",
-      "suspect_speaker:alcohol(1)",
-      "suspect_speaker:spiritual development(1)",
-      "suspect_speaker:say(1)",
-      "suspect_speaker:the long run(1)",
-      "suspect_speaker:But be careful that you don't think(1)",
-      "suspect_speaker:have anything to say about this(1)",
-      "suspect_speaker:patient  acceptance(1)",
-      "suspect_speaker:yesterday(1)",
-      "suspect_speaker:sake  of  going  against  the  group(1)",
-      "suspect_speaker:the ordinary sense of the term(1)",
-      "suspect_speaker:discuss  the  question  in  terms  of(1)",
-      "suspect_speaker:peers(1)",
-      "suspect_speaker:was down there(1)",
-      "suspect_speaker:Everybody gives when they can(1)",
-      "suspect_speaker:sense of obligation(1)",
-      "suspect_speaker:he  was  not  only  a  theorist(1)",
-      "suspect_speaker:that(1)",
-      "suspect_speaker:should a king to righteous ways be true(1)",
-      "suspect_speaker:do  likewise(1)",
-      "suspect_speaker:regularly(1)",
-      "suspect_speaker:observing certain taboos(1)",
-      "suspect_speaker:queried slightly nowadays(1)",
-      "suspect_speaker:gone wrong with everything(1)",
-      "suspect_speaker:feeling  about  things(1)",
-      "suspect_speaker:some people(1)",
-      "suspect_speaker:explain further(1)",
-      "suspect_speaker:at  peace(1)",
-      "suspect_speaker:is a waste of time(1)",
-      "suspect_speaker:sutta  concludes(1)",
-      "suspect_speaker:sutta leads(1)",
-      "suspect_speaker:people(1)",
-      "suspect_speaker:to punish(1)",
-      "suspect_speaker:of the Buddha(1)",
-      "suspect_speaker:his own private army of spies(1)",
-      "suspect_speaker:you(1)",
-      "suspect_speaker:So  you  get  this  sort  of  compromise(1)",
-      "suspect_speaker:in social life(1)",
-      "suspect_speaker:show  people(1)",
-      "suspect_speaker:eventually to become(1)",
-      "suspect_speaker:from any divine source(1)",
-      "suspect_speaker:anything in return for you(1)",
-      "suspect_speaker:pounds in the dana bowl(1)",
-      "suspect_speaker:in them(1)",
-      "suspect_speaker:thought(1)",
-      "suspect_speaker:being(1)",
-      "suspect_speaker:party(1)",
-      "suspect_speaker:kind of significance(1)",
-      "suspect_speaker:him before(1)",
-      "suspect_speaker:inscriptions.  For example(1)",
-      "suspect_speaker:Piyadassi(1)",
-      "suspect_speaker:from killing(1)",
-      "suspect_speaker:laymen's  Buddhism(1)",
-      "suspect_speaker:layman(1)",
-      "suspect_speaker:Buddhist  people(1)",
-      "suspect_speaker:its  midst(1)",
-      "suspect_speaker:the principles of social ethics(1)",
-      "suspect_speaker:formerly(1)",
-      "suspect_speaker:plane(1)",
-      "suspect_speaker:man(1)",
-      "suspect_speaker:interest  in  peace  within  his  realm(1)",
-      "suspect_speaker:Perhaps it's sometimes a fine point(1)",
-      "suspect_speaker:Heaven(1)",
-      "suspect_speaker:a  king(1)",
-      "suspect_speaker:Vaishali(1)",
-      "suspect_speaker:can only call worship(1)",
-      "suspect_speaker:heretics(1)",
-      "suspect_speaker:that it should have been intolerant(1)",
-      "suspect_speaker:bhikkhu(1)",
-      "suspect_speaker:and actively on your side(1)",
-      "suspect_speaker:of Ashoka is barely mentioned(1)",
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:points.  We need more literature(1)",
-      "suspect_speaker:VOICES(1)",
-      "suspect_speaker:THUNDEROUS VOICES(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM055P1": {
-    "status": "unreviewed",
-    "title": "Buddha-s Law Among the Birds - The - Part 1",
-    "format_type": "p-based",
-    "turn_count": 470,
-    "total_paragraphs": 711,
-    "unattributed_pct": 0.7,
-    "issues": [
-      "suspect_speaker:P(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM055P2": {
-    "status": "unreviewed",
-    "title": "Buddha-s Law Among the Birds - The - Part 2",
-    "format_type": "p-based",
-    "turn_count": 369,
-    "total_paragraphs": 535,
-    "unattributed_pct": 0.4,
-    "issues": [
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM055P3": {
-    "status": "unreviewed",
-    "title": "Buddha-s Law Among the Birds - The - Part 3",
-    "format_type": "p-based",
-    "turn_count": 416,
-    "total_paragraphs": 609,
-    "unattributed_pct": 0.3,
-    "issues": [
-      "suspect_speaker:is in the Iron Age(1)",
-      "suspect_speaker:Bodhisattva is sometimes tempted to do(1)",
-      "suspect_speaker:The last line of the quatrain is(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM055P4": {
-    "status": "unreviewed",
-    "title": "Buddha-s Law Among the Birds - The - Part 4",
-    "format_type": "mixed",
-    "turn_count": 326,
-    "total_paragraphs": 476,
-    "unattributed_pct": 0.6,
-    "issues": [
-      "suspect_speaker:What about this line(1)",
-      "suspect_speaker:aryamitra(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM055P5": {
-    "status": "unreviewed",
-    "title": "Buddha-s Law Among the Birds - The - Part 5",
-    "format_type": "p-based",
-    "turn_count": 407,
-    "total_paragraphs": 577,
-    "unattributed_pct": 1.0,
-    "issues": [
-      "suspect_speaker:And then the text summarises(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM055P6": {
-    "status": "unreviewed",
-    "title": "Buddha-s Law Among the Birds - The - Part 6",
-    "format_type": "p-based",
-    "turn_count": 263,
-    "total_paragraphs": 370,
-    "unattributed_pct": 0.5,
-    "issues": [
-      "suspect_speaker:run pain and suffering(1)",
-      "suspect_speaker:The Great Bird then continued(1)",
-      "suspect_speaker:And he went on to say(1)",
-      "suspect_speaker:Prasannasiddi(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
   "SEM056": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Channel Four UK TV Interview - Questions and Answers",
     "format_type": "mixed",
     "turn_count": 72,
@@ -1887,7 +1029,7 @@
     "has_location": true
   },
   "SEM057": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Christchurch April 1979 - Questions and Answers",
     "format_type": "br-based",
     "turn_count": 265,
@@ -1900,7 +1042,7 @@
     "has_location": true
   },
   "SEM058": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Confession - from the Sutra of Golden Light",
     "format_type": "p-based",
     "turn_count": 249,
@@ -1917,7 +1059,7 @@
     "has_location": true
   },
   "SEM059": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Conze-s Introduction to Buddhism - Its Essence and Development",
     "format_type": "p-based",
     "turn_count": 657,
@@ -1961,7 +1103,7 @@
     "has_location": true
   },
   "SEM060": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Diamond Sutra",
     "format_type": "p-based",
     "turn_count": 1213,
@@ -1993,7 +1135,7 @@
     "has_location": true
   },
   "SEM061": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Door of Liberation",
     "format_type": "p-based",
     "turn_count": 5630,
@@ -2016,91 +1158,8 @@
     "has_date": false,
     "has_location": false
   },
-  "SEM062P1": {
-    "status": "unreviewed",
-    "title": "Duties of Brotherhood in Islam - Part 1",
-    "format_type": "mixed",
-    "turn_count": 832,
-    "total_paragraphs": 1229,
-    "unattributed_pct": 0.8,
-    "issues": [
-      "suspect_speaker:Prasannasiddi(1)",
-      "suspect_speaker:So Muhammad is saying(1)",
-      "suspect_speaker:Ibn al-Mubarak said(1)",
-      "suspect_speaker:Then the author goes on to say(1)",
-      "suspect_speaker:And then(1)",
-      "suspect_speaker:So the conclusion is(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM062P2": {
-    "status": "unreviewed",
-    "title": "Duties of Brotherhood in Islam - Part 2",
-    "format_type": "mixed",
-    "turn_count": 788,
-    "total_paragraphs": 1112,
-    "unattributed_pct": 0.3,
-    "issues": [
-      "suspect_speaker:But you are not in an easy position(1)",
-      "suspect_speaker:So therefore al-Ghazali says(1)",
-      "suspect_speaker:So 'Al-Shabi said(1)",
-      "suspect_speaker:But the comment is(1)",
-      "suspect_speaker:But 'Abu Uthman al-Hiri said(1)",
-      "suspect_speaker:And what about this(1)",
-      "suspect_speaker:One mustn't take the story too literally(1)",
-      "suspect_speaker:And therefore al-Ghazali says(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM062P3": {
-    "status": "unreviewed",
-    "title": "Duties of Brotherhood in Islam - Part 3",
-    "format_type": "mixed",
-    "turn_count": 743,
-    "total_paragraphs": 1145,
-    "unattributed_pct": 0.2,
-    "issues": [
-      "suspect_speaker:It's like being too friendly with women(1)",
-      "suspect_speaker:Then the writer continues(1)",
-      "suspect_speaker:So al-Ghazali goes on to say(1)",
-      "suspect_speaker:He goes on to give a further argument(1)",
-      "suspect_speaker:So al-Ghazali is saying(1)",
-      "suspect_speaker:The gist of this seems to be(1)",
-      "suspect_speaker:In another version the words are(1)",
-      "suspect_speaker:Prakasha(1)",
-      "suspect_speaker:Someone said to me recently - a Mitra(1)",
-      "suspect_speaker:But then he goes on to say(1)",
-      "suspect_speaker:The general drift of this is(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM062P4": {
-    "status": "unreviewed",
-    "title": "Duties of Brotherhood in Islam - Part 4",
-    "format_type": "mixed",
-    "turn_count": 741,
-    "total_paragraphs": 1012,
-    "unattributed_pct": 0.3,
-    "issues": [
-      "suspect_speaker:One can take it in various other ways(1)",
-      "suspect_speaker:Vajrananda(1)",
-      "suspect_speaker:Prakasha(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
   "SEM063": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Endlessly Fascinating Cry - Complete Text",
     "format_type": "p-based",
     "turn_count": 1463,
@@ -2115,7 +1174,7 @@
     "has_location": true
   },
   "SEM064": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Five Spiritual Faculties - The Way to Wisdom - Unchecked",
     "format_type": "p-based",
     "turn_count": 432,
@@ -2156,107 +1215,8 @@
     "has_date": false,
     "has_location": true
   },
-  "SEM065P1": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 1",
-    "format_type": "mixed",
-    "turn_count": 384,
-    "total_paragraphs": 556,
-    "unattributed_pct": 1.8,
-    "issues": [
-      "suspect_speaker:Thus have I heard(1)",
-      "suspect_speaker:Then a little further down the same page(1)",
-      "suspect_speaker:Aryamitra(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM065P2": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 2",
-    "format_type": "p-based",
-    "turn_count": 365,
-    "total_paragraphs": 520,
-    "unattributed_pct": 0.8,
-    "issues": [
-      "suspect_speaker:Tejananda(1)",
-      "suspect_speaker:A voice(1)"
-    ],
-    "has_date": true,
-    "has_location": true
-  },
-  "SEM065P3": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 3",
-    "format_type": "p-based",
-    "turn_count": 408,
-    "total_paragraphs": 589,
-    "unattributed_pct": 0.5,
-    "issues": [
-      "suspect_speaker:A Voice(1)",
-      "suspect_speaker:Ratnapriya(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM065P4": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 4",
-    "format_type": "p-based",
-    "turn_count": 362,
-    "total_paragraphs": 533,
-    "unattributed_pct": 0.9,
-    "issues": [
-      "suspect_speaker:Sona(1)",
-      "suspect_speaker:The Forest Monks of Sri Lanka(1)",
-      "suspect_speaker:You asked(1)",
-      "suspect_speaker:Susiddhi(1)",
-      "suspect_speaker:So I said(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
-  },
-  "SEM065P5": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 5",
-    "format_type": "mixed",
-    "turn_count": 404,
-    "total_paragraphs": 551,
-    "unattributed_pct": 0.7,
-    "issues": [
-      "suspect_speaker:Subhuti(1)",
-      "suspect_speaker:Susiddhi(1)",
-      "suspect_speaker:Several voices(1)",
-      "suspect_speaker:A voice(1)",
-      "missing_location"
-    ],
-    "has_date": true,
-    "has_location": false
-  },
-  "SEM065P6": {
-    "status": "unreviewed",
-    "title": "Forest Monks of Sri Lanka - Part 6",
-    "format_type": "mixed",
-    "turn_count": 560,
-    "total_paragraphs": 774,
-    "unattributed_pct": 0.9,
-    "issues": [
-      "suspect_speaker:Ratnavira(1)",
-      "suspect_speaker:Firstly(1)",
-      "suspect_speaker:Then again another interesting point(1)",
-      "suspect_speaker:Susiddhi(1)",
-      "missing_location"
-    ],
-    "has_date": true,
-    "has_location": false
-  },
   "SEM066": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Going for Refuge - Questions and Answers Tuscany 1986",
     "format_type": "p-based",
     "turn_count": 382,
@@ -2276,7 +1236,7 @@
     "has_location": true
   },
   "SEM067": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Hedonism and the Spiritual Life",
     "format_type": "p-based",
     "turn_count": 811,
@@ -2298,7 +1258,7 @@
     "has_location": true
   },
   "SEM068": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "In the Realm of the Lotus - An Interview with J.O.Mallander About Art",
     "format_type": "p-based",
     "turn_count": 171,
@@ -2313,7 +1273,7 @@
     "has_location": true
   },
   "SEM069": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation - Meeting Spiritual Friends - Unchecked",
     "format_type": "p-based",
     "turn_count": 414,
@@ -2377,7 +1337,7 @@
     "has_location": false
   },
   "SEM070": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation - Various Tuscany 1985",
     "format_type": "p-based",
     "turn_count": 2370,
@@ -2412,7 +1372,7 @@
     "has_location": true
   },
   "SEM071": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 1 - The Motive",
     "format_type": "p-based",
     "turn_count": 1250,
@@ -2441,7 +1401,7 @@
     "has_location": true
   },
   "SEM072": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 10 - Training in an Enlightened Attitude",
     "format_type": "mixed",
     "turn_count": 1508,
@@ -2459,7 +1419,7 @@
     "has_location": false
   },
   "SEM073": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 2 - Working Basis",
     "format_type": "p-based",
     "turn_count": 1300,
@@ -2487,7 +1447,7 @@
     "has_location": true
   },
   "SEM074": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 21 - Buddha Activity",
     "format_type": "p-based",
     "turn_count": 515,
@@ -2504,7 +1464,7 @@
     "has_location": true
   },
   "SEM075": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 4 - Transitoriness",
     "format_type": "p-based",
     "turn_count": 1717,
@@ -2525,7 +1485,7 @@
     "has_location": false
   },
   "SEM076": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapter 7 - Benevolence and Compassion - Unchecked",
     "format_type": "p-based",
     "turn_count": 734,
@@ -2589,7 +1549,7 @@
     "has_location": false
   },
   "SEM077": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Jewel Ornament of Liberation Chapters 14 and 15 - Patience and Strenuousness - Unchecked",
     "format_type": "p-based",
     "turn_count": 1214,
@@ -2646,7 +1606,7 @@
     "has_location": false
   },
   "SEM078": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Manjughosa Stuti Sadhana",
     "format_type": "p-based",
     "turn_count": 536,
@@ -2662,7 +1622,7 @@
     "has_location": true
   },
   "SEM079": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Micchaditthis - Wrong Views",
     "format_type": "p-based",
     "turn_count": 336,
@@ -2686,7 +1646,7 @@
     "has_location": true
   },
   "SEM080": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Heartfelt Advice to Rechungpa",
     "format_type": "p-based",
     "turn_count": 833,
@@ -2706,7 +1666,7 @@
     "has_location": true
   },
   "SEM081": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa and the Novices - Song of a Yogi-s Joy - Unchecked",
     "format_type": "p-based",
     "turn_count": 480,
@@ -2723,7 +1683,7 @@
     "has_location": true
   },
   "SEM082": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa-s First Meeting with Rechungpa",
     "format_type": "mixed",
     "turn_count": 761,
@@ -2739,7 +1699,7 @@
     "has_location": true
   },
   "SEM083": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Rechungpa-s Departure",
     "format_type": "mixed",
     "turn_count": 1677,
@@ -2758,10 +1718,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM084": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Rechungpa's Journey to Weu",
     "format_type": "mixed",
     "turn_count": 1387,
@@ -2792,10 +1753,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM085": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Rechungpa-s Repentance - Unchecked",
     "format_type": "p-based",
     "turn_count": 1933,
@@ -2858,10 +1820,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM086": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Rechungpa's Third Journey",
     "format_type": "p-based",
     "turn_count": 1191,
@@ -2875,10 +1838,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM087": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - Red Rock Jewel Valley - Unchecked",
     "format_type": "p-based",
     "turn_count": 186,
@@ -2899,10 +1863,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM088": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - The Meeting at Silver Spring - Unchecked",
     "format_type": "mixed",
     "turn_count": 633,
@@ -2936,10 +1901,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM089": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - The Shepherd-s Search for Mind",
     "format_type": "p-based",
     "turn_count": 504,
@@ -2955,10 +1921,11 @@
       "suspect_speaker:PS(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM090": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Milarepa - The Yak Horn - Unchecked",
     "format_type": "p-based",
     "turn_count": 1604,
@@ -3009,10 +1976,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM091": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Mind in Buddhist Psychology - Unchecked",
     "format_type": "p-based",
     "turn_count": 5063,
@@ -3146,121 +2114,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
-  },
-  "SEM092P1": {
-    "status": "unreviewed",
-    "title": "Mitrata Omnibus - Pre - ordination Course Tuscany 1981 and 1982 - Part 1",
-    "format_type": "p-based",
-    "turn_count": 1801,
-    "total_paragraphs": 2546,
-    "unattributed_pct": 1.4,
-    "issues": [
-      "suspect_speaker:system(1)",
-      "suspect_speaker:With regard to the other matter(1)",
-      "suspect_speaker:Cieran Saunders(1)",
-      "suspect_speaker:As regards organizational contact(1)",
-      "suspect_speaker:interest(1)",
-      "suspect_speaker:Mark Bowden(1)",
-      "suspect_speaker:Seminar(1)",
-      "suspect_speaker:Simon M(1)",
-      "suspect_speaker:Clive Pomfrett(1)",
-      "suspect_speaker:Peter Hill(1)",
-      "suspect_speaker:Prajnananda(1)",
-      "suspect_speaker:Rudiger Janson(1)",
-      "suspect_speaker:Jinapriya(1)",
-      "suspect_speaker:Simon McIntyre(1)",
-      "suspect_speaker:Yashodeva(1)",
-      "suspect_speaker:Dharmaloka(1)",
-      "suspect_speaker:A Voice(1)",
-      "suspect_speaker:Transcriber's note(1)",
-      "suspect_speaker:And when you say(1)",
-      "suspect_speaker:In the next line you wouldn't say(1)",
-      "suspect_speaker:In the same way you wouldn't say(1)",
-      "suspect_speaker:But anyway the general principle is(1)",
-      "suspect_speaker:Bob(1)",
-      "suspect_speaker:you have in that person(1)",
-      "suspect_speaker:David(1)",
-      "suspect_speaker:Jon. Rice(1)",
-      "suspect_speaker:Rudiger Jensen(1)",
-      "suspect_speaker:Yashopala(1)",
-      "suspect_speaker:Another(1)",
-      "suspect_speaker:A.A.(1)",
-      "all_caps_speaker:M.S",
-      "all_caps_speaker:A.A",
-      "suspect_speaker:But nonetheless the question arises(1)",
-      "suspect_speaker:The Voice(1)",
-      "all_caps_speaker:D.L",
-      "suspect_speaker:A(1)",
-      "suspect_speaker:Well the answer is(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM092P2": {
-    "status": "unreviewed",
-    "title": "Mitrata Omnibus - Pre - ordination Course Tuscany 1981 and 1982 - Part 2",
-    "format_type": "p-based",
-    "turn_count": 417,
-    "total_paragraphs": 679,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:Final Preordination Retreat(1)",
-      "suspect_speaker:Paul(1)",
-      "suspect_speaker:Mike(1)",
-      "suspect_speaker:Terry(1)",
-      "suspect_speaker:Chris Harper(1)",
-      "suspect_speaker:Darren Dewitt(1)",
-      "suspect_speaker:Chris(1)",
-      "suspect_speaker:Adrian Macro(1)",
-      "suspect_speaker:Graham Steven(1)",
-      "suspect_speaker:Supposing someone asks you(1)",
-      "suspect_speaker:Kenneth(1)",
-      "suspect_speaker:Berni(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM093P1": {
-    "status": "unreviewed",
-    "title": "Nanamoli-s Life of the Buddha - Chapters 4 and 11 Tuscany 1986 Part 1",
-    "format_type": "p-based",
-    "turn_count": 705,
-    "total_paragraphs": 819,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:fundamentalism(1)",
-      "suspect_speaker:ago(1)",
-      "suspect_speaker:length. He says(1)",
-      "suspect_speaker:Sumana(1)",
-      "suspect_speaker:Tommy(1)",
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:Douglas(1)",
-      "suspect_speaker:Dhammamati(1)",
-      "suspect_speaker:Dharmamati(1)"
-    ],
-    "has_date": true,
-    "has_location": true
-  },
-  "SEM093P2": {
-    "status": "unreviewed",
-    "title": "Nanamoli-s Life of the Buddha - Chapters 4 and 11 Tuscany 1986 Part 2",
-    "format_type": "p-based",
-    "turn_count": 376,
-    "total_paragraphs": 447,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:Nanamoli XI(1)",
-      "suspect_speaker:Jayamati(1)",
-      "suspect_speaker:some cases(1)"
-    ],
-    "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM094": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Noble Eightfold Path - Questions and Answers Tuscany 1982",
     "format_type": "p-based",
     "turn_count": 2608,
@@ -3308,10 +2166,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM095": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Noble Eightfold Path - Questions and Answers Tuscany 1983",
     "format_type": "mixed",
     "turn_count": 740,
@@ -3326,10 +2185,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM096": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Ode on Dr Levett",
     "format_type": "p-based",
     "turn_count": 379,
@@ -3343,10 +2203,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM097": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Ode to Friendship",
     "format_type": "p-based",
     "turn_count": 588,
@@ -3360,10 +2221,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM098": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Padmasambhava - Life and Liberation Canto 38",
     "format_type": "mixed",
     "turn_count": 182,
@@ -3374,10 +2236,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM099": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Padmasambhava - Life and Liberation Cantos 37 and 39",
     "format_type": "p-based",
     "turn_count": 344,
@@ -3395,10 +2258,11 @@
       "missing_location"
     ],
     "has_date": true,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM100": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Alavaga Sutta",
     "format_type": "p-based",
     "turn_count": 165,
@@ -3409,10 +2273,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM101": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Ariyapariyesana Sutta",
     "format_type": "p-based",
     "turn_count": 484,
@@ -3423,10 +2288,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM102": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Bhaddali Sutta",
     "format_type": "p-based",
     "turn_count": 1012,
@@ -3438,7 +2304,8 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM103": {
     "status": "unreviewed",
@@ -5415,5 +4282,119 @@
     ],
     "has_date": false,
     "has_location": false
+  },
+  "SEM052": {
+    "status": "reviewed",
+    "title": "Bodhisattva Ideal - Questions and Answers Tuscany 1984",
+    "format_type": "merged",
+    "turn_count": 1347,
+    "total_paragraphs": 2481,
+    "unattributed_pct": 2.4,
+    "issues": [],
+    "has_date": true,
+    "has_location": true,
+    "consolidated_from": [
+      "SEM052P1",
+      "SEM052P2",
+      "SEM052P3",
+      "SEM052P4",
+      "SEM052P5",
+      "SEM052P6",
+      "SEM052P7",
+      "SEM052P8",
+      "SEM052P9",
+      "SEM052P10",
+      "SEM052P11",
+      "SEM052P12",
+      "SEM052P13",
+      "SEM052P14",
+      "SEM052P15",
+      "SEM052P16",
+      "SEM052P17"
+    ]
+  },
+  "SEM054": {
+    "status": "reviewed",
+    "title": "Trevor Ling's The Buddha",
+    "format_type": "merged",
+    "turn_count": 3664,
+    "total_paragraphs": 17925,
+    "unattributed_pct": 0.2,
+    "issues": [],
+    "has_date": true,
+    "has_location": true,
+    "consolidated_from": [
+      "SEM054P1",
+      "SEM054P2",
+      "SEM054P3",
+      "SEM054P4",
+      "SEM054P5",
+      "SEM054P6"
+    ]
+  },
+  "SEM055": {
+    "status": "reviewed",
+    "title": "The Buddha's Law Among the Birds Seminar",
+    "format_type": "merged",
+    "turn_count": 2247,
+    "total_paragraphs": 3283,
+    "unattributed_pct": 0.5,
+    "issues": [],
+    "has_date": true,
+    "has_location": true,
+    "consolidated_from": [
+      "SEM055P1",
+      "SEM055P2",
+      "SEM055P3",
+      "SEM055P4",
+      "SEM055P5",
+      "SEM055P6"
+    ]
+  },
+  "SEM062": {
+    "status": "reviewed",
+    "title": "The Duties of Brotherhood in Islam",
+    "format_type": "merged",
+    "turn_count": 3081,
+    "total_paragraphs": 4501,
+    "unattributed_pct": 0.2,
+    "issues": [],
+    "has_date": true,
+    "has_location": true,
+    "consolidated_from": [
+      "SEM062P1",
+      "SEM062P2",
+      "SEM062P3",
+      "SEM062P4"
+    ]
+  },
+  "SEM065": {
+    "status": "reviewed",
+    "title": "The Forest Monks of Sri Lanka",
+    "format_type": "merged",
+    "turn_count": 2483,
+    "total_paragraphs": 3528,
+    "unattributed_pct": 0.4,
+    "issues": [],
+    "has_date": true,
+    "has_location": true,
+    "consolidated_from": [
+      "SEM065P1",
+      "SEM065P2",
+      "SEM065P3",
+      "SEM065P4",
+      "SEM065P5",
+      "SEM065P6"
+    ]
+  },
+  "SEM092": {
+    "status": "reviewed",
+    "reviewed_at": "2026-05-04",
+    "issue_count": 0
+  },
+  "SEM093": {
+    "status": "reviewed",
+    "reviewed_at": "2026-05-04",
+    "issue_count": 0
   }
 }

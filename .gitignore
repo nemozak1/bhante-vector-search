@@ -23,6 +23,9 @@ data/seminars/*
 !data/seminars/cleaned/**
 !data/seminars/review_status.json
 !data/seminars/REVIEW.md
+!data/seminars/consolidated.json
+!data/seminars/raw/
+!data/seminars/raw/**
 
 # Env
 .env
@@ -42,3 +45,6 @@ e2e/.auth/
 test-results/
 playwright-report/
 playwright/.cache/
+.vercel
+.env*.local
+.env*.production

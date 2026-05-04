@@ -25,13 +25,11 @@
 				const redirect = page.url.searchParams.get('redirect') ?? '/search';
 				goto(redirect);
 			} else {
-				const res = await signUp(email, password);
-				if (res.session) {
-					goto('/search');
-				} else {
-					info = 'Account created. Check your email to confirm, then sign in.';
-					mode = 'signin';
-				}
+				await signUp(email, password);
+				// autoSignIn: true sets the session cookie; the layout's auth
+				// gate will pick it up on the next page. No email verification
+				// is wired up — there's nothing to confirm.
+				goto('/search');
 			}
 		} catch (e) {
 			error = e instanceof Error ? e.message : String(e);

@@ -157,6 +157,11 @@ data/seminars/              source of truth for seminar text
 ├── cleaned/{code}.json     PR-edited cleaned transcripts (TRACKED)
 ├── raw/{code}.json         immutable scrape output (gitignored)
 ├── review_status.json      review state (TRACKED)
+├── consolidated.json       registry of multi-part seminars merged into
+│                           a single parent code (TRACKED). Listed parts
+│                           are skipped by seed_seminars.ts and the
+│                           default ingest_seminars.py target list, so
+│                           the parent code is the single source of truth.
 └── ingest_log.json         what's been vectorised (gitignored)
 
 chroma/                     legacy embedding store, kept on disk after the
