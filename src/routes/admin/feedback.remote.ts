@@ -23,7 +23,7 @@ const ListInputSchema = v.object({
 });
 
 export const list = query(ListInputSchema, async ({ status, categories, page, pageSize }) => {
-	requireAdmin();
+	await requireAdmin();
 	return feedback.listForAdmin({
 		status: status ?? null,
 		categories: categories ?? null,
@@ -33,7 +33,7 @@ export const list = query(ListInputSchema, async ({ status, categories, page, pa
 });
 
 export const get = query(v.pipe(v.number(), v.integer()), async (id) => {
-	requireAdmin();
+	await requireAdmin();
 	return feedback.getForAdmin(id);
 });
 
@@ -44,7 +44,7 @@ const SetStatusSchema = v.object({
 });
 
 export const setStatus = command(SetStatusSchema, async ({ id, status, adminNotes }) => {
-	requireAdmin();
+	await requireAdmin();
 	const updated = await feedback.setStatus(id, status, adminNotes ?? null);
 	await get(id).refresh();
 	return updated;

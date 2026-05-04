@@ -2,6 +2,7 @@ import { readdir, readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pool } from './pool.ts';
+import { seedAdminsFromEnv } from './seed-admins.ts';
 
 const MIGRATIONS_DIR = resolve(dirname(fileURLToPath(import.meta.url)), '../../../../migrations');
 
@@ -44,6 +45,8 @@ export async function runMigrations(): Promise<void> {
 	} finally {
 		client.release();
 	}
+
+	await seedAdminsFromEnv();
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

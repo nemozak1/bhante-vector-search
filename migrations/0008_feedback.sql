@@ -1,16 +1,26 @@
-create type feedback_category as enum (
-  'bug',
-  'seminar_misformatting',
-  'seminar_correction',
-  'search_quality',
-  'feature',
-  'question',
-  'other'
-);
+-- Idempotent: this migration was originally numbered 0007_feedback and applied
+-- to some dev databases under that name; renumbered to 0008 after merge with
+-- main introduced its own 0007. Guards let it re-run safely.
 
-create type feedback_status as enum ('new', 'triaged', 'resolved', 'dismissed');
+do $$ begin
+  create type feedback_category as enum (
+    'bug',
+    'seminar_misformatting',
+    'seminar_correction',
+    'search_quality',
+    'feature',
+    'question',
+    'other'
+  );
+exception when duplicate_object then null;
+end $$;
 
-create table feedback (
+do $$ begin
+  create type feedback_status as enum ('new', 'triaged', 'resolved', 'dismissed');
+exception when duplicate_object then null;
+end $$;
+
+create table if not exists feedback (
   id               bigserial primary key,
   user_id          text references "user"(id) on delete set null,
   email_snapshot   text not null,
@@ -29,5 +39,5 @@ create table feedback (
   triaged_at       timestamptz
 );
 
-create index feedback_status_created on feedback (status, created_at desc);
-create index feedback_category_created on feedback (category, created_at desc);
+create index if not exists feedback_status_created on feedback (status, created_at desc);
+create index if not exists feedback_category_created on feedback (category, created_at desc);

@@ -4,7 +4,7 @@ const sessionStore = authClient.useSession();
 
 type AuthState = {
 	session: unknown | null;
-	user: { id: string; email: string; name?: string } | null;
+	user: { id: string; email: string; name?: string; is_admin?: boolean } | null;
 	loading: boolean;
 };
 

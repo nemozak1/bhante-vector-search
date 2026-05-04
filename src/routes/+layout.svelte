@@ -65,6 +65,11 @@
 						{tab.label}
 					</a>
 				{/each}
+				{#if auth.user?.is_admin}
+					<a href="/admin" class="tab admin-tab" class:active={isActive('/admin')}>
+						Admin
+					</a>
+				{/if}
 				{#if auth.user}
 					<div class="user-menu">
 						<span class="user-email">{auth.user.email}</span>
@@ -185,6 +190,14 @@
 	.tab.active {
 		color: var(--accent);
 		border-bottom-color: var(--accent);
+	}
+
+	.admin-tab {
+		color: var(--book-accent);
+	}
+	.admin-tab.active {
+		color: var(--book-accent);
+		border-bottom-color: var(--book-accent);
 	}
 
 	.user-menu {

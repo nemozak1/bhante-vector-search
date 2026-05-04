@@ -7,6 +7,16 @@ export const auth = betterAuth({
 	database: pool,
 	emailAndPassword: { enabled: true, autoSignIn: true },
 	plugins: [sveltekitCookies(getRequestEvent)],
+	user: {
+		additionalFields: {
+			is_admin: {
+				type: 'boolean',
+				required: false,
+				defaultValue: false,
+				input: false
+			}
+		}
+	},
 	session: {
 		expiresIn: 60 * 60 * 24 * 7,
 		updateAge: 60 * 60 * 24,

@@ -4,17 +4,20 @@
 
 	let { children }: { children: Snippet } = $props();
 
-	const adminTabs = [{ href: '/admin/feedback', label: 'Feedback' }];
+	const adminTabs = [
+		{ href: '/admin', label: 'Overview', exact: true },
+		{ href: '/admin/feedback', label: 'Feedback', exact: false }
+	];
 
-	function isActive(href: string): boolean {
-		return page.url.pathname.startsWith(href);
+	function isActive(tab: { href: string; exact: boolean }): boolean {
+		return tab.exact ? page.url.pathname === tab.href : page.url.pathname.startsWith(tab.href);
 	}
 </script>
 
 <div class="admin-shell">
 	<div class="admin-tabs">
-		{#each adminTabs as tab}
-			<a href={tab.href} class="admin-tab" class:active={isActive(tab.href)}>{tab.label}</a>
+		{#each adminTabs as tab (tab.href)}
+			<a href={tab.href} class="admin-tab" class:active={isActive(tab)}>{tab.label}</a>
 		{/each}
 	</div>
 	{@render children()}
