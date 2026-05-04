@@ -45,3 +45,6 @@ e2e/.auth/
 test-results/
 playwright-report/
 playwright/.cache/
+.vercel
+.env*.local
+.env*.production
