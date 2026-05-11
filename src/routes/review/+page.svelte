@@ -8,7 +8,11 @@
 	let filterStatus = $state<'all' | 'reviewed' | 'unreviewed' | 'broken'>('all');
 
 	let entries = $derived.by(() => {
-		let items = Object.entries(data).map(([code, info]) => ({ code, ...info }));
+		let items = Object.entries(data).map(([code, info]) => ({
+			code,
+			...info,
+			issues: info.issues ?? []
+		}));
 
 		if (filterStatus !== 'all') {
 			items = items.filter((e) => e.status === filterStatus);
@@ -28,7 +32,7 @@
 	});
 
 	let stats = $derived.by(() => {
-		const all = Object.values(data);
+		const all = Object.values(data).map((e) => ({ ...e, issues: e.issues ?? [] }));
 		return {
 			total: all.length,
 			reviewed: all.filter((e) => e.status === 'reviewed').length,
