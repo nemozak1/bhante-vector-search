@@ -83,5 +83,13 @@
     ],
     "merged_at": "2026-05-04",
     "description": "Nanamoli's Life of the Buddha - Chapters 4 and 11 (Tuscany 1986): 2 parts merged"
+  },
+  "SEM120": {
+    "parts": [
+      "SEM120P1",
+      "SEM120P2"
+    ],
+    "merged_at": "2026-05-04",
+    "description": "Pali Canon - Sutta Nipata Great Chapter (Padmaloka, July 1976): 2 parts merged"
   }
 }

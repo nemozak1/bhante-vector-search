@@ -1,17 +1,4 @@
 {
-  "151": {
-    "status": "reviewed",
-    "title": "Padmasambhava Day",
-    "format_type": "p-based",
-    "turn_count": 1,
-    "total_paragraphs": 90,
-    "unattributed_pct": 100.0,
-    "issues": [
-      "high_unattributed:100.0%"
-    ],
-    "has_date": true,
-    "has_location": true
-  },
   "SEM001": {
     "status": "reviewed",
     "title": "First Order Convention 1974",
@@ -2308,7 +2295,7 @@
     "reviewed_at": "2026-05-04"
   },
   "SEM103": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Dhammapada Chapter Nine - On Evil",
     "format_type": "p-based",
     "turn_count": 408,
@@ -2324,10 +2311,11 @@
       "suspect_speaker:Chris Pegrum(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM104": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Dhammapada Chapters 14 and 20",
     "format_type": "p-based",
     "turn_count": 1663,
@@ -2353,10 +2341,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM105": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Dhaniya Sutta",
     "format_type": "p-based",
     "turn_count": 984,
@@ -2376,10 +2365,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM106": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Itivuttaka",
     "format_type": "p-based",
     "turn_count": 796,
@@ -2397,10 +2387,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM107": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Kalama Sutta",
     "format_type": "mixed",
     "turn_count": 805,
@@ -2415,10 +2406,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM108": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Karaniya Metta Sutta",
     "format_type": "mixed",
     "turn_count": 881,
@@ -2430,10 +2422,11 @@
       "missing_location"
     ],
     "has_date": true,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM109": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Last Vandana",
     "format_type": "p-based",
     "turn_count": 284,
@@ -2443,10 +2436,11 @@
       "suspect_speaker:Not to do evil(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM110": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Mahaparinibbana Sutta",
     "format_type": "br-based",
     "turn_count": 1857,
@@ -2540,10 +2534,11 @@
       "suspect_speaker:expressed in other terms(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM111": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Mahaparinibbana Suttanta Verses 16 and 17",
     "format_type": "p-based",
     "turn_count": 278,
@@ -2554,10 +2549,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM112": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Mangala Sutta",
     "format_type": "p-based",
     "turn_count": 362,
@@ -2574,10 +2570,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM113": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Meghiya Sutta",
     "format_type": "p-based",
     "turn_count": 628,
@@ -2590,10 +2587,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM114": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Parabhava Sutta",
     "format_type": "p-based",
     "turn_count": 1047,
@@ -2637,10 +2635,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM115": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Ratana Sutta",
     "format_type": "p-based",
     "turn_count": 409,
@@ -2654,10 +2653,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM116": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Samannaphala Sutta",
     "format_type": "p-based",
     "turn_count": 887,
@@ -2672,10 +2672,11 @@
       "suspect_speaker:A vice(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM117": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Satipatthana Sutta - Unchecked",
     "format_type": "p-based",
     "turn_count": 2541,
@@ -2747,10 +2748,11 @@
       "suspect_speaker:Everybody(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM118": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Sigalovada Sutta",
     "format_type": "p-based",
     "turn_count": 3428,
@@ -2770,10 +2772,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM119": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Snake Rhino and Bharadvaja Suttas",
     "format_type": "p-based",
     "turn_count": 2158,
@@ -2803,106 +2806,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
-  },
-  "SEM120P1": {
-    "status": "unreviewed",
-    "title": "Pali Canon - Sutta Nipata - Great Chapter part 1",
-    "format_type": "p-based",
-    "turn_count": 2235,
-    "total_paragraphs": 2747,
-    "unattributed_pct": 0.2,
-    "issues": [
-      "suspect_speaker:Buddha(1)",
-      "suspect_speaker:The Going Forth. Pabbajja Sutta Ananda(1)",
-      "suspect_speaker:This is quite important(1)",
-      "suspect_speaker:You can't help changing(1)",
-      "suspect_speaker:Then he really attacks Mara(1)",
-      "suspect_speaker:Namuci(1)",
-      "suspect_speaker:Goodly Words(1)",
-      "suspect_speaker:So(1)",
-      "suspect_speaker:V(1)",
-      "suspect_speaker:Two voices(1)",
-      "suspect_speaker:And then avijjasava(1)",
-      "suspect_speaker:Various voices(1)",
-      "suspect_speaker:Thus have I heard(1)",
-      "suspect_speaker:Then thought he(1)",
-      "suspect_speaker:Then again he thought(1)",
-      "suspect_speaker:And again he thought(1)",
-      "suspect_speaker:A Voice(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM120P2": {
-    "status": "unreviewed",
-    "title": "Pali Canon - Sutta Nipata - Great Chapter part 2",
-    "format_type": "p-based",
-    "turn_count": 4520,
-    "total_paragraphs": 5825,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:difficult(1)",
-      "suspect_speaker:Nhatako(1)",
-      "suspect_speaker:To just take an example(1)",
-      "suspect_speaker:Then the next(1)",
-      "suspect_speaker:And mat-haired Keniya heard thus(1)",
-      "suspect_speaker:A third time Keniya spake and said(1)",
-      "suspect_speaker:Then thought brahman Sela(1)",
-      "suspect_speaker:Then thought the Master(1)",
-      "suspect_speaker:Then thought the Brahman(1)",
-      "suspect_speaker:We've missed one(1)",
-      "suspect_speaker:conservation of energy(1)",
-      "suspect_speaker:Sela(1)",
-      "suspect_speaker:And then suvannavanno(1)",
-      "suspect_speaker:And Hare's translation(1)",
-      "suspect_speaker:So he is saying(1)",
-      "long_speaker_name:Then the Buddha goes on to say",
-      "suspect_speaker:Akalikam(1)",
-      "suspect_speaker:This is a real micchaditthi(1)",
-      "suspect_speaker:Then Vasettha said to Bharadvaja(1)",
-      "suspect_speaker:Then said the Master(1)",
-      "suspect_speaker:One of these incidents is as follows(1)",
-      "suspect_speaker:And similarly with subha(1)",
-      "suspect_speaker:They shout and sing to music's strains(1)",
-      "suspect_speaker:Then sambodhagamino(1)",
-      "suspect_speaker:would be proper to say to them(1)",
-      "suspect_speaker:So you see the general principle here(1)",
-      "suspect_speaker:Let's just look at these epithets(1)",
-      "suspect_speaker:It's not affection(1)",
-      "suspect_speaker:There is another relevant point here(1)",
-      "suspect_speaker:So this is quite important(1)",
-      "suspect_speaker:The Going Forth. Pabbajja Sutta Ananda(1)",
-      "suspect_speaker:find yourself in the open air(1)",
-      "suspect_speaker:This is quite important(1)",
-      "suspect_speaker:You can't help changing(1)",
-      "suspect_speaker:thy third array(1)",
-      "suspect_speaker:Then he really attacks Mara(1)",
-      "suspect_speaker:Namuci(1)",
-      "suspect_speaker:Goodly Words(1)",
-      "suspect_speaker:So(1)",
-      "suspect_speaker:V(1)",
-      "suspect_speaker:Nor yet another harms(1)",
-      "suspect_speaker:main castes(1)",
-      "suspect_speaker:Two voices(1)",
-      "suspect_speaker:And then avijjasava(1)",
-      "suspect_speaker:dhammesu(1)",
-      "suspect_speaker:Various voices(1)",
-      "suspect_speaker:That fourth simile(1)",
-      "suspect_speaker:Then thought he(1)",
-      "suspect_speaker:Then again he thought(1)",
-      "suspect_speaker:And again he thought(1)",
-      "suspect_speaker:it means being a bit insistent(1)",
-      "suspect_speaker:A Voice(1)",
-      "missing_date",
-      "missing_location"
-    ],
-    "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM121": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Udana 1974",
     "format_type": "p-based",
     "turn_count": 494,
@@ -2919,10 +2827,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM122": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Udana 1975",
     "format_type": "p-based",
     "turn_count": 2544,
@@ -2985,7 +2894,8 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM123": {
     "status": "unreviewed",
@@ -4393,6 +4303,11 @@
     "issue_count": 0
   },
   "SEM093": {
+    "status": "reviewed",
+    "reviewed_at": "2026-05-04",
+    "issue_count": 0
+  },
+  "SEM120": {
     "status": "reviewed",
     "reviewed_at": "2026-05-04",
     "issue_count": 0
