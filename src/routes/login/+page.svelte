@@ -101,6 +101,9 @@
 </script>
 
 <div class="auth-wrap">
+	{#if page.url.searchParams.get('deleted') === '1'}
+		<p class="info">Your account has been deleted.</p>
+	{/if}
 	{#if stage === 'totp'}
 		<h2>Two-factor code</h2>
 		<p class="hint">Enter the 6-digit code from your authenticator app.</p>
