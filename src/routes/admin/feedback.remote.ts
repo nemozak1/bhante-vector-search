@@ -44,8 +44,11 @@ const SetStatusSchema = v.object({
 });
 
 export const setStatus = command(SetStatusSchema, async ({ id, status, adminNotes }) => {
-	await requireAdmin();
-	const updated = await feedback.setStatus(id, status, adminNotes ?? null);
+	const admin = await requireAdmin();
+	const updated = await feedback.setStatus(id, status, adminNotes ?? null, {
+		id: admin.id,
+		email: admin.email
+	});
 	await get(id).refresh();
 	return updated;
 });

@@ -4,6 +4,7 @@ import { building } from '$app/environment';
 import { sequence } from '@sveltejs/kit/hooks';
 import { error, type Handle } from '@sveltejs/kit';
 import { runMigrations } from '$lib/server/db/migrate.ts';
+import { resolveEventSource, withEventSource } from '$lib/server/event-context.ts';
 
 let migrated = false;
 
@@ -17,7 +18,12 @@ const sessionResolver: Handle = async ({ event, resolve }) => {
 	event.locals.session = session?.session ?? null;
 	event.locals.user = session?.user ?? null;
 
-	return svelteKitHandler({ event, resolve, auth, building });
+	// Stamp the event source for any logEvent() calls that fire downstream
+	// (e.g. webhooks log as 'webhook' instead of the default 'user').
+	const source = resolveEventSource(event.url.pathname);
+	return withEventSource(source, () =>
+		svelteKitHandler({ event, resolve, auth, building })
+	) as ReturnType<typeof resolve>;
 };
 
 const PUBLIC_API_PATHS = new Set(['/api/health']);
