@@ -108,7 +108,10 @@ src/
 │   ├── auth-client.ts     createAuthClient for the browser
 │   ├── auth.svelte.ts     thin facade preserving signIn/signUp/signOut
 │   ├── types.ts           shared client+server types (canonical)
-│   ├── searchState.ts     in-memory cache for search results across tab switches
+│   ├── storage.svelte.ts  reactive localStorage wrapper (LocalStorage<T>)
+│   ├── searchController.svelte.ts  per-scope search state: URL (?q/?k) is the source of
+│   │                       truth (shareable/back-button), with a localStorage result cache
+│   │                       so reload restores results without re-embedding (an OpenAI call)
 │   └── server/
 │       ├── env.ts                  fail-loud env reader
 │       ├── auth-context.ts         requireUser() — auth gate used by remote fns

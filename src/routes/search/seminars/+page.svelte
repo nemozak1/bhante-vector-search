@@ -2,48 +2,35 @@
 	import SearchBar from '$lib/components/SearchBar.svelte';
 	import SeminarResult from '$lib/components/SeminarResult.svelte';
 	import ResultList from '$lib/components/ResultList.svelte';
+	import { SearchController } from '$lib/searchController.svelte';
 	import * as searchRemote from '../../search.remote';
 	import type { SeminarResult as SeminarResultType } from '$lib/types';
-	import { seminarSearchState } from '$lib/searchState';
 
-	let cached = seminarSearchState.get();
-	let results: SeminarResultType[] = $state(cached.results);
-	let query = $state(cached.query);
-	let loading = $state(false);
-	let error = $state('');
-	let searched = $state(cached.searched);
-
-	async function handleSearch(q: string, k: number) {
-		loading = true;
-		error = '';
-		query = q;
-		try {
-			const data = await searchRemote.seminars({ query: q, k }).run();
-			results = data.results;
-			searched = true;
-			seminarSearchState.set({ query: q, k, results: data.results, searched: true });
-		} catch (e) {
-			error = e instanceof Error ? e.message : 'Search failed';
-			results = [];
-		} finally {
-			loading = false;
-		}
-	}
+	const ctrl = new SearchController<SeminarResultType>('seminars', (q, k) =>
+		searchRemote.seminars({ query: q, k }).run()
+	);
 </script>
 
-<SearchBar onSearch={handleSearch} {loading} placeholder="Search seminar transcripts..." initialQuery={cached.query} initialK={cached.k} />
+<SearchBar
+	scope="seminars"
+	onSearch={(q, k) => ctrl.submit(q, k)}
+	loading={ctrl.loading}
+	bind:query={ctrl.query}
+	bind:k={ctrl.k}
+	placeholder="Search seminar transcripts..."
+/>
 
-{#if error}
-	<div class="error-msg">{error}</div>
+{#if ctrl.error}
+	<div class="error-msg">{ctrl.error}</div>
 {/if}
 
-{#if searched && results.length > 0}
-	<ResultList totalResults={results.length} {query}>
-		{#each results as result}
+{#if ctrl.searched && ctrl.results.length > 0}
+	<ResultList totalResults={ctrl.results.length} query={ctrl.query}>
+		{#each ctrl.results as result}
 			<SeminarResult {result} />
 		{/each}
 	</ResultList>
-{:else if searched && !loading}
+{:else if ctrl.searched && !ctrl.loading}
 	<p class="empty">No results found. Try a different query.</p>
 {/if}
 
