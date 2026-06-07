@@ -2898,7 +2898,7 @@
     "reviewed_at": "2026-05-04"
   },
   "SEM123": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Pali Canon - Vasala Sutta 1982",
     "format_type": "p-based",
     "turn_count": 576,
@@ -2915,10 +2915,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM124": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Precepts of the Gurus - 1st Seminar",
     "format_type": "br-based",
     "turn_count": 1843,
@@ -2966,218 +2967,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
-  },
-  "SEM125P1": {
-    "status": "unreviewed",
-    "title": "Precepts of the Gurus - 2nd Seminar Part 1",
-    "format_type": "br-based",
-    "turn_count": 800,
-    "total_paragraphs": 3970,
-    "unattributed_pct": 0.3,
-    "issues": [
-      "suspect_speaker:course  of  a  whole  weekend(1)",
-      "suspect_speaker:nature(1)",
-      "suspect_speaker:they  take  up  various  things(1)",
-      "suspect_speaker:one's own capabilities(1)",
-      "suspect_speaker:of action that you require(1)",
-      "suspect_speaker:a  very  committed  person(1)",
-      "suspect_speaker:follow(1)",
-      "suspect_speaker:failure(1)",
-      "suspect_speaker:explore this a bit(1)",
-      "suspect_speaker:or secretary(1)",
-      "suspect_speaker:against  another(1)",
-      "suspect_speaker:what  we  like  to  do(1)",
-      "suspect_speaker:will  use  the  argument(1)",
-      "suspect_speaker:for(1)",
-      "suspect_speaker:pushed them into it(1)",
-      "suspect_speaker:with people(1)",
-      "suspect_speaker:prepared for this(1)",
-      "suspect_speaker:you're  not  very  good  at(1)",
-      "suspect_speaker:own development(1)",
-      "suspect_speaker:narrow person(1)",
-      "suspect_speaker:ideal in this respect(1)",
-      "suspect_speaker:Tibetan tradition(1)",
-      "suspect_speaker:go around thinking(1)",
-      "suspect_speaker:can't really know unless you get into it(1)",
-      "suspect_speaker:you want to do(1)",
-      "suspect_speaker:they don't want to do what they're doing(1)",
-      "suspect_speaker:may have to do what you don't like to do(1)",
-      "suspect_speaker:sometimes(1)",
-      "suspect_speaker:of  ultimate  spiritual  development(1)",
-      "suspect_speaker:is  wrong(1)",
-      "suspect_speaker:job(1)",
-      "suspect_speaker:concrete  terms(1)",
-      "suspect_speaker:say(1)",
-      "suspect_speaker:capabilities(1)",
-      "suspect_speaker:possibility(1)",
-      "suspect_speaker:developed that talent(1)",
-      "suspect_speaker:democracies(1)",
-      "suspect_speaker:spiritual community(1)",
-      "suspect_speaker:them(1)",
-      "suspect_speaker:certain respects(1)",
-      "suspect_speaker:receive a bigger wage than he needed(1)",
-      "suspect_speaker:have a mixed economy so to speak(1)",
-      "suspect_speaker:of  conformity(1)",
-      "suspect_speaker:do or what the group requires(1)",
-      "suspect_speaker:just  a  euphemism(1)",
-      "suspect_speaker:you want to spend it on in that week(1)",
-      "suspect_speaker:community(1)",
-      "suspect_speaker:same sort of rule to everybody(1)",
-      "suspect_speaker:originally talking about(1)",
-      "suspect_speaker:carrot(1)",
-      "suspect_speaker:let us say the First Precept(1)",
-      "suspect_speaker:ensure a good rebirth for yourself(1)",
-      "suspect_speaker:Anyway(1)",
-      "suspect_speaker:skill(1)",
-      "suspect_speaker:Dhammamati(1)",
-      "suspect_speaker:which comes first(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM125P2": {
-    "status": "unreviewed",
-    "title": "Precepts of the Gurus - 2nd Seminar Part 2",
-    "format_type": "br-based",
-    "turn_count": 1238,
-    "total_paragraphs": 4347,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:instructions on where to buy their place(1)",
-      "suspect_speaker:other(1)",
-      "suspect_speaker:visitors of the opposite sex(1)",
-      "suspect_speaker:thing about private eating as it were(1)",
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:you become mother(1)",
-      "suspect_speaker:Kamalasila voice(1)",
-      "suspect_speaker:A voice(1)",
-      "suspect_speaker:people do take it like that(1)",
-      "suspect_speaker:safeguard one's own regular meditation(1)",
-      "suspect_speaker:provision made for physical(1)",
-      "suspect_speaker:group  puja  so  to  speak(1)",
-      "suspect_speaker:time being(1)",
-      "suspect_speaker:beginners class I don't think(1)",
-      "suspect_speaker:like this(1)",
-      "suspect_speaker:Do  you  see  what  I  mean(1)",
-      "suspect_speaker:cannot in fact write(1)",
-      "suspect_speaker:was terrible(1)",
-      "suspect_speaker:communication(1)",
-      "suspect_speaker:yourself for gluttony(1)",
-      "suspect_speaker:beneficent  sciences(1)",
-      "suspect_speaker:body(1)",
-      "suspect_speaker:whose virtues are not quite so obvious(1)",
-      "suspect_speaker:meditation at all(1)",
-      "suspect_speaker:spite  of  all  that  they  will  think(1)",
-      "suspect_speaker:start thinking(1)",
-      "suspect_speaker:impression(1)",
-      "suspect_speaker:people  really  sort  of  jumped(1)",
-      "suspect_speaker:malicious. It was completely playful(1)",
-      "suspect_speaker:breakdown and he was saying(1)",
-      "suspect_speaker:beings(1)",
-      "suspect_speaker:noticeable  in  Kalimpong(1)",
-      "suspect_speaker:They  say(1)",
-      "suspect_speaker:you've got to learn to do(1)",
-      "suspect_speaker:exception(1)",
-      "suspect_speaker:happens and what is their method(1)",
-      "suspect_speaker:about growth and development(1)",
-      "suspect_speaker:small children(1)",
-      "suspect_speaker:You  lay  down  the  general  principle(1)",
-      "suspect_speaker:sort of subjective whim or fancy(1)",
-      "suspect_speaker:can be done for them(1)",
-      "suspect_speaker:Enby(1)",
-      "suspect_speaker:love(1)",
-      "suspect_speaker:Several voices(1)",
-      "suspect_speaker:to  be  reborn  out  of  compassion(1)",
-      "suspect_speaker:So  that's  why  we  sometimes  say(1)",
-      "suspect_speaker:say(1)",
-      "suspect_speaker:saying(1)",
-      "suspect_speaker:suppose  it  raises  the  question(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM125P3": {
-    "status": "unreviewed",
-    "title": "Precepts of the Gurus - 2nd Seminar Part 3",
-    "format_type": "br-based",
-    "turn_count": 1125,
-    "total_paragraphs": 4954,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:factual account of your experience(1)",
-      "suspect_speaker:like in a big city like London(1)",
-      "suspect_speaker:by the environment(1)",
-      "suspect_speaker:your creativity(1)",
-      "suspect_speaker:going at once(1)",
-      "suspect_speaker:expression is also your language(1)",
-      "suspect_speaker:with the neatly kept  garden(1)",
-      "suspect_speaker:growth(1)",
-      "suspect_speaker:skilful or not skilful(1)",
-      "suspect_speaker:spiritual growth(1)",
-      "suspect_speaker:function of mother as well(1)",
-      "suspect_speaker:otherwise(1)",
-      "suspect_speaker:move around(1)",
-      "suspect_speaker:It's the egalitarian myth(1)",
-      "suspect_speaker:interchangeable(1)",
-      "suspect_speaker:both speak(1)",
-      "suspect_speaker:people are not inter-changeable(1)",
-      "suspect_speaker:needs(1)",
-      "suspect_speaker:are(1)",
-      "suspect_speaker:with one another well and constantly(1)",
-      "suspect_speaker:livelihood(1)",
-      "suspect_speaker:committed to the spiritual life(1)",
-      "suspect_speaker:no doubt about that(1)",
-      "suspect_speaker:happen like that(1)",
-      "suspect_speaker:whether we want to be part of it or not(1)",
-      "suspect_speaker:is just a big manifestation of the fact(1)",
-      "suspect_speaker:Evolution(1)",
-      "suspect_speaker:start thinking(1)",
-      "suspect_speaker:insoluble(1)",
-      "suspect_speaker:Europe together(1)",
-      "suspect_speaker:sort of(1)",
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:in patent medicines(1)",
-      "suspect_speaker:irritable(1)",
-      "suspect_speaker:go to bed late and get up late(1)",
-      "suspect_speaker:pleasure essentially is(1)",
-      "missing_date"
-    ],
-    "has_date": false,
-    "has_location": true
-  },
-  "SEM125P4": {
-    "status": "unreviewed",
-    "title": "Precepts of the Gurus - 2nd Seminar Part 4",
-    "format_type": "br-based",
-    "turn_count": 807,
-    "total_paragraphs": 3486,
-    "unattributed_pct": 0.0,
-    "issues": [
-      "suspect_speaker:Voices(1)",
-      "suspect_speaker:private space(1)",
-      "suspect_speaker:exotic oriental glamour added on to it(1)",
-      "suspect_speaker:time(1)",
-      "suspect_speaker:their own level(1)",
-      "suspect_speaker:almost(1)",
-      "suspect_speaker:retreat(1)",
-      "suspect_speaker:threw up her hands in horror(1)",
-      "suspect_speaker:meaning a break from your practice(1)",
-      "suspect_speaker:what I mean(1)",
-      "suspect_speaker:they use(1)",
-      "suspect_speaker:monopoly  of  rights(1)",
-      "suspect_speaker:and  sarcasm(1)",
-      "suspect_speaker:boy  and  you  get  something(1)",
-      "suspect_speaker:performed(1)",
-      "suspect_speaker:Everyone(1)"
-    ],
-    "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM126": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Precepts of the Gurus - 3rd Seminar",
     "format_type": "p-based",
     "turn_count": 2227,
@@ -3221,10 +3015,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM127": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Precepts of the Gurus - 4th Seminar",
     "format_type": "p-based",
     "turn_count": 824,
@@ -3245,10 +3040,11 @@
       "suspect_speaker:So that the question arises(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM128": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Precious Garland - Unchecked",
     "format_type": "p-based",
     "turn_count": 2512,
@@ -3350,10 +3146,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM129": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Religion of Art",
     "format_type": "br-based",
     "turn_count": 1451,
@@ -3364,10 +3161,11 @@
       "suspect_speaker:contain them(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM130": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Sevenfold Puja - Unchecked",
     "format_type": "p-based",
     "turn_count": 1164,
@@ -3399,10 +3197,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM131": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Stability of Societies - New Zealand 1979",
     "format_type": "p-based",
     "turn_count": 1171,
@@ -3420,10 +3219,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM132": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Stability of Societies and of the Order",
     "format_type": "mixed",
     "turn_count": 287,
@@ -3436,10 +3236,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM133": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Aspects of Buddhist Psychology - Unchecked",
     "format_type": "p-based",
     "turn_count": 1162,
@@ -3493,10 +3294,11 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM134": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Aspects of the Higher Evolution of the Individual",
     "format_type": "p-based",
     "turn_count": 1269,
@@ -3529,10 +3331,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM135": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Bodhisattva Ideal - Questions and Answers with Study Leaders 1986",
     "format_type": "p-based",
     "turn_count": 1028,
@@ -3559,10 +3362,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM136": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Creative Symbols of the Tantric Path - Unchecked",
     "format_type": "p-based",
     "turn_count": 1349,
@@ -3581,10 +3385,11 @@
       "missing_location"
     ],
     "has_date": true,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM137": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Higher Evolution of Man - Unchecked",
     "format_type": "p-based",
     "turn_count": 1037,
@@ -3612,10 +3417,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM138": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Noble Eightfold Path - Questions and Answers with Study Leaders 1985",
     "format_type": "p-based",
     "turn_count": 1573,
@@ -3633,10 +3439,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM139": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Sutra of Golden Light",
     "format_type": "mixed",
     "turn_count": 1335,
@@ -3661,10 +3468,11 @@
       "missing_location"
     ],
     "has_date": true,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM140": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Vimalakirti Nirdesa",
     "format_type": "mixed",
     "turn_count": 1728,
@@ -3711,10 +3519,11 @@
       "suspect_speaker:And Lamotte says(1)"
     ],
     "has_date": true,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM141": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "White Lotus Sutra - Unchecked",
     "format_type": "p-based",
     "turn_count": 1430,
@@ -3742,10 +3551,11 @@
       "missing_location"
     ],
     "has_date": false,
-    "has_location": false
+    "has_location": false,
+    "reviewed_at": "2026-05-04"
   },
   "SEM142": {
-    "status": "unreviewed",
+    "status": "reviewed",
     "title": "Sutra of Forty - two Sections - New Zealand Unchecked",
     "format_type": "p-based",
     "turn_count": 1464,
@@ -3857,7 +3667,8 @@
       "missing_date"
     ],
     "has_date": false,
-    "has_location": true
+    "has_location": true,
+    "reviewed_at": "2026-05-04"
   },
   "SEM143": {
     "status": "unreviewed",
@@ -4308,6 +4119,11 @@
     "issue_count": 0
   },
   "SEM120": {
+    "status": "reviewed",
+    "reviewed_at": "2026-05-04",
+    "issue_count": 0
+  },
+  "SEM125": {
     "status": "reviewed",
     "reviewed_at": "2026-05-04",
     "issue_count": 0

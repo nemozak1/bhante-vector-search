@@ -91,5 +91,15 @@
     ],
     "merged_at": "2026-05-04",
     "description": "Pali Canon - Sutta Nipata Great Chapter (Padmaloka, July 1976): 2 parts merged"
+  },
+  "SEM125": {
+    "parts": [
+      "SEM125P1",
+      "SEM125P2",
+      "SEM125P3",
+      "SEM125P4"
+    ],
+    "merged_at": "2026-05-04",
+    "description": "Precepts of the Gurus - 2nd Seminar (Padmaloka, August 1979): 4 parts merged"
   }
 }
