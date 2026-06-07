@@ -18,10 +18,13 @@ export interface EventTypeConfig {
 }
 
 const EVENT_TYPE_CONFIG: Record<string, EventTypeConfig> = {
-	// Auth
+	// Auth + account
 	user_signed_up: { color: 'sky' },
 	user_login: { color: 'gray' },
 	user_logout: { color: 'gray' },
+	user_account_updated: { color: 'blue' },
+	user_password_changed: { color: 'amber' },
+	user_deleted: { color: 'red' },
 
 	// Search
 	search_executed: { color: 'blue' },

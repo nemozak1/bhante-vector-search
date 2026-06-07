@@ -22,6 +22,25 @@ export const auth = betterAuth({
 				defaultValue: false,
 				input: false
 			}
+		},
+		// Enables auth.api.deleteUser({ body: { password } }) so users can
+		// remove their own account from the settings page. Password
+		// confirmation prevents drive-by deletion via a stolen session.
+		deleteUser: {
+			enabled: true,
+			beforeDelete: async (user) => {
+				// GDPR scrub: keep the feedback rows (other admins still need to
+				// triage them) but clear the email so the deleted user isn't
+				// identifiable. user_id is already on delete set null via FK.
+				await pool.query(
+					`update feedback set email_snapshot = '[deleted user]' where user_id = $1`,
+					[user.id]
+				);
+				await buildEventMessage(
+					'{user:0} deleted their account',
+					[{ type: 'user', id: user.id, label: user.email }]
+				).log('user_deleted', null, 'warning');
+			}
 		}
 	},
 	session: {

@@ -71,9 +71,8 @@
 				{/if}
 				{#if auth.user}
 					<div class="user-menu">
-						<span class="user-email">{auth.user.email}</span>
-						<a href="/settings/two-factor" class="settings-link" title="Two-factor settings">
-							2FA
+						<a href="/settings/account" class="user-email" title="Manage account">
+							{auth.user.email}
 						</a>
 						<button type="button" class="signout" onclick={handleSignOut}>Sign out</button>
 					</div>
@@ -213,20 +212,12 @@
 	.user-email {
 		font-size: 0.78rem;
 		color: var(--text-muted);
-	}
-
-	.settings-link {
-		font-size: 0.72rem;
-		font-weight: 600;
-		color: var(--text-muted);
 		text-decoration: none;
-		padding: 0.3rem 0.5rem;
-		border: 1px solid var(--border);
-		border-radius: 3px;
+		border-bottom: 1px dotted transparent;
 	}
-	.settings-link:hover {
+	.user-email:hover {
 		color: var(--accent);
-		border-color: var(--accent);
+		border-bottom-color: var(--accent);
 	}
 
 	.signout {
