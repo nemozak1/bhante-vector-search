@@ -1,5 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { sveltekitCookies } from 'better-auth/svelte-kit';
+import { twoFactor } from 'better-auth/plugins';
 import { getRequestEvent } from '$app/server';
 import { pool } from './server/db/pool.ts';
 import { buildEventMessage } from './server/services/events.ts';
@@ -7,7 +8,12 @@ import { buildEventMessage } from './server/services/events.ts';
 export const auth = betterAuth({
 	database: pool,
 	emailAndPassword: { enabled: true, autoSignIn: true },
-	plugins: [sveltekitCookies(getRequestEvent)],
+	plugins: [
+		twoFactor({
+			issuer: 'Bhante Sangharakshita Search'
+		}),
+		sveltekitCookies(getRequestEvent)
+	],
 	user: {
 		additionalFields: {
 			is_admin: {
@@ -48,6 +54,22 @@ export const auth = betterAuth({
 						'{user:0} signed in',
 						[{ type: 'user', id: session.userId, label }]
 					).log('user_login', session.userId);
+				}
+			},
+			// Fires when a session row is deleted (sign-out, manual revoke, cleanup).
+			// We can't distinguish "user-initiated" from "garbage-collected" here, but
+			// in practice almost every delete is a sign-out for an alpha at this scale.
+			delete: {
+				after: async (session) => {
+					const { rows } = await pool.query<{ email: string }>(
+						'select email from "user" where id = $1',
+						[session.userId]
+					);
+					const label = rows[0]?.email ?? session.userId;
+					await buildEventMessage(
+						'{user:0} signed out',
+						[{ type: 'user', id: session.userId, label }]
+					).log('user_logout', session.userId);
 				}
 			}
 		}

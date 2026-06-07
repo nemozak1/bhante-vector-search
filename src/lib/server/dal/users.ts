@@ -9,6 +9,14 @@ export async function isAdmin(userId: string): Promise<boolean> {
 	return rows[0]?.is_admin === true;
 }
 
+export async function hasTwoFactor(userId: string): Promise<boolean> {
+	const { rows } = await pool.query<{ enabled: boolean }>(
+		`select coalesce("twoFactorEnabled", false) as enabled from "user" where id = $1`,
+		[userId]
+	);
+	return rows[0]?.enabled === true;
+}
+
 export type UserListRow = {
 	id: string;
 	email: string;

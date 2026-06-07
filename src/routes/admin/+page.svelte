@@ -41,16 +41,16 @@
 		{
 			href: '/admin/ingestion',
 			label: 'Ingestion',
-			blurb: 'Recent re-ingests, source SHA history, manual re-ingest trigger.',
+			blurb: 'Recent re-ingests, source SHA history, chunk counts per run.',
 			icon: Database,
-			live: false
+			live: true
 		},
 		{
 			href: '/admin/health',
 			label: 'Health',
-			blurb: 'Chunk counts by collection, embeddings API errors, last R2 backup.',
+			blurb: 'Chunk counts by collection, recent errors, integration status.',
 			icon: HeartPulse,
-			live: false
+			live: true
 		}
 	];
 </script>

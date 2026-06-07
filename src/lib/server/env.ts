@@ -44,7 +44,12 @@ export const env = {
 	R2_SECRET_ACCESS_KEY: process.env.R2_SECRET_ACCESS_KEY ?? '',
 	R2_FEEDBACK_BUCKET: process.env.R2_FEEDBACK_BUCKET ?? '',
 	FEEDBACK_SLACK_WEBHOOK_URL: process.env.FEEDBACK_SLACK_WEBHOOK_URL ?? '',
-	ADMIN_EMAILS: process.env.ADMIN_EMAILS ?? ''
+	ADMIN_EMAILS: process.env.ADMIN_EMAILS ?? '',
+
+	// Two-factor auth. When ADMIN_REQUIRE_TOTP=false (the dev default) admins
+	// can use the panel without enrolling TOTP. Set to true in prod so admins
+	// MUST enrol before /admin/* is reachable.
+	ADMIN_REQUIRE_TOTP: bool('ADMIN_REQUIRE_TOTP', false)
 };
 
 export function r2Configured(): boolean {

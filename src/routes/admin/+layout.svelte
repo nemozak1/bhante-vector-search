@@ -9,6 +9,8 @@
 		{ href: '/admin/feedback', label: 'Feedback', exact: false },
 		{ href: '/admin/review', label: 'Review', exact: false },
 		{ href: '/admin/users', label: 'Users', exact: false },
+		{ href: '/admin/ingestion', label: 'Ingestion', exact: false },
+		{ href: '/admin/health', label: 'Health', exact: false },
 		{ href: '/admin/events', label: 'Activity', exact: false }
 	];
 
