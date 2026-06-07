@@ -92,7 +92,7 @@ export type ReviewStatusItem = {
 	turn_count: number;
 	total_paragraphs: number;
 	unattributed_pct: number;
-	issues: string[];
+	issues?: string[];
 	has_date: boolean;
 	has_location: boolean;
 };
@@ -106,4 +106,49 @@ export type ReviewDiff = {
 	cleaned_turn_count: number;
 	diff_lines: string[];
 	has_changes: boolean;
+};
+
+export type FeedbackCategory =
+	| 'bug'
+	| 'seminar_misformatting'
+	| 'seminar_correction'
+	| 'search_quality'
+	| 'feature'
+	| 'question'
+	| 'other';
+
+export type FeedbackStatus = 'new' | 'triaged' | 'resolved' | 'dismissed';
+
+export type FeedbackContext = {
+	url: string | null;
+	user_agent: string | null;
+	viewport: { w: number; h: number } | null;
+	app_version: string | null;
+	console_errors: Array<{ ts: string; msg: string }> | null;
+};
+
+export type FeedbackRow = {
+	id: number;
+	user_id: string | null;
+	email_snapshot: string;
+	category: FeedbackCategory;
+	message: string;
+	url: string | null;
+	user_agent: string | null;
+	viewport: { w: number; h: number } | null;
+	app_version: string | null;
+	console_errors: Array<{ ts: string; msg: string }> | null;
+	screenshot_key: string | null;
+	status: FeedbackStatus;
+	admin_notes: string | null;
+	github_issue_url: string | null;
+	created_at: string;
+	triaged_at: string | null;
+};
+
+export type FeedbackListItem = Pick<
+	FeedbackRow,
+	'id' | 'email_snapshot' | 'category' | 'status' | 'created_at'
+> & {
+	message_preview: string;
 };

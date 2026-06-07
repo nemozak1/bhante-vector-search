@@ -4,7 +4,13 @@ const sessionStore = authClient.useSession();
 
 type AuthState = {
 	session: unknown | null;
-	user: { id: string; email: string; name?: string } | null;
+	user: {
+		id: string;
+		email: string;
+		name?: string;
+		is_admin?: boolean;
+		twoFactorEnabled?: boolean;
+	} | null;
 	loading: boolean;
 };
 
@@ -34,11 +40,33 @@ async function refreshSessionState() {
 	auth.loading = false;
 }
 
-export async function signIn(email: string, password: string) {
+export type SignInOutcome =
+	| { status: 'done' }
+	| { status: 'totp-required' };
+
+export async function signIn(email: string, password: string): Promise<SignInOutcome> {
 	const { data, error } = await authClient.signIn.email({ email, password });
 	if (error) throw new Error(error.message ?? 'Sign in failed');
+	// Better Auth returns { twoFactorRedirect: true } when the user has 2FA enabled
+	// and password was correct; the session is NOT created yet — the caller must
+	// follow up with verifyTotp().
+	if ((data as { twoFactorRedirect?: boolean } | null)?.twoFactorRedirect) {
+		return { status: 'totp-required' };
+	}
 	await refreshSessionState();
-	return data;
+	return { status: 'done' };
+}
+
+export async function verifyTotp(code: string): Promise<void> {
+	const { error } = await authClient.twoFactor.verifyTotp({ code });
+	if (error) throw new Error(error.message ?? 'TOTP verification failed');
+	await refreshSessionState();
+}
+
+export async function verifyBackupCode(code: string): Promise<void> {
+	const { error } = await authClient.twoFactor.verifyBackupCode({ code });
+	if (error) throw new Error(error.message ?? 'Backup code verification failed');
+	await refreshSessionState();
 }
 
 export async function signUp(email: string, password: string) {

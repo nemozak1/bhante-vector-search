@@ -5,6 +5,7 @@ import type { ChunkHit } from '../dal/chunks.ts';
 import * as searchHistory from './search-history.ts';
 import * as rerankSvc from '../rerank.ts';
 import { env } from '../env.ts';
+import { logEvent } from './events.ts';
 import type {
 	BookResult,
 	SeminarResult,
@@ -51,7 +52,16 @@ function recordIfUser(
 	scope: 'all' | 'books' | 'seminars',
 	count: number
 ) {
-	if (userId) searchHistory.record(userId, query, scope, null, count).catch(() => {});
+	if (!userId) return;
+	searchHistory.record(userId, query, scope, null, count).catch(() => {});
+	// Fire-and-forget; never block the response on a log write.
+	logEvent(
+		'search_executed',
+		`searched ${scope} for "${query}" (${count} results)`,
+		userId,
+		undefined,
+		'debug'
+	).catch(() => {});
 }
 
 // When the reranker is on, ask pgvector for more candidates than we'll return,

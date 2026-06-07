@@ -4,13 +4,16 @@
 	import { page } from '$app/state';
 	import type { Snippet } from 'svelte';
 	import { auth, signOut } from '$lib/auth.svelte';
+	import FeedbackWidget from '$lib/components/feedback/FeedbackWidget.svelte';
+	import { install as installConsoleBuffer } from '$lib/components/feedback/console-buffer';
+
+	installConsoleBuffer();
 
 	let { children }: { children: Snippet } = $props();
 
 	const tabs = [
 		{ href: '/search', label: 'Search' },
-		{ href: '/seminars', label: 'Seminars' },
-		{ href: '/review', label: 'Review' },
+		{ href: '/seminars', label: 'Seminars' }
 	];
 
 	function isActive(href: string): boolean {
@@ -37,6 +40,11 @@
 		await signOut();
 		goto('/login');
 	}
+
+	const appVersion = typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : 'dev';
+	const appReleased =
+		typeof __APP_RELEASED__ !== 'undefined' ? __APP_RELEASED__ : new Date().toISOString();
+	const releasedDate = appReleased.slice(0, 10);
 </script>
 
 <div class="app">
@@ -56,9 +64,17 @@
 						{tab.label}
 					</a>
 				{/each}
+				{#if auth.user?.is_admin}
+					<a href="/admin" class="tab admin-tab" class:active={isActive('/admin')}>
+						Admin
+					</a>
+				{/if}
 				{#if auth.user}
 					<div class="user-menu">
 						<span class="user-email">{auth.user.email}</span>
+						<a href="/settings/two-factor" class="settings-link" title="Two-factor settings">
+							2FA
+						</a>
 						<button type="button" class="signout" onclick={handleSignOut}>Sign out</button>
 					</div>
 				{/if}
@@ -72,8 +88,15 @@
 
 	<footer class="app-footer">
 		<span>Texts by Urgyen Sangharakshita</span>
+		<span class="version" title="Build {appVersion} released {appReleased}">
+			· {appVersion} ({releasedDate})
+		</span>
 	</footer>
 </div>
+
+{#if !auth.loading && auth.user && !isPublicRoute(page.url.pathname)}
+	<FeedbackWidget user={auth.user} />
+{/if}
 
 <style>
 	:global(*) {
@@ -171,6 +194,14 @@
 		border-bottom-color: var(--accent);
 	}
 
+	.admin-tab {
+		color: var(--book-accent);
+	}
+	.admin-tab.active {
+		color: var(--book-accent);
+		border-bottom-color: var(--book-accent);
+	}
+
 	.user-menu {
 		margin-left: auto;
 		display: flex;
@@ -182,6 +213,20 @@
 	.user-email {
 		font-size: 0.78rem;
 		color: var(--text-muted);
+	}
+
+	.settings-link {
+		font-size: 0.72rem;
+		font-weight: 600;
+		color: var(--text-muted);
+		text-decoration: none;
+		padding: 0.3rem 0.5rem;
+		border: 1px solid var(--border);
+		border-radius: 3px;
+	}
+	.settings-link:hover {
+		color: var(--accent);
+		border-color: var(--accent);
 	}
 
 	.signout {
@@ -224,6 +269,13 @@
 
 	.app-footer a:hover {
 		text-decoration: underline;
+	}
+
+	.app-footer .version {
+		color: var(--text-muted);
+		opacity: 0.65;
+		font-size: 0.72rem;
+		margin-left: 0.5rem;
 	}
 
 	.sep {

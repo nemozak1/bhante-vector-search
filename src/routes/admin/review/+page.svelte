@@ -7,6 +7,8 @@
 	let sortBy = $state<'issues' | 'code' | 'status'>('issues');
 	let filterStatus = $state<'all' | 'reviewed' | 'unreviewed' | 'broken'>('all');
 
+	// review_status.json sometimes lacks `issues` for rows the upstream
+	// validator hasn't visited yet — coalesce here so sort/stats never NPE.
 	let entries = $derived.by(() => {
 		let items = Object.entries(data).map(([code, info]) => ({
 			code,
@@ -134,7 +136,7 @@
 					{#each entries as entry}
 						<tr class:row-reviewed={entry.status === 'reviewed'} class:row-broken={entry.status === 'broken'}>
 							<td>
-								<a href="/review/{entry.code}" class="code-link">{entry.code}</a>
+								<a href="/admin/review/{entry.code}" class="code-link">{entry.code}</a>
 							</td>
 							<td class="title-cell">{entry.title}</td>
 							<td>
