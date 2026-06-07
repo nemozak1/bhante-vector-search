@@ -1,8 +1,12 @@
 /**
  * Idempotent dev-user seed.
  *
- * Creates dev@bhante.local / devpassword via Better Auth so the quick-login
- * button on /login has someone to sign in as. Re-runs are no-ops.
+ * Creates two accounts for the quick-login buttons on /login:
+ *   - dev@bhante.local   / devpassword     (admin, if ADMIN_EMAILS includes it)
+ *   - tester@bhante.local / testerpassword (regular alpha-tester role)
+ *
+ * Re-runs are no-ops. Run after adding ADMIN_EMAILS to .env so the boot-time
+ * admin backfill in src/lib/server/db/seed-admins.ts picks up the dev account.
  *
  * Usage:
  *   node --env-file=.env --experimental-strip-types --no-warnings scripts/seed_dev_user.ts
@@ -16,6 +20,10 @@ export const DEV_EMAIL = 'dev@bhante.local';
 export const DEV_PASSWORD = 'devpassword';
 export const DEV_NAME = 'Dev User';
 
+export const TESTER_EMAIL = 'tester@bhante.local';
+export const TESTER_PASSWORD = 'testerpassword';
+export const TESTER_NAME = 'Alpha Tester';
+
 if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL not set');
 if (!process.env.BETTER_AUTH_SECRET) throw new Error('BETTER_AUTH_SECRET not set');
 
@@ -28,14 +36,20 @@ const auth = betterAuth({
 	baseURL: process.env.BETTER_AUTH_URL ?? 'http://localhost:5173'
 });
 
-const existing = await pool.query<{ id: string }>('select id from "user" where email = $1', [DEV_EMAIL]);
-if (existing.rowCount && existing.rowCount > 0) {
-	console.log(`✓ ${DEV_EMAIL} already exists (id=${existing.rows[0].id})`);
-} else {
-	const res = await auth.api.signUpEmail({
-		body: { email: DEV_EMAIL, password: DEV_PASSWORD, name: DEV_NAME }
-	});
-	console.log(`✓ created ${DEV_EMAIL} (id=${res.user.id})`);
+async function ensureUser(email: string, password: string, name: string): Promise<void> {
+	const existing = await pool.query<{ id: string }>(
+		'select id from "user" where email = $1',
+		[email]
+	);
+	if (existing.rowCount && existing.rowCount > 0) {
+		console.log(`✓ ${email} already exists (id=${existing.rows[0].id})`);
+		return;
+	}
+	const res = await auth.api.signUpEmail({ body: { email, password, name } });
+	console.log(`✓ created ${email} (id=${res.user.id})`);
 }
+
+await ensureUser(DEV_EMAIL, DEV_PASSWORD, DEV_NAME);
+await ensureUser(TESTER_EMAIL, TESTER_PASSWORD, TESTER_NAME);
 
 await pool.end();

@@ -37,7 +37,10 @@ const SubmitSchema = v.object({
 	category: CategorySchema,
 	message: v.pipe(v.string(), v.minLength(10), v.maxLength(5000)),
 	context: ContextSchema,
-	screenshotKey: v.nullable(v.pipe(v.string(), v.maxLength(500)))
+	// Either an R2 object key (short) or an inline `data:image/png;base64,…` URL
+	// when R2 isn't configured. Cap large enough to hold a 0.5x-scale full-page
+	// PNG (~2-3MB base64).
+	screenshotKey: v.nullable(v.pipe(v.string(), v.maxLength(5_000_000)))
 });
 
 export const presignUpload = command(async () => {

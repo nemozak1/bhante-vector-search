@@ -3,8 +3,10 @@
 	import { page } from '$app/state';
 	import { signIn, signUp } from '$lib/auth.svelte';
 
-	const DEV_EMAIL = 'dev@bhante.local';
-	const DEV_PASSWORD = 'devpassword';
+	const DEV_ACCOUNTS = [
+		{ email: 'dev@bhante.local', password: 'devpassword', label: 'admin' },
+		{ email: 'tester@bhante.local', password: 'testerpassword', label: 'tester' }
+	] as const;
 	const isDev = import.meta.env.DEV;
 
 	let email = $state('');
@@ -38,18 +40,18 @@
 		}
 	}
 
-	async function devLogin() {
+	async function devLogin(email: string, password: string) {
 		loading = true;
 		error = null;
 		info = null;
 		try {
-			await signIn(DEV_EMAIL, DEV_PASSWORD);
+			await signIn(email, password);
 			const redirect = page.url.searchParams.get('redirect') ?? '/search';
 			goto(redirect);
 		} catch (e) {
 			error =
 				(e instanceof Error ? e.message : String(e)) +
-				' — run `npm run seed:dev` to create the dev account.';
+				' — run `npm run seed:dev` to create the dev accounts.';
 		} finally {
 			loading = false;
 		}
@@ -60,10 +62,19 @@
 	<h2>{mode === 'signin' ? 'Sign in' : 'Create account'}</h2>
 
 	{#if isDev}
-		<button type="button" class="dev-login" disabled={loading} onclick={devLogin}>
-			<span class="dev-tag">dev</span>
-			Sign in as {DEV_EMAIL}
-		</button>
+		<div class="dev-buttons">
+			{#each DEV_ACCOUNTS as account (account.email)}
+				<button
+					type="button"
+					class="dev-login"
+					disabled={loading}
+					onclick={() => devLogin(account.email, account.password)}
+				>
+					<span class="dev-tag dev-tag-{account.label}">{account.label}</span>
+					Sign in as {account.email}
+				</button>
+			{/each}
+		</div>
 		<div class="divider"><span>or</span></div>
 	{/if}
 
@@ -208,15 +219,25 @@
 		opacity: 0.5;
 		cursor: not-allowed;
 	}
+	.dev-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
 	.dev-tag {
 		font-size: 0.62rem;
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: 0.12em;
-		background: var(--seminar-accent);
 		color: white;
 		padding: 0.12rem 0.4rem;
 		border-radius: 3px;
+	}
+	.dev-tag-admin {
+		background: var(--book-accent);
+	}
+	.dev-tag-tester {
+		background: var(--seminar-accent);
 	}
 	.divider {
 		display: flex;

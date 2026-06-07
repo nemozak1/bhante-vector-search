@@ -10,6 +10,7 @@ import type {
 } from '$lib/types';
 import { env, r2Configured } from '../env.ts';
 import { presignGet, presignPut } from '../storage/r2.ts';
+import { buildEventMessage } from './events.ts';
 
 export type { FeedbackCategory, FeedbackListItem, FeedbackRow, FeedbackStatus };
 
@@ -48,6 +49,16 @@ export async function create(input: CreateInput): Promise<{ id: number }> {
 		context: input.context,
 		screenshotKey: input.screenshotKey
 	});
+
+	await buildEventMessage(
+		'User {user:0} submitted {feedback:1} ({category})'.replace('{category}', row.category),
+		[
+			{ type: 'user', id: input.userId, label: input.email },
+			{ type: 'feedback', id: String(row.id), label: `#${row.id}` }
+		],
+		{ feedbackId: row.id }
+	).log('feedback_submitted', input.userId);
+
 	// Fire-and-forget Slack notification; don't block submit on webhook failure.
 	notifySlack(row).catch((err) => {
 		console.error('[feedback] slack webhook failed', err);
@@ -102,11 +113,16 @@ export async function getForAdmin(id: number): Promise<FeedbackDetail> {
 	const row = await feedbackDal.getById(id);
 	if (!row) error(404, 'Feedback not found');
 	let screenshotUrl: string | null = null;
-	if (row.screenshot_key && r2Configured()) {
-		try {
-			screenshotUrl = await presignGet(row.screenshot_key, 3600);
-		} catch (err) {
-			console.error('[feedback] presign GET failed', err);
+	if (row.screenshot_key) {
+		if (row.screenshot_key.startsWith('data:')) {
+			// Inline base64 fallback (R2 wasn't configured at upload time)
+			screenshotUrl = row.screenshot_key;
+		} else if (r2Configured()) {
+			try {
+				screenshotUrl = await presignGet(row.screenshot_key, 3600);
+			} catch (err) {
+				console.error('[feedback] presign GET failed', err);
+			}
 		}
 	}
 	return { ...row, screenshot_url: screenshotUrl };
@@ -115,9 +131,29 @@ export async function getForAdmin(id: number): Promise<FeedbackDetail> {
 export async function setStatus(
 	id: number,
 	status: FeedbackStatus,
-	adminNotes: string | null
+	adminNotes: string | null,
+	actor: { id: string; email: string }
 ): Promise<FeedbackRow> {
 	const updated = await feedbackDal.updateStatus(id, status, adminNotes);
 	if (!updated) error(404, 'Feedback not found');
+
+	const eventType =
+		status === 'resolved'
+			? 'feedback_resolved'
+			: status === 'dismissed'
+				? 'feedback_dismissed'
+				: status === 'triaged'
+					? 'feedback_triaged'
+					: 'feedback_reopened';
+
+	await buildEventMessage(
+		`{user:0} set {feedback:1} to ${status}`,
+		[
+			{ type: 'user', id: actor.id, label: actor.email },
+			{ type: 'feedback', id: String(id), label: `#${id}` }
+		],
+		{ feedbackId: id }
+	).log(eventType, actor.id);
+
 	return updated;
 }

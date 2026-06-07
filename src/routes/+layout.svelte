@@ -13,8 +13,7 @@
 
 	const tabs = [
 		{ href: '/search', label: 'Search' },
-		{ href: '/seminars', label: 'Seminars' },
-		{ href: '/review', label: 'Review' },
+		{ href: '/seminars', label: 'Seminars' }
 	];
 
 	function isActive(href: string): boolean {

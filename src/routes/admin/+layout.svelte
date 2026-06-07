@@ -6,7 +6,9 @@
 
 	const adminTabs = [
 		{ href: '/admin', label: 'Overview', exact: true },
-		{ href: '/admin/feedback', label: 'Feedback', exact: false }
+		{ href: '/admin/feedback', label: 'Feedback', exact: false },
+		{ href: '/admin/review', label: 'Review', exact: false },
+		{ href: '/admin/events', label: 'Activity', exact: false }
 	];
 
 	function isActive(tab: { href: string; exact: boolean }): boolean {

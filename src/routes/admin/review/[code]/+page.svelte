@@ -34,7 +34,7 @@
 
 <div class="diff-page">
 	<div class="breadcrumb">
-		<a href="/review">Review</a>
+		<a href="/admin/review">Review</a>
 		<span class="sep">/</span>
 		<span>{code}</span>
 	</div>

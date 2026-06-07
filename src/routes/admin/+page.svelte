@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { MessageSquareWarning, Users, Database, Activity } from '@lucide/svelte';
+	import { MessageSquareWarning, Users, Database, Activity, FileText, HeartPulse } from '@lucide/svelte';
 
 	type Card = {
 		href: string;
@@ -15,6 +15,20 @@
 			label: 'Feedback',
 			blurb: 'Tester reports — bugs, seminar corrections, feature requests.',
 			icon: MessageSquareWarning,
+			live: true
+		},
+		{
+			href: '/admin/review',
+			label: 'Review',
+			blurb: 'Seminar transcript cleanup status + diff between raw and cleaned.',
+			icon: FileText,
+			live: true
+		},
+		{
+			href: '/admin/events',
+			label: 'Activity',
+			blurb: 'System events: auth, feedback triage, seminar ingests, errors.',
+			icon: Activity,
 			live: true
 		},
 		{
@@ -35,7 +49,7 @@
 			href: '/admin/health',
 			label: 'Health',
 			blurb: 'Chunk counts by collection, embeddings API errors, last R2 backup.',
-			icon: Activity,
+			icon: HeartPulse,
 			live: false
 		}
 	];

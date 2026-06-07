@@ -83,7 +83,10 @@
 						<img src={f.screenshot_url} alt="Screenshot" class="screenshot" />
 					</a>
 				{:else}
-					<p class="muted">Stored at {f.screenshot_key} (R2 not configured for view)</p>
+					<p class="muted">
+						Stored at <code>{f.screenshot_key.slice(0, 80)}…</code>
+						but cannot be loaded (R2 misconfigured?).
+					</p>
 				{/if}
 			</div>
 		{/if}

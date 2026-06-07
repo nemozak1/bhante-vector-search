@@ -130,7 +130,7 @@
 					{#each entries as entry}
 						<tr class:row-reviewed={entry.status === 'reviewed'} class:row-broken={entry.status === 'broken'}>
 							<td>
-								<a href="/review/{entry.code}" class="code-link">{entry.code}</a>
+								<a href="/admin/review/{entry.code}" class="code-link">{entry.code}</a>
 							</td>
 							<td class="title-cell">{entry.title}</td>
 							<td>

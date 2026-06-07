@@ -34,6 +34,7 @@
 	const messageValid = $derived(charCount >= 10 && charCount <= 5000);
 
 	function defaultCategoryForRoute(pathname: string): FeedbackCategory {
+		if (pathname.startsWith('/admin/review')) return 'seminar_misformatting';
 		if (pathname.startsWith('/seminars/')) return 'seminar_correction';
 		if (pathname.startsWith('/search')) return 'search_quality';
 		return 'bug';
@@ -86,18 +87,22 @@
 		screenshot = null;
 	}
 
-	async function uploadScreenshot(blob: Blob): Promise<string | null> {
+	async function uploadScreenshot(blob: Blob, dataUrl: string): Promise<string> {
 		const presigned = await feedbackRemote.presignUpload();
-		if (!presigned) return null; // R2 not configured server-side
-		const res = await fetch(presigned.url, {
-			method: 'PUT',
-			headers: { 'Content-Type': 'image/png' },
-			body: blob
-		});
-		if (!res.ok) {
-			throw new Error(`Screenshot upload failed (${res.status})`);
+		if (presigned) {
+			const res = await fetch(presigned.url, {
+				method: 'PUT',
+				headers: { 'Content-Type': 'image/png' },
+				body: blob
+			});
+			if (!res.ok) {
+				throw new Error(`Screenshot upload failed (${res.status})`);
+			}
+			return presigned.key;
 		}
-		return presigned.key;
+		// R2 not configured — fall back to inline base64 data URL. The admin
+		// page detects the `data:` prefix and renders the image directly.
+		return dataUrl;
 	}
 
 	async function handleSubmit(e: Event) {
@@ -108,7 +113,7 @@
 		try {
 			let screenshotKey: string | null = null;
 			if (screenshot) {
-				screenshotKey = await uploadScreenshot(screenshot.blob);
+				screenshotKey = await uploadScreenshot(screenshot.blob, screenshot.dataUrl);
 			}
 			await feedbackRemote.submit({
 				category,
