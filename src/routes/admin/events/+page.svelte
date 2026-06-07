@@ -1,6 +1,7 @@
 <script lang="ts">
 	import * as eventsRemote from '../events.remote';
 	import EventChip from '$lib/components/events/EventChip.svelte';
+	import MessageRenderer from '$lib/components/events/MessageRenderer.svelte';
 	import { getEventTypeConfig, type EventColor } from '$lib/options/config/event-type-colors';
 	import type { EventLevel, EventSource } from '$lib/server/db/types/system-events';
 
@@ -157,8 +158,18 @@
 							</td>
 							<td><EventChip color={LEVEL_COLOR[item.level]} label={item.level} /></td>
 							<td><EventChip color={SOURCE_COLOR[item.source]} label={item.source} /></td>
-							<td class="nowrap">{item.actor_email ?? item.actor_name ?? '—'}</td>
-							<td class="message">{item.message}</td>
+							<td class="nowrap">
+								{#if item.actor_id && item.actor_email}
+									<a class="actor-link" href="/admin/users/{item.actor_id}">
+										{item.actor_email}
+									</a>
+								{:else}
+									{item.actor_email ?? item.actor_name ?? '—'}
+								{/if}
+							</td>
+							<td class="message">
+								<MessageRenderer message={item.message} metadata={item.metadata} />
+							</td>
 						</tr>
 					{/each}
 				</tbody>
@@ -275,6 +286,13 @@
 		font-family: 'IBM Plex Mono', ui-monospace, monospace;
 		font-size: 0.78rem;
 		color: var(--text-muted);
+	}
+	.actor-link {
+		color: var(--accent);
+		text-decoration: none;
+	}
+	.actor-link:hover {
+		text-decoration: underline;
 	}
 	.muted {
 		color: var(--text-muted);

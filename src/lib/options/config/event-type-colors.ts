@@ -23,6 +23,9 @@ const EVENT_TYPE_CONFIG: Record<string, EventTypeConfig> = {
 	user_login: { color: 'gray' },
 	user_logout: { color: 'gray' },
 
+	// Search
+	search_executed: { color: 'blue' },
+
 	// Admin
 	admin_promoted: { color: 'purple' },
 	admin_demoted: { color: 'orange' },

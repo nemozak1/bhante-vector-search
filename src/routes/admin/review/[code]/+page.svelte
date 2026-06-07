@@ -69,11 +69,11 @@
 			</div>
 		{/if}
 
-		{#if statusItem && statusItem.issues.length > 0}
+		{#if statusItem && (statusItem.issues?.length ?? 0) > 0}
 			<div class="issues-section">
 				<h3>Remaining issues</h3>
 				<ul class="issue-list">
-					{#each statusItem.issues as issue}
+					{#each statusItem.issues ?? [] as issue}
 						<li>{issue}</li>
 					{/each}
 				</ul>

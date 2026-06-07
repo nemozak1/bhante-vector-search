@@ -34,9 +34,9 @@
 		{
 			href: '/admin/users',
 			label: 'Users',
-			blurb: 'List, suspend, promote / demote admins, view session activity.',
+			blurb: 'List, promote / demote admins, drill into individual activity.',
 			icon: Users,
-			live: false
+			live: true
 		},
 		{
 			href: '/admin/ingestion',

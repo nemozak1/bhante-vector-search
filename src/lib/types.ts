@@ -92,7 +92,7 @@ export type ReviewStatusItem = {
 	turn_count: number;
 	total_paragraphs: number;
 	unattributed_pct: number;
-	issues: string[];
+	issues?: string[];
 	has_date: boolean;
 	has_location: boolean;
 };

@@ -57,7 +57,16 @@
 		<h1>{f.category}</h1>
 
 		<div class="meta-grid">
-			<div><span class="label">From</span><span>{f.email_snapshot}</span></div>
+			<div>
+				<span class="label">From</span>
+				<span>
+					{#if f.user_id}
+						<a href="/admin/users/{f.user_id}">{f.email_snapshot}</a>
+					{:else}
+						{f.email_snapshot}
+					{/if}
+				</span>
+			</div>
 			<div><span class="label">Submitted</span><span>{fmtDate(f.created_at)}</span></div>
 			<div><span class="label">Status</span><span>{f.status}</span></div>
 			<div><span class="label">Triaged</span><span>{fmtDate(f.triaged_at)}</span></div>
