@@ -251,7 +251,7 @@
 <style>
 	.fab {
 		position: fixed;
-		right: 1.25rem;
+		left: 1.25rem;
 		bottom: 1.25rem;
 		z-index: 70;
 		width: 44px;
