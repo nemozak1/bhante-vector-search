@@ -5,7 +5,7 @@ export type { SavedQuery };
 
 export async function listByUser(userId: string): Promise<SavedQuery[]> {
 	const { rows } = await pool.query<SavedQuery>(
-		`select id, name, query, scope, filters, created_at, updated_at
+		`select id::int as id, name, query, scope, filters, created_at, updated_at
 		   from saved_queries
 		  where user_id = $1
 		  order by updated_at desc`,
@@ -27,7 +27,7 @@ export async function upsert(
 		 on conflict (user_id, name) do update
 		   set query = excluded.query, scope = excluded.scope,
 		       filters = excluded.filters, updated_at = now()
-		 returning id, name, query, scope, filters, created_at, updated_at`,
+		 returning id::int as id, name, query, scope, filters, created_at, updated_at`,
 		[userId, name, query, scope, filters ? JSON.stringify(filters) : null]
 	);
 	return rows[0];
