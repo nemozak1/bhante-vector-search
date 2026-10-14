@@ -29,13 +29,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Install postgres-client-16
+      # pg_dump must be >= the server's major version (Neon runs Postgres 17).
+      # The runner image ships an older client on PATH, so call the v17
+      # binary by absolute path below.
+      - name: Install postgres-client-17
         run: |
           sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
           curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /usr/share/keyrings/postgresql.gpg
           sudo sed -i 's|deb http|deb [signed-by=/usr/share/keyrings/postgresql.gpg] http|' /etc/apt/sources.list.d/pgdg.list
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends postgresql-client-16
+          sudo apt-get install -y --no-install-recommends postgresql-client-17
 
       - name: Dump irreplaceable tables
         env:
@@ -43,7 +46,7 @@ jobs:
         run: |
           STAMP=$(date -u +%Y%m%d-%H%M)
           OUT="backup-${STAMP}.sql"
-          pg_dump "${{ secrets.NEON_DATABASE_URL }}" \
+          /usr/lib/postgresql/17/bin/pg_dump "${{ secrets.NEON_DATABASE_URL }}" \
             --no-owner --no-acl --clean --if-exists \
             --table='"user"' \
             --table='session' \
