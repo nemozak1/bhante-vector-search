@@ -3,23 +3,36 @@
 
 	let { result }: { result: SeminarResult } = $props();
 
-	let viewerUrl = $derived(result.seminar_code
-		? `/seminars/${result.seminar_code}?highlight=${encodeURIComponent(result.content.substring(0, 80))}`
-		: null);
+	// content is one 'Speaker: text' line per turn (see src/seminar_chunker.py).
+	let lines = $derived(
+		result.content.split('\n').map((line) => {
+			const speaker = result.speakers.find((s) => line.startsWith(`${s}: `));
+			return speaker
+				? { speaker, text: line.slice(speaker.length + 2) }
+				: { speaker: null, text: line };
+		})
+	);
+
+	let viewerUrl = $derived(
+		`/seminars/${result.seminar_code}?turn=${result.turn_start}&to=${result.turn_end}`
+	);
 </script>
 
 <a href={viewerUrl} class="result-link">
 	<article class="result-card seminar-card">
-		{#if result.speaker}
-			<div class="speaker-name">{result.speaker}</div>
-		{/if}
-		<p class="result-content">{result.content}</p>
+		<div class="exchange">
+			{#each lines as line, i (i)}
+				<p class="line" class:line-sangharakshita={line.speaker === 'Sangharakshita'}>
+					{#if line.speaker}
+						<span class="line-speaker">{line.speaker}</span>
+					{/if}
+					{line.text}
+				</p>
+			{/each}
+		</div>
 		<footer class="result-meta">
 			{#if result.seminar_title}
 				<span class="meta-tag title">{result.seminar_title}</span>
-			{/if}
-			{#if result.section_heading}
-				<span class="meta-tag">{result.section_heading}</span>
 			{/if}
 			{#if result.date}
 				<span class="meta-tag">{result.date}</span>
@@ -55,22 +68,33 @@
 		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 	}
 
-	.speaker-name {
+	.exchange {
+		margin-bottom: 1rem;
+	}
+
+	/* Participants' turns are context; Sangharakshita's are the reading text. */
+	.line {
+		font-family: 'Cormorant Garamond', serif;
+		font-size: 1rem;
+		line-height: 1.65;
+		color: var(--text-muted);
+		margin: 0 0 0.5rem;
+	}
+
+	.line-sangharakshita {
+		font-size: 1.1rem;
+		line-height: 1.75;
+		color: var(--text);
+	}
+
+	.line-speaker {
 		font-family: 'Source Sans 3', sans-serif;
-		font-size: 0.8rem;
+		font-size: 0.72rem;
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 		color: var(--seminar-accent);
-		margin-bottom: 0.5rem;
-	}
-
-	.result-content {
-		font-family: 'Cormorant Garamond', serif;
-		font-size: 1.1rem;
-		line-height: 1.75;
-		color: var(--text);
-		margin-bottom: 1rem;
+		margin-right: 0.4rem;
 	}
 
 	.result-meta {

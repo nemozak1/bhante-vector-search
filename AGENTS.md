@@ -9,7 +9,7 @@ Semantic search for Bhante Sangharakshita's books and seminar transcripts. Singl
 
 Two storage stories run side by side:
 - **Cleaned transcripts and review status are JSON files in git.** A remote Claude agent edits `data/seminars/cleaned/{code}.json` and `data/seminars/review_status.json` and opens GitHub PRs; humans review via PR review. The SvelteKit app reads these straight from disk.
-- **Embeddings, ingestion log, and per-user state are in Postgres.** Better Auth tables, `chunks` (pgvector, 3072-dim text-embedding-3-large vectors via halfvec HNSW), `ingestion_log`, `bookmarks`, `search_history`, `saved_queries`.
+- **Embeddings, ingestion log, and per-user state are in Postgres.** Better Auth tables, `chunks` (book passages: pgvector, 3072-dim text-embedding-3-large vectors via halfvec HNSW), `seminar_chunks` (seminar exchange windows: text-embedding-3-large shortened to 1536 dims, plain HNSW), `ingestion_log`, `bookmarks`, `search_history`, `saved_queries`.
 
 The remote-agent / PR workflow is V1. V2 (post-bulk-cleanup) will add an editor-user role and move canonical content into Postgres — but the schema for that is deferred until the editor UX is scoped.
 
@@ -79,9 +79,11 @@ python ingest_seminars.py --reprocess          # force re-ingestion even if sour
 
 `ingest_seminars.py` is **idempotent at the source-SHA level**: it computes `git hash-object data/seminars/cleaned/{code}.json` (falling back to a sha256 of the file bytes if not in git, then to the raw file if cleaned doesn't exist) and skips the seminar if the most recent `ingestion_log` row for that code already has the same `source_sha`. Use `--reprocess` to override.
 
-When a seminar is re-ingested, the script first **deletes any existing chunks** for that `seminar_code` in the target collection, then re-embeds and inserts fresh — no orphaned chunks. The OpenAI embedding call costs apply.
+Seminars are chunked into **exchange windows** (`src/seminar_chunker.py`): runs of consecutive speaker turns up to ~1,800 chars, closed at the start of a new question, so each question is embedded with its answer and one-word interjections never stand alone. Each window stores its `turn_start`/`turn_end` (indexes into `seminars.transcript.turns`) so search results deep-link to `/seminars/{code}?turn=N&to=M`. Embeddings are text-embedding-3-large truncated to 1536 dims and L2-normalised; `src/lib/server/embed.ts` `shorten()` does the same to queries.
 
-**Planned bulk re-ingest:** once the remote-Claude PR review pass has cleaned all 200 seminars, run `python ingest_seminars.py --reprocess` to rebuild the entire seminar index from the cleaned versions. Until then, ingestion runs incrementally for whatever seminars have been added or changed.
+When a seminar is re-ingested, deleting its old `seminar_chunks` rows, inserting the new ones and writing the `ingestion_log` row happen in **one transaction** — no orphaned or half-indexed seminars. A full re-embed is ~59K windows / ~18M tokens (~$2.30).
+
+**Changing the chunker** doesn't change source SHAs, so nothing re-ingests on its own: run `python ingest_seminars.py --reprocess` (or `gh workflow run sync-content.yml -f reprocess=true` for Neon). The legacy turn-per-chunk seminar rows (`chunks.collection = 'bhante_seminar_search'`) are no longer read by search.
 
 ## Architecture
 
@@ -120,7 +122,8 @@ src/
 │       │   ├── bookmarks.ts        listByUser, upsert, deleteByUserAndId
 │       │   ├── saved-queries.ts
 │       │   ├── search-history.ts
-│       │   ├── chunks.ts           pgvector halfvec similarity query
+│       │   ├── chunks.ts           book passages: pgvector halfvec similarity query
+│       │   ├── seminar-chunks.ts   seminar exchange windows: 1536-dim similarity query
 │       │   ├── seminars.ts         seminars catalog (list, getByCode)
 │       │   └── seminar-contents.ts
 │       ├── services/               orchestration; takes userId; throws kit errors
@@ -139,7 +142,8 @@ src/
 ├── hooks.server.ts         Better Auth session resolution + /api/* gate
 ├── app.d.ts                Locals typing
 ├── epub_processor.py       Python ingestion library (used by ingest_epub.py)
-├── seminar_processor.py    Python ingestion library (used by ingest_seminars.py)
+├── seminar_processor.py    Python raw-transcript parser (used by ingest_seminars.py)
+├── seminar_chunker.py      exchange-window chunking (used by ingest_seminars.py)
 └── seminar_scraper.py      Python scraper
 
 migrations/                 numbered .sql files, applied in order
@@ -148,7 +152,9 @@ migrations/                 numbered .sql files, applied in order
 ├── 0003_user_features.sql  bookmarks, search_history, saved_queries
 ├── 0004_pgvector.sql       chunks (vector(3072) + halfvec HNSW index)
 ├── 0005_seminar_contents.sql  seminar_contents (TOC entries scraped from raw/*C.json)
-└── 0006_seminars.sql       seminars catalog + FK from seminar_contents.seminar_code
+├── 0006_seminars.sql       seminars catalog + FK from seminar_contents.seminar_code
+├── 0007–0011               transcripts on seminars, feedback, admin role, system events, 2FA
+└── 0012_seminar_chunks.sql seminar_chunks (exchange windows, vector(1536) + HNSW)
 
 scripts/                    one-shot Python scripts
 ├── seed_from_files.py             ingest_log.json → Postgres
@@ -212,7 +218,7 @@ Required (`.env` at repo root, `.env.example` is the template):
 
 Optional:
 - `EMBEDDING_MODEL` — defaults to `text-embedding-3-large`
-- `BOOK_COLLECTION` / `SEMINAR_COLLECTION` — defaults to the historical Chroma collection names; both are passed through to the `chunks.collection` column in pgvector
+- `BOOK_COLLECTION` — defaults to the historical Chroma collection name; passed through to the `chunks.collection` column in pgvector (seminars live in `seminar_chunks`)
 
 The Postgres dev container exposes 5432 → host **5433** (5432 was taken on the original dev machine).
 

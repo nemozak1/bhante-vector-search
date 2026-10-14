@@ -40,16 +40,7 @@
 				}} />
 			{:else}
 				<div class="type-badge seminar-badge">Seminar</div>
-				<SeminarResult result={{
-					content: result.content,
-					seminar_title: result.seminar_title,
-					seminar_code: result.seminar_code,
-					speaker: result.speaker,
-					section_heading: result.section_heading,
-					date: result.date,
-					location: result.location,
-					score: result.score,
-				}} />
+				<SeminarResult {result} />
 			{/if}
 		{/each}
 	</ResultList>

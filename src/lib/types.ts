@@ -38,11 +38,12 @@ export type BookResult = {
 };
 
 export type SeminarResult = {
-	content: string;
+	content: string; // one 'Speaker: text' line per turn in the window
 	seminar_title: string | null;
-	seminar_code: string | null;
-	speaker: string | null;
-	section_heading: string | null;
+	seminar_code: string;
+	speakers: string[];
+	turn_start: number; // turn_index range in the seminar transcript
+	turn_end: number;
 	date: string | null;
 	location: string | null;
 	score: number;

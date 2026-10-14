@@ -25,7 +25,9 @@ const DEFAULT_CACHE: CacheShape = { k: 5, all: null, books: null, seminars: null
 
 // One shared, persisted cache for all three scopes. Holds the last search per
 // scope so a reload restores results without re-embedding (an OpenAI call).
-const cache = new LocalStorage<CacheShape>('bhante:search-cache', DEFAULT_CACHE);
+// Bump the version suffix whenever a result type changes shape, so stale
+// cached results are ignored instead of rendered with missing fields.
+const cache = new LocalStorage<CacheShape>('bhante:search-cache:v2', DEFAULT_CACHE);
 
 type Runner<T> = (q: string, k: number) => Promise<{ results: T[] }>;
 

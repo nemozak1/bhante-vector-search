@@ -11,7 +11,16 @@
 	const FONT_STEP = 0.1;
 
 	let code = $derived(page.params.code as string);
+	// Search results link with ?turn=N&to=M (the matched window's turn range);
+	// older links carry ?highlight=<start of the matched text>.
 	let highlight = $derived(page.url.searchParams.get('highlight') || '');
+	let turnFrom = $derived(intParam('turn'));
+	let turnTo = $derived(intParam('to') ?? turnFrom);
+
+	function intParam(name: string): number | null {
+		const n = parseInt(page.url.searchParams.get(name) ?? '', 10);
+		return Number.isFinite(n) ? n : null;
+	}
 
 	let transcriptQ = $derived(seminarsRemote.get(code));
 	let transcript: SeminarDetail | null = $derived(transcriptQ.current ?? null);
@@ -64,11 +73,25 @@
 	}
 
 	$effect(() => {
-		if (transcript && highlight) {
+		if (transcript && (turnFrom != null || highlight)) {
 			paginate = false;
-			tick().then(() => scrollToHighlight());
+			const from = turnFrom;
+			const to = turnTo;
+			tick().then(() => (from != null ? scrollToTurns(from, to ?? from) : scrollToHighlight()));
 		}
 	});
+
+	function scrollToTurns(from: number, to: number) {
+		let first: Element | null = null;
+		for (const el of document.querySelectorAll<HTMLElement>('[data-turn-index]')) {
+			const i = Number(el.dataset.turnIndex);
+			if (i >= from && i <= to) {
+				el.classList.add('highlight-target');
+				first ??= el;
+			}
+		}
+		first?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
 
 	function scrollToHighlight() {
 		if (!highlight) return;

@@ -30,7 +30,6 @@ export const env = {
 	BETTER_AUTH_URL: required('BETTER_AUTH_URL'),
 	EMBEDDING_MODEL: optional('EMBEDDING_MODEL', 'text-embedding-3-large'),
 	BOOK_COLLECTION: optional('BOOK_COLLECTION', 'bhante_epub_search'),
-	SEMINAR_COLLECTION: optional('SEMINAR_COLLECTION', 'bhante_seminar_search'),
 	VOYAGE_API_KEY: process.env.VOYAGE_API_KEY ?? '',
 	RERANK_ENABLED: bool('RERANK_ENABLED', false),
 	RERANK_MODEL: optional('RERANK_MODEL', 'rerank-2.5-lite'),

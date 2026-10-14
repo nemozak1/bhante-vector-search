@@ -16,3 +16,13 @@ export async function embed(text: string): Promise<number[]> {
 	});
 	return res.data[0].embedding;
 }
+
+/**
+ * Shorten a text-embedding-3 vector to `dims` by truncating and L2-normalising,
+ * the same shortening ingest_seminars.py applies before storing seminar chunks.
+ */
+export function shorten(vec: number[], dims: number): number[] {
+	const head = vec.slice(0, dims);
+	const norm = Math.sqrt(head.reduce((sum, x) => sum + x * x, 0));
+	return head.map((x) => x / norm);
+}
