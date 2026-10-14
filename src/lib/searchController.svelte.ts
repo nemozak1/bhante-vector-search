@@ -112,6 +112,10 @@ export class SearchController<T> {
 
 		this.loading = true;
 		try {
+			// URL-driven searches start inside the $effect above, and a remote
+			// query's .run() throws if called during render/effect execution.
+			// Yield one microtask so it runs after the effect has finished.
+			await Promise.resolve();
 			const data = await this.#run(q, k);
 			this.results = data.results;
 			this.searched = true;
