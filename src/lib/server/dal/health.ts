@@ -15,6 +15,9 @@ export async function chunkStats(): Promise<ChunkStat[]> {
 		      + count(distinct (metadata->>'work')) filter (where metadata ? 'work')::int as distinct_entities
 		   from chunks
 		  group by collection
+		 union all
+		 select 'seminar_chunks', count(*)::int, count(distinct seminar_code)::int
+		   from seminar_chunks
 		  order by collection`
 	);
 	return rows;
@@ -31,7 +34,7 @@ export async function tableCounts(): Promise<TableCount[]> {
 		  where n.nspname = 'public'
 		    and c.relkind = 'r'
 		    and c.relname in ('user','session','feedback','system_events','ingestion_log','bookmarks',
-		                     'search_history','saved_queries','seminars','seminar_contents')
+		                     'search_history','saved_queries','seminars','seminar_contents','seminar_chunks')
 		  order by c.relname`
 	);
 	return rows;

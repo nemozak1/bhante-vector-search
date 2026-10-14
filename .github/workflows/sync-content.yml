@@ -3,8 +3,13 @@
 # Neon (pgvector) so production search reflects the cleaned versions.
 #
 # Idempotent: ingest_seminars.py uses git-hash-object source-SHA dedup,
-# so unchanged seminars are skipped within seconds. Cost ceiling for a
-# full re-embed of all ~200 seminars: ~$0.17 in OpenAI charges.
+# so unchanged seminars are skipped within seconds. A full re-embed of all
+# ~160 seminars (~59K exchange windows, ~18M tokens) costs ~$2.30 in OpenAI
+# charges and takes well over the old 30-minute limit.
+#
+# Changing the chunker (src/seminar_chunker.py) does not change source SHAs,
+# so re-embed everything by hand afterwards:
+#   gh workflow run sync-content.yml -f reprocess=true
 #
 # Required secrets (Repo Settings → Secrets and variables → Actions):
 #   NEON_DATABASE_URL   Neon production connection string (same one used
@@ -18,7 +23,12 @@ on:
     branches: [main]
     paths:
       - 'data/seminars/cleaned/**'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      reprocess:
+        description: Re-embed every seminar, not just changed ones (needed after a chunker change)
+        type: boolean
+        default: false
 
 # Don't run two ingests in parallel — let pushes queue up
 concurrency:
@@ -28,7 +38,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -59,7 +69,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: python ingest_seminars.py
+        run: python ingest_seminars.py ${{ inputs.reprocess && '--reprocess' || '' }}
 
       - name: Re-seed catalog (titles, dates, locations)
         env:
