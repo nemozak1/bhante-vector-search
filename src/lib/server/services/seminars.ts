@@ -16,14 +16,19 @@ export async function list(): Promise<SeminarListItem[]> {
 	}));
 }
 
+/**
+ * Prefer the transcript stored on seminars.transcript (populated by
+ * seed:catalog from data/seminars/cleaned/{code}.json). Falls back to the
+ * filesystem loader so local dev still works before re-seeding, and so
+ * raw-only seminars (no cleaned file) still render. In production (Vercel)
+ * data/seminars/ isn't bundled, so the DB copy is the only source.
+ */
+export async function getTranscript(code: string) {
+	return (await seminarsDal.getTranscriptByCode(code)) ?? (await loadSeminarForDisplay(code));
+}
+
 export async function get(code: string): Promise<SeminarDetail> {
-	// Prefer the transcript stored on seminars.transcript (populated by
-	// seed:catalog from data/seminars/cleaned/{code}.json). Falls back to the
-	// filesystem loader so local dev still works before re-seeding, and so
-	// raw-only seminars (no cleaned file) still render.
-	const data =
-		(await seminarsDal.getTranscriptByCode(code)) ??
-		(await loadSeminarForDisplay(code));
+	const data = await getTranscript(code);
 	if (!data) error(404, `Seminar ${code} not found`);
 	const contents = await seminarContentsDal.listBySeminar(code);
 	return { ...data, contents: contents.length ? contents : null };

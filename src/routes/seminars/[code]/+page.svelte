@@ -6,8 +6,6 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Plus, Minus, ArrowUp } from '@lucide/svelte';
 
-	const BASE_URL = import.meta.env.DEV ? '' : 'http://localhost:8000';
-
 	const FONT_MIN = 0.85;
 	const FONT_MAX = 1.8;
 	const FONT_STEP = 0.1;
@@ -115,9 +113,9 @@
 				</p>
 			{/if}
 			<div class="export-bar">
-				<a href="{BASE_URL}/api/seminars/{code}/pdf" class="export-btn" download>PDF</a>
-				<a href="{BASE_URL}/api/seminars/{code}/epub" class="export-btn" download>EPUB</a>
-				<a href="{BASE_URL}/api/seminars/{code}/print" class="export-btn" target="_blank" rel="noopener">Print</a>
+				<a href="/api/seminars/{code}/pdf" class="export-btn" download>PDF</a>
+				<a href="/api/seminars/{code}/epub" class="export-btn" download>EPUB</a>
+				<a href="/api/seminars/{code}/print" class="export-btn" target="_blank" rel="noopener">Print</a>
 			</div>
 		</header>
 

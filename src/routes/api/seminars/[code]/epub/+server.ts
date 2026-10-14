@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { EPub } from 'epub-gen-memory';
-import { loadSeminarForDisplay } from '$lib/server/seminars/load.ts';
+import { getTranscript } from '$lib/server/services/seminars.ts';
 
 function escapeHtml(s: string): string {
 	return s
@@ -12,7 +12,7 @@ function escapeHtml(s: string): string {
 }
 
 export const GET = async ({ params }) => {
-	const data = await loadSeminarForDisplay(params.code);
+	const data = await getTranscript(params.code);
 	if (!data) error(404, `Seminar ${params.code} not found`);
 
 	const subtitleParts = [data.date, data.location].filter(Boolean) as string[];

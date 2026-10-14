@@ -1,9 +1,9 @@
 import { error } from '@sveltejs/kit';
 import PDFDocument from 'pdfkit';
-import { loadSeminarForDisplay } from '$lib/server/seminars/load.ts';
+import { getTranscript } from '$lib/server/services/seminars.ts';
 
 export const GET = async ({ params }) => {
-	const data = await loadSeminarForDisplay(params.code);
+	const data = await getTranscript(params.code);
 	if (!data) error(404, `Seminar ${params.code} not found`);
 
 	const doc = new PDFDocument({ size: 'A4', margin: 56 });
